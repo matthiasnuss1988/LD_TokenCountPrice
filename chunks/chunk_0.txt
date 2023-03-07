@@ -1,0 +1,70 @@
+\chapter{Coincidence-Based Second-Order Correlation}%\label{5_coincidence}
+
+A method that is often used to determine whether any light source is a \ac{SPS} is the second-order
+correlation function $g^{(2)}(t+\tau)$.Throughout this work, in most cases, we consider stationary
+processes, so the dependence on the time $t$ is considered implicit, whereas the dependence on
+$\tau$ is left explicit.
+
+
+\section{Status-Quo}
+One way to measure this correlation function $g^{(2)}(\tau)$ is by photon interferometry.Since
+Amplitude interferometers like the Michelson interferometer have to deal with major challenges,
+requesting the coherence of the light detected at the different telescopes, electromagnetic waves
+must be detected with a precision smaller than the wavelength of the observed light at the two
+detection points to still recognize the interference.Furthermore, light from different telescopes
+has to be brought together with the same precision, making Michelson interferometry impractical and
+very elaborate.
+
+
+\subsection{The Hanbury Brown and Twiss Interferometer}
+A way out of this dilemma is the \ac{HBT} experiment.~The experiment, initially invented by
+Hanbury-Brown and Twiss in 1956, has the advantage of measuring the number of photons and their
+correlated intensity fluctuations instead of amplitudes.Consequently, \ac{HBT} is insensitive to the
+phase of electromagnetic waves.
+The setup for such an experiment is very famous.An incoming photon beam is split into two by a 50:50
+\ac{BS}.Both beams are directed to a single-photon detector like in our case two Perkin Elmer Si
+\ac{APD}s (\ac{SPCM}-CD 2801 9380 Rev.G and \ac{SPCM}-AQR-13 11475).The electrical output signals of
+the detectors are monitored by a \ac{TDC} which measures the time difference between the signals
+from both detectors.
+
+
+\subsection{Photon Time Tagging}
+In this thesis, trigger thresholds (start--stop) are used to determine the arrival time of a photon
+instead of sampling the signal.Using these trigger thresholds, a more
+frequent time sampling/binning is possible than by a fix trigger sampling of the \ac{APD}
+signal.When the signal from the start channel reaches the threshold, an event is recorded on the
+start device, and the corresponding time is the specific time tag of a photon on a two-photon
+histogram $c(\tau)$, indicated in \cref{fig:CorrelationShematics}.When $c(\tau)$ is enhanced at
+$\tau$ = \num{0}, photons tend to arrive simultaneously at the two detectors, and photon
+combinations with $\tau\approx$ \num{0} should exist more often than those with
+$|\tau|>$\num{0}.This is an indicator for photon bunching, as occurs in photon streams from thermal
+light sources.When observing a photon source with Poisson photon statistics, i.e., a laser,
+$c(\tau)$ is independent of $\tau$.If the incoming light originates from a single-photon source, two
+photons can't arrive simultaneously at both detectors and $c(0)$ = \num{0}.This means that no signal
+will be measured for a time difference of zero.As we move away from zero, the function value
+increases asymptotically in the Poisson case.
+
+
+\subsection{The Wiener-Khinchin Theorem}\label{sec:Khinchin}
+The Wiener--Khinchin theorem relates the temporal first-order correlation function $g^{(1)}(\tau)$
+to the normalized power spectrum by Fourier transformation $\mathcal{F}(\omega)$ of the light
+source.
+
+\begin{equation}
+\label{eq:WienerForward}
+\mathcal{F}(\omega)=\dfrac{1}{2\pi}\int_{-\infty}^{\infty}g^{(1)}(\tau)\exp{(i\omega \tau)}\partial\tau
+\end{equation}
+
+The back transformation can also be used to calculate the temporal function $g^{(1)}$ of the power
+spectrum.
+
+\begin{equation}
+\label{eq:WienerBackward}
+g^{(1)}(\tau)=\int_{-\infty}^{\infty}\mathcal{F}(\omega)\exp{(-i\omega \tau)}\partial\omega
+\end{equation}
+
+
+\subsection{The Siegert Relation}\label{sec:siegert}
+Originally developed for thermal light, the Siegert relation relates the first- and second-order
+correlation functions, assuming a large number of equivalent atoms emitting electromagnetic waves
+that interfere with the observer \cite{classen_incoherent_2017}.

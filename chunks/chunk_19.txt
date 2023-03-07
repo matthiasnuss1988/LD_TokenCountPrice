@@ -1,0 +1,86 @@
+After background correction we can use \crefrange{eq:ConvImp}{eq:ConvImpCond}, if we know $\tau_c$
+from a exponential lifetime fit to a pulse in the pulsed histogram.
+For an arbitrary $\tau$ or $m$ step we define analogue the temporal visibility
+$\nu_\mathrm{temp}(\tau,\, m)$ in \cref{eq:g2_vistempoverall}.Nevertheless, due to the convolution
+in the nominator of \cref{eq:g2_vistempoverall} this time we can not factorize terms for
+$\tau=0$.Instead in this way, we introduce $g^{(2)}_\mathrm{intrinsic}$, into the one-step
+reconvolution fit in \cref{eq:totalvis2}.
+
+
+\paragraph{Doppler-Broadened Light Source}
+For a Doppler-broadened light source in \cref{eq:KhinchinExample22}, the data has to be fitted with
+\cref{eq:ConvDoppler}
+
+\begin{equation}
+\label{eq:ConvDoppler}
+C_N(\tau)=1+\dfrac{\hat{Q}_0}{\sqrt{1+2\pi v}}\exp{\Big(\dfrac{-\pi u^{2}}{1+2\pi v}\Big)},
+\end{equation}
+
+with the substitutions of \cref{eq:ConvImpCond}, using $\tau'_c=\tau_\mathrm{c,\,
+Gauss}=\sqrt{2}\pi\tau_c$ in the denominator.\\
+Analogue to the previous discussion, we get the visibility $\nu_\mathrm{temp}$ which can also be
+used for the more error prone route in a pulsed measurement.
+
+\begin{equation}
+g^{(2)}_\circledast(0)\rightarrow\nu_\mathrm{temp}=\dfrac{1}{\sqrt{1+2\pi v}}\label{eq:g2_dopplerdeconvzero}\\
+\end{equation}
+
+The expression for $\nu_\mathrm{temp}(m,\,\tau)$ stays the same as before, independent of the light
+source.\\
+The decreasing visibility in dependency of $\sigma_\mathrm{sys}/\tau_c$ is illustrated in
+\cref{fig:Deconvolution} for both impact- and Doppler-broadened light.
+We find for both, if $\sigma_\mathrm{sys}\approx \tau_c$, the visibility of the correlation function
+is already reduced to 37\% of its original value and an increasing timing jitter is smearing out the
+bunching peak \cite{hanbury_brown_test_1956}.
+Furthermore, the plot proclaims, the difference between Gaussian and Lorentzian shaped light, in
+terms of jitter is marginal.Hence, we can define the decreasing visibility factor because of the
+timing jitter:
+
+\begin{equation}
+\nu_\mathrm{temp}\approx \dfrac{1}{1+2\pi\nu}=\dfrac{1}{1+\Omega^2_\mathrm{temp}}\label{eq:g2_vistemp}\\
+\end{equation}
+
+where $\Omega_\mathrm{temp}$ denotes the number of temporal modes averaged in the measurement due to
+timing jitter, starting at zero analogue to the TEM00 mode.
+
+
+\paragraph{Lorentzian Light Source with Triplet Blinking} Having a mixture of antibunched and bunched light, the convolution is bi-exponential.
+
+\begin{equation}
+\label{eq:ConvImpBlink}
+g^{(2)}(m,\,\tau)=1+\dfrac{\hat{Q}_\mathrm{j0}}{2} \cdot \exp{\Big(\dfrac{v_j}{2}\Big)}
+\left(\begin{array}{c}
+e^{\big.u_{-}\big.} \\
+e^{\big.u_{+}\big.}\\
+\end{array}\right)
+
+\left(\begin{array}{c}
+\text{erfc}\big(\frac{u_{-}^j+v^j}{\sqrt{2v^j}}\big) \\
+\text{erfc}\big(\frac{u_{+}^j+v^j}{\sqrt{2v^j}}\big)
+\end{array}\right)
+
+\end{equation}
+
+with the Einstein notation $j=\{1,2\}$ (summation if $j$ occurs in the index and exponent).
+
+\begin{equation}
+\label{eq:ConvImpBlinkCond}
+v_j=\Bigg(\dfrac{\sigma_\mathrm{sys}}{\tau'_\mathrm{cj}}\Bigg)^2\qquad \text{and}\qquad u_{\pm,\, j}=\pm \dfrac{|\tau -\tau_0|}{\tau'_\mathrm{cj}}\underbracket{\rightarrow}_\mathrm{pulsed}\pm\Big|\dfrac{m}{f\tau'_\mathrm{cj}}\Big|\\
+\end{equation}
+
+Here, j denotes the term for bunched and antibunched light with j = \num{1} and \num{2},
+respectively.The discussion about the visibility is straightforward and analogue to the previous
+discussions.
+Deviating, for a pulsed measurement, we can only re-convolve the area of peak $m$, if we know
+$\tau_\mathrm{c,\,1}$ and $\tau_\mathrm{c,\,2}$ from a bi exponential lifetime measurement.Note,
+this time we have to evaluate at least two pulse areas to get the information about both,
+$\hat{Q}_\mathrm{10}$ and $\hat{Q}_\mathrm{20}$.
+From the re-convolution fit we get the fit parameters and we use
+$g^{(2)}_\mathrm{j0}-1=\hat{Q}_\mathrm{j0}$.Note, $\hat{Q}_{10}>0$ and $\hat{Q}_{20}<0$ has to be
+always fulfilled to assign the j=\num{1} and j = \num{2} term to the contribution of bunched and
+anti-bunched light, respectively.\\
+
+
+\subsubsection{Binwidth}
+Since the binwidth can not be choosen arbitrarily small, the height of the 0th bin will always be
+reduced.

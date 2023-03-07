@@ -1,0 +1,58 @@
+\subparagraph{Reduction due to z-Misalignment} However it is difficult to position both detectors at
+equal distances from the \ac{BS}.Furthermore equidistant separation is often hindered by
+experimental circumstances, as in our initial setup.We observed $\Delta
+r=|\boldsymbol{r}_1-\boldsymbol{r}_2|\approx \SI{0.15}{m}$, decreasing the visibility of $g^{(2)}$.
+
+\begin{equation}
+\label{eq:g2coherencelossz}
+\nu_\mathrm{spatial,\Delta r}=\Big|\dfrac{2J_1(a\xi)}{a\xi}\Big|^2\underbracket{=}_\mathrm{Abbe-Limit}\Big|\dfrac{2J_1(\chi_1)}{\chi_1}\Big|^2,\quad \rho_c\approx 2.44zN_A
+\end{equation}
+
+In this work, the transform-limited focus in a microscope with numerical aperture $N_A=1.4$
+determines the aperture $a$.Thus, spatial coherence properties become independent of wavelength
+$\lambda_0$.For our fluorescence microscopy quantum coherence experiments on individual
+(6,4)-\acp{SWCNT} with unequal path length and with $z\approx\SI{2}{\m}$,
+$\lambda_0\approx\SI{875}{\nm}$ and $a\approx\SI{310}{\nm}$, we found: $\chi_1\approx0.17z$ and
+$\sigma_c\approx3.42z$.\\
+Thus the spatial coherence radius is $\sigma_c=\SI{8.83}{\m}$ and $\nu_\mathrm{spatial,\,\Delta
+r}\approx 0.998$.Consequently, spatial coherence loss, due to misplacement in $z$ direction can be
+neglected, but is important for detector placement right after the source, e.g., $z=\SI{0.1}{\m}$,
+where $\nu_\mathrm{spatial,\,\Delta r}\approx 0.47$.
+\subparagraph{Reduction due to xy-Misalignment}
+A further source for spatial coherence loss is a misplacement of one interferometric arm in the xy
+direction, which would cause probing of the correlation at a different positions inside detector
+$D_2$.This situation leads to a probe of the coherence properties at an off-center position in the
+coherence cell and result in reduced visibility $\nu_\mathrm{spatial,xy}$.The reduction follows the
+same rules as $\nu_\mathrm{spatial,\Delta r}$ and is negligible for a small detector chip of the
+\ac{SPCM}, using a cage system and at a large distance z.Although the misalignment in xy is large at
+short z, the two detected coincidence photons are always uncorrelated, due to emerging from
+different coherent cells.
+\subparagraph{Reduction due to Detector Size}
+In practice the detector has a finite acceptance area, which can potentially cover more than one
+coherence cell and thus different spatial modes $\Omega \in [0,\,1\,...\, n]$ as more coherence
+cells are involved.
+We will not go into the details of the rigorous mathematical derivation of $g^{(2)}$ in terms of
+spatial modes $\Omega$.The interested reader is referred to \cite{pscherer_measurement_2016}.
+We look into a simple approximation which is conceptually valid for all kinds of
+experiments.Therefore, we first simplify $J_1$ in \cref{eq:g2spatial1}, as well as the acceptance
+function of the SPCM \cite{perkin_data_2001} to a Gaussian, which introduces a small error
+\cite{pscherer_measurement_2016}.
+
+\begin{equation}
+\label{eq:g2coherencelossxy}
+\nu_\mathrm{spatial,SPCM}=\dfrac{1}{1+\dfrac{2\sigma^2_\mathrm{SPCM}}{\rho_c^2}}\underbracket{\approx}_{\text{Using areas instead}}\dfrac{1}{1+\dfrac{\sigma_\mathrm{SPCM}^2}{\rho_c^2}}=\dfrac{1}{1+\Omega_\mathrm{spatial}},
+\end{equation}
+
+with $\sigma_\mathrm{SPCM}$, the standard deviation of spatial detector acceptance
+(cf.\cite{perkin_data_2001}).If the detector is much smaller than $\rho_c$ we get the full
+visibility, while for increasing detector size we approach $g^{(2)}(0)=1$.In many practical cases,
+neither the acceptance function of the detector, nor the intensity distribution in the source plane
+can be fully described by a pure Gaussian.In such a case we introduce the detector area
+$A_\mathrm{SPCM}$ and the coherence cell area $A_c=\pi\rho^2_c$.The ratio of both approximates the
+number of coherence cells fitting inside the detector, i.e., number of spatial modes
+$\Omega_\mathrm{spatial}$ averaged in the correlation measurement.Using $\rho_c$ from the van
+Cittert-Zernike theorem and $A_\mathrm{SPCM}=\pi\sigma_\mathrm{SPCM}^2=\SI{0.049}{\square \mm}$, we
+find $\Omega_\mathrm{spatial}=5\cdot10^{-10}\approx0$.\\
+\textbf{Remark on Spatial Modes} We emphasize, for calculating the number of averaged spatial modes,
+$A_\mathrm{SPCM}$ is not always the actual detector area, but is determined by the spatial choke
+point along the optical path.

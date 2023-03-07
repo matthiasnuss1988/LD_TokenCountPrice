@@ -1,0 +1,94 @@
+To derive the visibility decrease from the binsize we assume the binsize is given by
+$\tau_\mathrm{bin}$ and the height of the $x$th bin is
+
+\begin{equation}
+\label{eq:visbin1}
+C_N(x\tau_\mathrm{bin})=\dfrac{1}{\tau_\mathrm{bin}}\int_\mathrm{x\tau_\mathrm{bin}}^\mathrm{(x+1)\tau_\mathrm{bin}}g^{(2)}_\circledast(\tau)\partial\tau.
+\end{equation}
+
+The visibility relative to the Poisson baseline follows.
+
+\begin{subequations}\label{eq:visbin2}
+%\setlength{\abovedisplayskip}{1pt}
+
+\begin{alignat}
+{3}
+C_N(x\tau_\mathrm{bin})-1&=\dfrac{1}{\tau_\mathrm{bin}}\int_\mathrm{0}^\mathrm{\tau_\mathrm{bin}}g^{(2)}_\mathrm{intrinsic}(\tau)_\circledast\partial\tau-1\\
+&=\dfrac{1}{\tau_\mathrm{bin}}\int_\mathrm{0}^\mathrm{\tau_\mathrm{bin}}\Big(P_\mathrm{sys}\circledast g^{(2)}_\mathrm{intrinsic}\Big)(\tau)\partial\tau-1\\
+\dfrac{C_N(x\tau_\mathrm{bin})-1}{\hat{Q}_0} &=\dfrac{1}{\tau_\mathrm{bin}}\int_\mathrm{0}^\mathrm{\tau_\mathrm{bin}}\dfrac{ g^{(2)}_\circledast(\tau)\partial\tau-1}{\hat{Q}_0}=\nu_\mathrm{temp,\, bin}
+\end{alignat}
+
+\setlength{\belowdisplayskip}{1pt}
+\end{subequations}
+
+Thereby, we set all other visibility decreasing factors to 1.~Only the timing jitter has to be taken
+into account, since it is the parameter influencing the functional form of
+$g^{(2)}(\tau)_\circledast$ and therefore the effect of binning.
+If the binwidth is negligible in comparison to the jitter and coherence time
+($\tau_\mathrm{bin}\rightarrow 0$), which is the case for our experiments,
+
+\begin{equation}
+\label{eq:visbin3}
+\nu_\mathrm{temp,\, bin}=\nu_\mathrm{temp}
+\end{equation}
+
+which is the result from the temporal modes in \cref{eq:g2_dopplerdeconvzero}, since the integral
+vanishes.
+Next, let the timing jitter be much larger than the coherence time
+$(\sigma_\mathrm{sys}\gg\tau'_c)$.The shape of the convolution will be determined by
+$P_\mathrm{sys}(\tau)$:
+
+\begin{equation}
+\label{eq:visbin4}
+\nu_\mathrm{temp,\, bin}=\nu_\mathrm{temp}\int_\mathrm{0}^\mathrm{\tau_\mathrm{bin}}P_\mathrm{sys}(\tau)\partial\tau=\nu_\mathrm{temp}\nu_\mathrm{bin},
+\end{equation}
+
+which, according to Fubini's integral theorem, is fulfilled for almost every experiment.This can be
+seen by the fact that even with $\sigma_\mathrm{sys},\tau_c=\tau_\mathrm{bin}$ you only get 4\%
+deviation with $\nu_\mathrm{temp,\, bin}$ from the factorized version in the decrease of visibility.
+
+
+\subsubsection{One-Step Re-convolution of \texorpdfstring{$\boldsymbol{g^{(2)}}$}{g2}}\label{sec:decon}
+%This problem is solved by the reconvolution fitting method, which provides stable results.
+We discussed, the correlation function assigned to the photons of a single mode is decreased in
+visibility by uncorrelated background radiation, multiple polarization
+modes, as well as due to spatial coherence loss.Quantum statistical reduction of visibility due to
+the \ac{BS} is also present, especially in the case of unequal count rates, but can be overcome by a
+longer acquisition time per time step, where we have choosen \SI{1}{\s}, which is sufficient for
+.Moreover, we found that a finite resolution concerning coincidence arrival times, i.e., the timing
+jitter, further decreases the visibility as well as broadens the correlation function.We looked into
+the effect of a finite histogram binsize and found by a proper choice, it is negligible in our
+experiments.\\ We express the height of the 0th bin in terms of the total visibility
+$\nu_\mathrm{vis}$, composed from all individual parameters, discussed in this section, to include
+the result in the re-convolution fit routine.
+
+\begin{subequations}\label{eq:totalvis}
+%\setlength{\abovedisplayskip}{1pt}
+
+\begin{alignat}
+{3}
+\nu_\mathrm{vis}=\dfrac{C_N(0)-1}{\hat{Q}_0}&=\nu_\mathrm{bg}\nu_\mathrm{pol}\nu_{xy}\nu_t(0)\label{eq:totalvis1}\\
+\rightarrow\dfrac{C_N(\tau)-1}{\hat{Q}_0}&=\nu_\mathrm{bg}\nu_\mathrm{pol}\nu_{xy}\nu_t(\tau)=\nu_\mathrm{bg}\nu_\mathrm{pol}\nu_{xy}\Big(\dfrac{P_\mathrm{sys}(\tau)\circledast g^{(2)}_\mathrm{intrinsic}(\tau)-1}{\hat{Q}_0}\Big)\label{eq:totalvis2}\\
+\rightarrow C_N(m,\,\tau)&=\nu_\mathrm{bg}\nu_\mathrm{pol}\nu_{xy}\Big(g^{(2)}_\circledast-1\Big)+1\label{eq:totalvis3}
+%\Big(\dfrac{S}{S+B}\Big)^2\cdot\Big(\dfrac{P^2+1}{2}\Big)\cdot\Big(\dfrac{1}{1+N_\mathrm{xy}}\Big)\cdot\Big(\dfrac{1}{\sqrt{1+N^2_t}}\Big)
+%In the case of a Lorentzian spectral density function, the measured normalized histogram $C_N(\tau)$ reads \cite{luo_deterministic_2018}
+\end{alignat}
+
+\setlength{\belowdisplayskip}{1pt}
+\end{subequations}
+
+
+
+\subsubsection{Power-Correction of the Correlation Time \texorpdfstring{$\boldsymbol{\tau_c}$}{tauc}}\label{sec:powercorr}
+Furthermore, from the experimental values $k_\mathrm{c,\, exp}$, the lifetime $\tau_f$ of the
+\ac{SPS} can be determined:
+
+\begin{equation}
+\label{eq:taufpump}
+k_\mathrm{c,\, exp}=\frac{1}{\tau_c}=\frac{\Gamma_f}{2}+\frac{\sigma_\mathrm{SPS}\cdot I_\mathrm{pump}}{h\cdot\nu_\mathrm{pump}},
+\end{equation}
+
+where $h$ is the Planck constant, $\nu_\mathrm{pump}$ = \SI{398.16}{\THz} is the center frequency of
+the excitation laser, $\Gamma_f$ is the inverse lifetime \cite{treussart_photon_2001}, and
+$\sigma_\mathrm{SPS}=\sigma_\mathrm{(6,4)-SWCNT}$ = \SI{2e-17}{\per\m\squared} is the absorption
+cross section of the \ac{SPS}.

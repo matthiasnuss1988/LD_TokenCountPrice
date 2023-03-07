@@ -1,0 +1,58 @@
+In contrast, \textit{Khasminskaya et al.} found a value of $g^{(2)}_{1}(0)$ = \num{0.365\pm0.149}
+with a coherence time $\tau_{c,\,1}$ = \SI{0.041\pm0.080}{\ns} for the antibunching signal
+\cite{khasminskaya_fully_2016} and for the bunching signal $g^{(2)}_{2}(0)$ = \num{1.189\pm0.009},
+with a coherence time $\tau_{c,\,2}$ = \SI{1.418\pm0.080}{\ns} \cite{khasminskaya_fully_2016}.Within
+the margin of error, our fit agrees with the fit results from \textit{Khasminskaya et al.}
+
+
+\section{Pulsed Measurements}
+In this section we deploy the developed methods to discuss and analyze the $g^{(2)}$ results from
+pulsed sources as from supposed individual \acp{SWCNT}, but also from the laser.We will characterize
+different sources for jitter and analyze the excitation power-dependency.Moreover, we derive and
+deploy a method for life time determination and re-convolution from the coincidence-histogram.
+
+
+\subsection{Characterization of Jitter}
+For revealing the intrinsic properties of the light source, we conveyed in \cref{sec:g2_temp_modes},
+one has to know the system jitter $\sigma_\mathrm{sys}$.We calculate the timing jitter by measuring
+the distribution of the delay $\tau$ between the start and stop pulses of the single-photon
+device.The output pulses are discriminated by the TDC and subsequently correlated.
+
+
+\subsubsection{Jitter of the TDC and the SPCM}
+We determine the jitter $\sigma_\mathrm{TT}$ from the \ac{IRF} of the \ac{TDC}, by using the
+internal square-wave test signal of the \ac{TDC}.
+We routed the signal to two input channels and performed an auto (start-start) and cross correlation
+(start-stop) measurement (\cref{fig:IRF_TT}).The self-convolution of a periodic square-wave function
+is a Gaussian.From a Gaussian fit, we get the \ac{FWHM} $\Delta_\mathrm{FWHM}^\tau$ of the timing
+distribution, which is $23.7$~ps for both cases.We obtain the jitter from the \ac{TDC}
+$\sigma_\mathrm{TT}=\Delta_\mathrm{FWHM}^\tau/2\sqrt{2\ln2}$ = \SI{10.06}{\ps} for both
+channels.From \cref{eq:system_jitter}, the jitter of a single channel is \SI{7.12}{\ps} and
+comparable with \SI{8}{\ps}, as specified by the manufacturer
+\cite{swabian_instruments_time_2021}.We further examined a delay between the auto and cross
+correlation of \SI{40}{ps}.The delay is caused by the electrical signal routing and regarded as the
+electrical delay introduced by the \ac{TDC} in all measurements.\\
+Next, we measured the \ac{IRF} of the setup, using \ac{HBT} interferometry.The laser pulse length is
+\SI{13}{\fs} and much smaller than the timing jitter of the \ac{APD}s.Hence, we assume photons from
+the same pulse to arrive coincidentally at the detectors and thus neglect the influence of the
+\textit{fs}-laser \cite{nemallapudi_single_2016}.With this method we do not reveal the individual
+\ac{SPCM} timing jitters, $\sigma_i$ but the combined $\sigma_\mathrm{sys}$.This poses no
+disadvantage, as $\sigma_\mathrm{sys}$ determines the uncertainty in $ g^{(2)}$.
+We extracted the zero-peak of the histogram at $\tau\approx0$.A Lorentzian fit to the peak in
+\cref{fig:IRF_sys} revealed $\Delta_\mathrm{FWHM}^\tau$ of \SI{690}{\ps}.From error propagation
+applied on Gaussian jitter values, we obtain
+$\sigma_\mathrm{sys}=\Delta_\mathrm{FWHM}^\tau/2\approx$ \SI{350}{\ps}, using
+\cref{eq:system_jitter} and a combined count rate of \SI{80}{\kHz}.Based on \cref{eq:system_jitter},
+the jitter of a single \ac{APD} is \SI{250}{\ps} in accordance with the data sheet
+\cite{perkin_data_2001}.
+
+
+\subsubsection{Power-dependent Jitter of the System}\label{sec:powerjitter}
+However, for a higher combined count rate of \SI{7000}{\kHz}, $\sigma_\mathrm{sys}$ =
+\SI{501}{\ps}.We find the jitter depends on the count rate.Nonetheless to reveal the intrinsic
+properties of the suspected single-molecular light, an accurate $\sigma_\mathrm{sys}$ is needed.
+Moreover, the functional shape of the pulsed histogram revealed slight variations for $P=1$ at the
+single molecule level up to ten times ($P=10$), hundred times ($P=100$) excitation strength and so
+on, in \cref{fig:IRF_power_hist}.
+To precisely determine the functional form, the mechanism for power-dependent broadening and
+accurate jitter values, we varied the attenuation of the fs-laser.

@@ -1,0 +1,62 @@
+Tt is not applicable to fit every peak element-wise with the peak shape, since the cross-correlation
+terms for $m\neq0$ have to be considered.~For instance, the \ac{FWHM} of a Gauss and Lorentz shaped
+histogram depends on the actual pulse number $l$:
+
+\begin{equation}
+\label{eq:GaussLorentzPulsedFWHM}
+\mathrm{FWHM}=	\begin{cases}
+\textrm{\textbf{Gauss: }}\dfrac{2l}{f}+2\tau_0-2\sigma\sqrt{2\ln(2)} & l\in[-m,m] \\
+\textrm{\textbf{Lorentz: }}\dfrac{2l}{f}+2\tau_0-2\sigma & l\in[-m,m]\\
+\end{cases}
+
+\end{equation}
+
+the number of pulses $m$ and the laser repetition rate $f$.The $\sigma$-values have to be extracted
+by this formulae.Direct convolution for more complex peak functions gets tedious, the more pulses in
+the histogram.Nevertheless, one can continue any pulse function by using a convolution property of
+the delta distribution.If we look at the continuous continuation of the delta distribution (shah
+function), the convolution of any function with the shah function is the continuous continuation of
+the function itself.We fit the histogram with \cref{eq:sha_continuation}, for a Lorentz shape and
+average the extracted jitter values from each pulse.
+
+\begin{subequations}\label{eq:sha_all}
+\setlength{\abovedisplayskip}{1pt}
+
+\begin{alignat}
+{2}
+&\left.\sh\right._{\frac{1}{f}} (\tau)=\lim_{m\to\infty} \sum_{l=-m}^m\delta(\tau-\dfrac{l}{f})\label{eq:sha}\\
+&\big(\left.\sh\right._{\frac{1}{f}}\circledast \mathrm{IRF}\big)(\tau)=\lim_{m\to\infty} \sum_{l=-m}^m \mathrm{IRF}(\tau-\dfrac{l}{f})\label{eq:sha_continuation}
+\end{alignat}
+
+\setlength{\belowdisplayskip}{1pt}
+\end{subequations}
+
+We summarize, a Lorentz fit leads to reliable results for $\sigma_\mathrm{sys}$, especially in the
+low counting regime.This also makes sense from the perspective that a Lorentz shape is the reverse
+Fourier-transform of two mirror-symmetric exponential decays (cf.\cref{sec:Impact}), which relates
+to convolution with exponential broadening mechanism here.
+
+
+\subsection{Fluorescence Lifetime Determination}\label{sec:lifetime}
+Fluorescence lifetimes are typically measured by \ac{TCSPC} with an \ac{HBT} setup
+\cite{miyauchiFemtosecondExcitationCorrelation2009}.In second-order coincidence histograms from a
+pulsed source, we find redundant information.As we have discussed for temporal modes
+(\cref{sec:g2_temp_modes}), the fluorescence lifetime is fingerprinted in the extracted values of
+the peak areas, if we follow virtually the temporal trend, but $\tau_c$ and thus the fluorescence
+lifetime $\tau_f$ is also imprinted in the individual histogram peak curvatures.
+In the followong discussion we call the right side of each pulse "emission" side and the left side
+"absorption" side, due to their physical origin.In a pulsed measurement the extraction of $\tau_c$
+during a reconvolution-fit is hard due to the lack of data points in the correlation regime close to
+$m,\,\tau=0$.Contrary, we have to assume a value of $\tau_c $ for the fit to converge.\\
+Fortunately $\tau_c$ is imprinted in the curvature of the emission side
+\cite{kollner_how_1992,sunney_xie_single-molecule_2002} of each pulse.An exponential probability
+density function \cite{santori_triggered_2001,beveratos_room_2002} is most widely used to model the
+decay curve of the fluorescence lifetime.To get a correct and useful envelope for the re-convolution
+routine, we will take similar considerations into account as in the discussion of the \ac{IRF} in
+\cref{sec:powerjitter}.The procedure will also include a backup mechanism: As expressed in
+\cref{fig:g2_lifetime}, we fit the histograms with an envelope function (green), extract $\tau_c$
+for each pulse and average the obtained $m$ values for better statistics.Second, we also obtain the
+criterion for the $1/e$ value of each peak from the envelope function.We calculate the $1/e$-
+amplitude value and the corresponding $\tau_\mathrm{1/e}$ value (intersection with the $\tau$-axis)
+from the raw histogram values.We extract $\tau_c$ from the $\tau_\mathrm{1/e}$-values as outlined in
+\cref{sisec:lifetime} with the criterion of the envelope function .

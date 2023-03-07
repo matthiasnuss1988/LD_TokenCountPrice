@@ -1,0 +1,51 @@
+The third measurement is influenced by temporal bleaching during the measurement, increasing
+$g^{(2)}$ value, since for baseline normalization we still did not used weighted rates.From the
+$k_c$ values, we determine the lifetime $\tau_f$ of the \acp{SWCNT} via the power correction in
+\cref{eq:taufpump}.We get $\tau_{f,\,1}\textrm{\; to \;}\tau_{f,\,3}$ = \SIlist[list-units =
+brackets]{0.44;0.66;0.57}{\ns}.These values agree with literature values, which are in the range of
+several hundred picoseconds to about \SI{50}{\ns}.The short lifetimes indicate recombination at
+vacancy centers \cite{zaumseil_luminescent_2022}\\
+%Interestingly, whereas the values $\tau_f=\SIrange{5.71\pm0.38}{\ns}$ lie within the reported range
+of several hundred picoseconds to about \SI{100}{\ns} \cite{ miyauchi_radiative_2009,
+perebeinosRadiativeLifetimeExcitons2005, rao_anharmonic_2007, hagen_electronic_2004,
+wangTimeresolvedFluorescenceCarbon2004}, they are an order of magnitude larger than the lifetimes
+evaluated in \cref{sec:g2_exp_lifetimes}.
+%fluorescence lifetimes defects 100ps -500 ps \cite{zaumseil_luminescent_2022}
+%radiative lifetimes 3-10 ns at roomtemperature \cite{miyauchi_radiative_2009}
+%radiative lifetimes 100 ns\cite{ wangTimeresolvedFluorescenceCarbon2004}
+%raiative lifetime 10 ns\cite{hagen_electronic_2004}
+%raiative lifetime 20 ns\cite{jones_analysis_2005}
+%raiative lifetimes 1-10  ns\cite{miyauchi_radiative_2009}
+%radiative lifetimes 10 ns photon bottle neck \cite{rao_anharmonic_2007} they argue in the phonon
+sideband nonequilibirum phonon decy bottlenecks \cite{rao_anharmonic_2007} incerase lifetimes to
+about 10 ns, due to backscattering of electrons by nonequilibrium phonon emission and absorption
+%fluorescence lifetimes increase with tube length \cite{miyauchi_length-dependent_2010}
+%fluorescence lifetimes defects 100ps -500 ps \cite{zaumseil_luminescent_2022} 10 ns photon bottle
+neck \cite{rao_anharmonic_2007}
+%fluorescence lifetimes 10-100 ps\cite{miyauchi_radiative_2009}
+%fluorescnece lifetime 10 ps \cite{ wangTimeresolvedFluorescenceCarbon2004}
+%fluorescnece lifetime 120 ps \cite{jones_analysis_2005}
+%fluorescnece lifetime 10 -100 ps \cite{miyauchiFemtosecondExcitationCorrelation2009} by TCSPC
+\cite{miyauchiFemtosecondExcitationCorrelation2009}
+%
+%\cite{ wangTimeresolvedFluorescenceCarbon2004, miyauchi_radiative_200,
+miyauchiFemtosecondExcitationCorrelation2009, jones_analysis_2005,zaumseil_luminescent_2022} adn are
+typically measured by TCSPC with an \ac{HBT} setup
+\cite{miyauchiFemtosecondExcitationCorrelation2009}
+%However, the TCSPC measurement is inadequate for the large diameter SWNTs d   0.8 nm because of
+the limit of the sensitive range of Si-based single-photon counting avalanche photodiodes, and the
+sensitivity and time-resolution of near IR streak cameras are low.Although frequency upconversion34
+and Kerr gate18,35 methods provide excellent time-resolution, these methods involve relatively
+complicated experimental setups.Hence, the development of alternatives has been eagerly anticipated
+to measure the ultrafast PL dynamics in SWNTs in the near IR range with good time
+resolution.\cite{miyauchiFemtosecondExcitationCorrelation2009}
+In the initial setup, the \ac{HBT}-interferometer was unbalanced in terms of optical beam path
+length.That is why, the path length difference $\Delta r$ between both detectors introduces
+coherence loss.From the lifetimes, we determine the coherence lengths $l_\mathrm{c1}-l_\mathrm{c3}$
+= \SIlist[list-units = brackets]{0.13;0.20;0.17}{\m}.The path length difference $\Delta r$ was
+\SI{0.10}{\m}, which increases the measured $g^{(2)}(0)$ values, relative to $l_{c}$.Based on the
+temporal coherence loss introduced by this path length difference, we calculate according to
+\cref{sec:temp_coh_loss} $\nu_\mathrm{l_c}^\mathrm{Lorentz}$ = 0.46,~0.60 and 0.55.Consequently, the
+intrinsic $g^{(2)}(0)$ values decrease to $g^{(2)}_{1}(0)$ = \num{0.20\pm0.1}, $g^{(2)}_{2}(0)$ =
+\num{0.55\pm0.04} and $g^{(2)}_{3}$ = \num{0.71\pm0.03}, corresponding to a number of one to three
+emitters in the microscope focus.

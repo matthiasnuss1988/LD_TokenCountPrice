@@ -1,0 +1,52 @@
+For instance if the light field is already restricted to one spatial mode by using a high-NA
+microscope with tight-focus aperture a, or an optical fiber entrance much smaller than the average
+coherence cell at this position in the beam path.In such a case, the visibility of $g^{(2)}$ will
+not be decreased for any given detector area.In the presented work, the spatial visibility reduction
+is determined by the microscope focus size, since we use a radiation-shielded setup, even when
+crossing larger apertures during propagation along z, no new modes are added that would reduce the
+visibility.
+
+
+\paragraph{Temporal Coherence Losses}\label{sec:temp_coh_loss} More restrictive boundaries are set in our experiments for preventing temporal coherence losses.In \cref{sec:spatial_coherence}, we derived the coherence length in space $l_c=c\tau_c$.Taking into account the spectral shape of $g^{(2)}$ from \cref{sec:lineshapes}, the size of the coherence cell is also given by the point at which the coincidence probability has decreased to the $1/e$ value.
+If the detectors are separated by $\Delta r$, we sample the coherence properties in the temporal
+coherence cell at position $\Delta r/c$, which defines the maximum $g^{(2)}$ value for any temporal
+correlation measurement at $\tau_0$.Since the relative position of $\Delta r/c$ in the coherence
+cell alters with coherence time $\tau_c$, the visibility $\nu_\mathrm{l_c}$ at a fixed $\Delta r$,
+will also change for different light sources:
+
+\begin{equation}
+\label{eq:g2coherencelosstemp}
+\nu_\mathrm{l_c}^\mathrm{Lorentz}=e^{-\dfrac{\Delta r}{l_c}};\qquad\nu_\mathrm{l_c}^\mathrm{Gauss}=e^{-\Big(\dfrac{\Delta r}{l_c}\Big)^2}
+\end{equation}
+
+This finding is depicted in \cref{fig:g2_lcloss} for two different emitters with
+$\tau_c=\SI{0.1}{\ns}$ and $\tau_c=\SI{1}{\ns}$, as well as for a Lorentzian (blue) and Gaussian
+(red) lineshape.We see at the boarders of the coherence cells (green) for $\tau=\tau_c$, the
+$g^{(2)}$ function and thus the visibility, has decreased to the $1/e$ value.Furthermore, it is
+expressed, if $\Delta r$ is \SI{3}{cm} and \SI{30}{cm}, the values correspond to $l_c$ and the
+visibility also reduces to the $1/e$ value.
+\subparagraph{Summary} We elucidated, spatial and temporal coherence are similar concepts, but
+differ in origin and strength of coherence loss for a given setup.The size of the temporal coherence
+cell is defined by the source spectral extension and excited state lifetime.In this perspective, the
+coherence time is given by the point at which the coincidence probability has decreased to the $1/e$
+value.The coherence loss is dependent on the light source and amounts to a $1/e$-reduction if
+$\Delta r$ is a few centimeters.
+In contrast, the size of the spatial coherence cell is defined by the source's spatial
+extension.Photons gain coherence for longer propagation distances z and by passing tiny apertures
+which filter spatial modes (cf.\cref{eq:g2spatial3}).The coherence radius is thereby not the
+$1/e$-value of $J_1$, but the first zero of $J_1$.The coherence loss is independent of the light
+source and negligible for small apertures or large distances to the detector pair.
+
+
+\subsubsection{Quantum Statistical Reduction of the Visibility}\label{sec:beamsplittercorr}
+The statistical behavior of photons at a \ac{BS} elucidates some of the most fundamental quantum
+phenomena such as quantum superposition and
+randomness \cite{weihs_photon_2001}.
+Nevertheless, experiments often fail to detect the same rates on the start and stop detectors.For a
+loss-free \ac{BS} ($p_2=1-p_1$), there are trivial reasons, such as an unequal \ac{BS} ratio
+$p_1:p_2\neq 0.5:0.5$ or an unequal dead time for the detectors, where not all events are registered
+on one detector.In any case, light statistics from the source and photon bunching never affect the
+proportion of light detected at the start and stop detectors at equilibrium conditions $(\tau,\,
+t\gg\tau_c)$.While from the view point of classical physics a \ac{BS} is a rather simple device, its
+operation becomes highly non-trivial when we consider quantum behavior as for correlation
+measurements.

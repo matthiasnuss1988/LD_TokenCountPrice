@@ -1,0 +1,76 @@
+Instead, it suffers from a bleaching trend, e.g., caused by degradation, thermal drift, or
+diffusion.In the case of single molecules, additionally "triplet blinking" has often been observed
+and connected to a third shelving state, which traps the excitation and causes a delayed relaxation
+with a typical decay rate of in the \si{ns}- to \si{ms}-range.
+
+
+\paragraph{Intensity Bleaching (Decay Over Time)}
+For quantum dots and dye molecules often the effect of intensity bleaching is known.Observed decay
+rates $\tau_\mathrm{decay}$ range from the \textit{ms}- to \textit{hour}-regime
+\cite{komatsuzaki_compact_2015}.~Considering these rates, we look at the resulting $g^{(2)}$
+function for a Lorentzian-shaped signal with intensity bleaching.
+
+\begin{equation}
+\label{eq:KhinchinExample28}
+g^{(2)}_\mathrm{decay,\, Lorentz}(\tau) = 1 + \hat{Q}_0\exp\Big[-2\Big(\dfrac{1}{\tau_\mathrm{decay}}+\dfrac{1}{\tau_\mathrm{c,\, ex.}}\Big)|\tau-\tau_0|\Big]
+\end{equation}
+
+The spectral density function $\mathcal{F}(\omega)$ was multiplied by an exponential decay.Since
+$\tau_\mathrm{decay}\gg\tau_c,\,\tau_\mathrm{ex}$, the coherence and excited state lifetime of the
+sample, the decay dynamics from the point of view of the correlation time is a stationary
+process.Furthermore, from \cref{eq:KhinchinExample28} it is clear that $\tau_c$ is quite insensitive
+to "slow" signal drops.
+
+
+\paragraph{Triplet Blinking}
+Triplet blinking can occur as fast as $\tau_\mathrm{ex}$\footnote{Here
+$k_\mathrm{21}=1/\tau_\mathrm{ex}$}, within nanoseconds.Therefore, we have to solve the rate
+equations explicitly (\cref{fig:Blinking_b}).
+A detailed derivation can be found in \cite{tombesi_bunching_2002}.Blinking effects introduce mixed
+light statistics, and the Siegert relation gives two exponential decays with two different
+$\hat{Q}_0$ prefactors.
+
+
+\paragraph{CW excitation} These $\hat{Q}_0$ prefactors correspond to the respective bunching and antibunching parts of the correlation in \cref{fig:g2cwpulsed}:left.
+
+\begin{equation}
+\label{eq:KhinchinExample29}
+g^{(2)}_\mathrm{triplet}(\tau) = 1 + \underbracket{\hat{Q}_0}_\mathrm{e.g.\;\num{-0.8}}\exp\Big(k_1|\tau-\tau_0|\Big)\underbracket{-(1+\hat{Q}_0)}_{\rightarrow \num{-0.2}}\exp\Big(-k_2|\tau-\tau_0|\Big)
+\end{equation}
+
+We use $k_1=k_\mathrm{tm}+k_\mathrm{1m}$ and $k_2=k_\mathrm{tm}-k_\mathrm{1m}$, with
+$k_\mathrm{tm}\geq k_\mathrm{1m}$ and therefore $k_1>k_2$, where $k_\mathrm{tm}$ and $k_\mathrm{1m}$
+derive from the rates in \cref{fig:Blinking_b}.
+
+\begin{equation}
+\label{eq:KhinchinExample210}
+k_\mathrm{tm}=k_\mathrm{12}+k_\mathrm{21}+k_\mathrm{23}+k_\mathrm{32},\qquad k_\mathrm{1m}=\sqrt{\Big(k_\mathrm{12}+k_\mathrm{21}-k_\mathrm{23}-k_\mathrm{32}\Big)^2+4k_\mathrm{21}k_\mathrm{23}}
+\end{equation}
+
+The effect of a blinking triplet represents a too low $g^{(2)}(0)$.Based on these results and with
+$\tau=\tau_0$ it follows $g^{(2)}(0)=1-0.8-0.2=0$, stating a perfect \ac{SPS}.Despite $\hat{Q}_0$
+only amounts to \num{-0.8}, and thus $g^{(2)}(0)=0.2$.In such a case, fitting the measured data with
+\cref{eq:KhinchinExample29} is necessary, to obtain the intrinsic $g^{(2)}(0)$ value.
+
+
+\paragraph{Pulsed Excitation}
+A simple model to describe bunching and antibunching in the pulsed measurements of
+\cref{fig:g2cwpulsed}:Right and \cref{fig:Blinking_a} assumes random blinking between two
+conditions: A fully bright and a dark condition, with rate constants
+$k_\mathrm{on}=1/\tau_\mathrm{on}$ and $k_\mathrm{off}=1/\tau_\mathrm{off}$
+\cite{beveratos_room_2002,santori_triggered_2001}.
+
+\begin{equation}
+\label{eq:KhinchinExample30}
+g^{(2)}_\mathrm{triplet}(m\neq0) = 1 + \dfrac{k_\mathrm{on}}{k_\mathrm{off}}\exp\Big[-\Big(k_\mathrm{on}+k_\mathrm{off}\Big)\Big|\dfrac{m}{f}\Big|\Big]
+\end{equation}
+
+Fitting the data of \cref{fig:Blinking_a} with \cref{eq:KhinchinExample30} delivers
+$\tau_\mathrm{off}$, the mean time during which the excitation is trapped in the meta-stable state
+and $\tau_\mathrm{on}$, the mean emission time.
+
+
+\subsection{Signal Strength and Time Estimation via Significance Level}\label{sec:Timeestimation}
+For a reliable $g^{(2)}$ value, it is important to know after some measurement time how trustworthy
+the $g^{(2)}$ signal is compared to the statistical fluctuations of the uncorrelated part in the
+tail region.

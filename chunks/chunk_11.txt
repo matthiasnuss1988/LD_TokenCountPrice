@@ -1,0 +1,67 @@
+In this section, we provide an in-depth analysis of the
+individual parameters affecting $g^{(2)}$ in terms of shape and visibility.We distinguish between
+irreversible and reversible visibility reduction.While the reduced visibility due to signal noise
+and an uneven \ac{BS} ratio can be improved by longer sample statistics
+(cf.\cref{sec:Timeestimation,sec:beamsplittercorr}), irreversible visibility reductions have to be
+corrected compulsorily.\\
+We reveal correction factors $\nu_\mathrm{vis}$ to extract the theoretical correlation function
+$g^{(2)}_\mathrm{intrinsic}$ (abbreviated with $g^{(2)}(m,\,\tau)$, which describes the correlations
+inherently present in the light field emitted by the light source, from $g^{(2)}_\mathrm{meas}$,
+which represents the normalized correlation function that can actually be measured (abbreviated with
+$C_N(m,\,\tau)$) with a given detection setup.\\
+We start with the original correlation function, which can be based on the physical properties of
+the light source, e.g., Doppler-(cf.\cref{eq:KhinchinExample27}) or impact-broadened
+(cf.\cref{eq:KhinchinExample23}).Here, we assume that the light field consists of only one mode,
+resulting in $g^{(2)}(0)$ = 0, 1, or 2 .In experiments even so, there is always the possibility that
+more than one spatial and/or temporal mode is detected by the setup.Since single-photon counting
+modules, such as an \ac{APD}, cannot distinguish between different modes, the correlation function
+of the detected light field has reduced visibility.In this context, we introduce the definition of
+visibility, which is a multiplicand of the normalized Mandel Q-Parameter.
+
+\begin{equation}
+\label{eq:vis}
+\nu_\mathrm{vis}=\dfrac{C_N(0)-1}{\hat{Q}_0},
+\end{equation}
+
+representing the actual value of how far the (anti)-bunching peak in the second-order correlation
+function exceeds its baseline of 1.
+For the following analysis of the individual factors affecting $g^{(2)}$, we assume the current
+visibility is the only influence on the correlation function.In \cref{sec:decon}, the effects of all
+factors are summarized.
+
+
+\subsubsection{Background Radiation}
+In practice, it is impossible to shield the experimental setup from all types of background
+radiation.This can be either stray light, thermal radiation, or any other source causing
+uncorrelated photon counts.If the background is constant, i.e., independent of the photo-electron
+count rate of the correlated photon stream coming from the light source, we measure the signal
+strength (dark count rate) by blocking the light source.Regularly the average background count rate
+$\dot{N}_\mathrm{bg}$ also depends on the average signal count rate $\dot{N}_\mathrm{intrinsic}$ of
+the light source.We determine its strength with respect to the actual count rate present in the
+experiment $\bar{N}_\mathrm{meas}$, as a superposition of the intrinsic signal (S) and Poisson dark
+and background (B) from the environment \cite{chu_single_2017}.
+Whenever there is a coincident two-photon event, either of the two photons stems from the light
+source or the background.Only the combination of two photons from the light source will exhibit
+correlations, for those photons due to the (anti)-bunching nature of the light source.The other
+pairings, referring to two background photons, or one background photon and one photon of the light
+source, do not contribute to the (anti)-bunching signal, as they occur randomly.Hence, we write the
+measured correlation function as
+
+\begin{subequations}\label{eq:g2_from_normalized_histogram}
+%\setlength{\abovedisplayskip}{1pt}
+
+\begin{alignat}
+{3}
+C_N(\tau,\, m)&=1+\dfrac{S^2}{\big(S+B\big)^2}\Big(g^{(2)}_\mathrm{intrinsic}-1\Big)\\
+&=1+\rho^2\Big(g^{(2)}_\mathrm{intrinsic}-1\Big)\\
+&=1+\nu_\mathrm{bg}\Big(g^{(2)}_\mathrm{intrinsic}-1\Big),
+\end{alignat}
+
+\setlength{\belowdisplayskip}{1pt}
+\end{subequations}
+
+where $S$ and $B$ are the mean signal and background \SIrange[range-units =
+brackets]{6}{8}{\percent} in \cref{fig:Background}, respectively.
+The fraction defines a factor $\nu_\mathrm{bg}\in[0,\,1]$ that denotes the decrease in overall
+visibility dependent on the background signal, with the signal-to-background ratio
+$\rho=\frac{S}{S+B}$ \cite{beveratos_room_2002}.

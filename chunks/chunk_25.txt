@@ -1,0 +1,58 @@
+\Cref{eq:GGD_krotsimple} is a good approximation for high rotating frequencies, where the scattering
+broadening is much larger than the laser linewidth \cite{huang_measuring_2016}.
+We test the relationship of the inverse coherence time to $k_\mathrm{rot}$ in \cref{fig:krotfit}.We
+observe a linear relationship (red fit line) with the slope $m_\mathrm{exp}$ =
+\SI{80620\pm2831}{}.~From a theoretical investigation of \cref{eq:GGD_krotsimple} we get
+$m_\mathrm{theo}$ = \SI{83289\pm17280}{}, matching $m_\mathrm{exp}$ within the error and supporting
+the linear relationship.We used $r=\SI{45.1\pm2.5}{\mm}$ and $\Delta
+k_\mathrm{rot}\approx\SI{10}{\Hz}$, the error of the frequency control.We calculated
+$d=\SI{3.84\pm0.77}{\um}$ by using the lens equation $d=4\lambda_0 f/(\pi D)$, with the beam
+diameter before the focusing lens $D$ = \SI{2.50\pm0.50}{\mm} and focal length $f$ =
+\SI{10}{\mm}.The errors of the derived quantities result from Gaussian error propagation.Moreover,
+we also observed an offset in the fit data.~In \cref{fig:GGD_krot_tauc_fit}, we plot
+$\tau_\mathrm{c,\, exp}^{(2)} k_\mathrm{rot}$ vs.$k_\mathrm{rot}$, which in theory is constant
+(black points).~Even so, our experimental data (red points) deviate from a constant for low rotating
+frequencies.For a finite linewidth of the \ac{CW} laser (cf.inset \cref{fig:GGD_krot_tauc_fit}), the
+convolution of the incident light and the broadening of the rotating \ac{GGD} should be
+considered.~The coherence time of the \Ac{PTLS} including the incident laser linewidth then reads:
+
+\begin{equation}
+\label{eq:GGD_krotadvanced}
+\dfrac{1}{\tau_c^{(2)}}=-\dfrac{1}{\tau_c^{(1)}}+m\cdot k_\mathrm{rot},
+\end{equation}
+
+where $\tau_c^{(1)}$ is the first order coherence time of the laser\footnote{For a coherent source
+such as a laser, the coherence time is not directly accessible via second-order correlation, nor via
+a spectrometer.}.We extract $\tau_c^{(1)}=\SI{0.3620\pm0.0063}{\us}$ from the offset in
+\cref{fig:krotfit}.Following, $\tau_\mathrm{c,\, exp}^{(2)} k_\mathrm{rot}$ is no longer constant,
+but depends on the rotating rate $k_\mathrm{rot}$.
+
+\begin{equation}
+\label{eq:krot_tauc_fit}
+\tau_c^{(2)} k_\mathrm{rot}=\dfrac{1}{-\frac{1}{\tau_c^{(1)}k_\mathrm{rot}}+m}
+\end{equation}
+
+This equation implies, the finite linewidth correction becomes pronounced for a low rotating
+frequency, where the scattering broadening $m\cdot k_\mathrm{rot}$ is in the order of the inverse
+coherence time of the laser.The negative sign in \cref{eq:GGD_krotadvanced} suggests, the laser's
+coherence must be overcome to realize the thermal light source.In contrast, $\tau_c^{(2)}\cdot
+k_\mathrm{rot}$ remains constant for high rotation rates, with $k_\mathrm{rot}\gg
+1/\tau_c^{(1)}$.\Cref{fig:GGD_krot_tauc_fit} also highlights the discussed result of laser linewidth
+correction to the model (blue data points), which is in good agreement with the experimental
+values.\\
+Considering signal strength as defined in \cref{eq:SignalstrengthLorentz} as blue shaded areas under
+the curves in \cref{fig:GGD_curves}, we obtain $g^{(2)}(0)\tau_c^{(2)}$.This result implies
+$g^{(2)}(0)=\mathrm{const}$ for a \ac{PTLS}, as $k_\mathrm{rot}$ controls $\tau_c^{(2)}$.In
+\cref{fig:GGD_g2} we investigate $g^{(2)}(0)$ vs.$k_\mathrm{rot}$, which shows a constant trend, as
+expected.We explain the deviation $g^{(2)}(0)\neq2$ by possible angular diversity of the input beam
+since we could not fine-tune the distance of the focus lens due to experimental limitations.We can
+exclude polarization and wavelength diversity, since the experimental outcome did not change by
+using a polarizer before and after the \ac{GGD}.Moreover, for wavelength diversity to result in the
+observed $\sqrt{2}$ reduction of $g^{(2)}(0)$, it takes $\Delta\lambda=\delta\lambda\sqrt{2}\approx
+\SI{31}{\nm}$, which we did not observe from the linewidth of the \ac{CW} laser in the inset of
+\cref{fig:GGD_krot_tauc_fit}.~ At $k_\mathrm{rot}$ = \SI{35}{\Hz} the deviating $g^{(2)}(0)\approx
+1.32$ indicates the onset of thermalization of the light source, since according to
+\cref{eq:GGD_krotadvanced} at this rotation rate, the first-order coherence time of the laser is
+compensated for.\\
+Our data from \cref{fig:GGD_curves} also exhibits an increasing shift of the peak center $\tau_0$
+for lower rotation rates.

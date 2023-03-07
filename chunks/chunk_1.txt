@@ -1,0 +1,57 @@
+Apart from this, corrections can be made to also include Lorentzian- or Gaussian-shaped quantum
+light and take into account partial loss of coherence as well
+\cite{classen_incoherent_2017,ann_observation_2019,ferreira_connecting_2020} with the normalized
+Mandel Q-parameter $\hat{Q}$ derived in \cref{sec:NormalizedMandelQ}.
+
+\begin{equation}
+\label{eq:siegert}
+g^{(2)}(\tau)=1+\hat{Q}_0\Big[g^{(1)}(\tau)g^{(1)}(\tau)^{*}\Big]=1+\hat{Q}_0\Big|g^{(1)}(\tau)\Big|^2
+\end{equation}
+
+We deduce the first-order correlation function using Fourier transformation from the spectral shape
+of the source via the Wiener-Khinchin theorem (\cref{sec:Khinchin}).
+
+
+\subsection{Coherence}\label{sec:coherence}
+Coherence is one of the toughest topics in modern optics lectures.Nevertheless, understanding
+coherence is essential for many applications \cite{pieper_visualizing_2019}, such as the optical
+coherence tomography \cite{tomlins_theory_2005} or correlation measurements with a \ac{HBT} setup
+\cite{hanbury_brown_test_1956}.Only a few experiments have been suggested thus far with the purpose
+to teach the basic concepts of spatial \cite{basano_simple_1996,jackson_subtleties_2018} or temporal
+coherence \cite{millet_undergraduate_1971}.~Nevertheless, the effect of decreasing coherence is
+omnipresent in all kinds of correlation experiments, as in this study.Thus coherence is a
+fundamental concept in modern optics which should be taught properly.\\
+Coherence expresses the ability of light to form interference patterns stationary in time and
+extended over a spatial domain, only visible if the light has a sufficient degree of
+coherence.Intensity interferometry, such as for single-molecule detection is strongly related to
+interference patterns, as will be illustrated in \cref{sec:lineshapes}.Thus, coherence describes the
+stability of light \cite{fox_quantum_2006} when propagating in space or time.
+The spatial and temporal coherence of light is defined by spatial extent, the emitted central
+wavelength and the spectral width of the light source.The concept is best to understand if either
+spatial or temporal coherence is discussed.
+
+
+\subsubsection{Spatial Coherence}\label{sec:spatial_coherence}
+Spatial coherence is understandable by considering light emitted from a monochromatic source
+(temporally coherent), but with a finite spatial extent.The finite sample size can be considered as
+an ensemble of individual emitting centers that emit light at a different phase
+(cf.\cref{fig:spatial_coherence}, considering three centers of emission).Summing up all
+contributions causes a distribution of light in space where the phase is constant only within finite
+spatial domains (white gaps), the coherence cell or speckle, but it varies from domain to domain.
+In reality the spatially coherent areas fluctuate on a scale of the temporal coherence time $\tau_c$
+which is in the $ps$-range and thus is hard to observe.However spatial coherence is observable for
+long coherence times $\tau_c$, when using random phase modulation, as we will reveal in
+\cref{sec:rpm} and use to characterize the coherence properties of the laser and the correlation
+setup.
+Spatial coherence is modeled via the van Cittert-Zernike theorem, describing the relation between
+the spatial intensity distribution of an extended incoherent light source and the first-order
+spatial correlation function $g^{(1)}(\boldsymbol{r}_1, \boldsymbol{r}_2)$
+\cite{van_cittert_wahrscheinliche_1934,zernike_concept_1938}.\Cref{fig:cittert} exhibits a
+homogeneous, quasi monochromatic and incoherent source with an intensity distribution in the red
+domain.Whereas $g^{(1)}(\boldsymbol{r}_1, \boldsymbol{r}_2)$ cannot be measured directly, it can be
+calculated via the Siegert relation (cf.\cref{eq:siegert} and \cref{eq:g2spatial1}) for incoherent
+sources.In fact, the Fraunhofer diffraction pattern for a coherent source with the same geometry,
+has the same functional form as $g^{(1)}(\boldsymbol{r}_1, \boldsymbol{r}_2)$.For a slit aperture,
+$g^{(1)}(\boldsymbol{r}_1, \boldsymbol{r}_2)$ is described by a sinc function, whereas a uniform
+quantum emitter (single-molecule) or excitation spot, modeled as a circular aperture, with diameter
+a, causes an airy pattern in space.

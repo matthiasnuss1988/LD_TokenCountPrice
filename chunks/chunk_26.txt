@@ -1,0 +1,58 @@
+Analogue to the coherence time, we tested for a linear relationship of $1/\tau_0$ to
+$k_\mathrm{rot}$ in \cref{fig:GGD_shift}.We observe a linear relationship (red fit line), with the
+same absolute slope and offset, but an opposite sign.
+
+\begin{equation}
+\label{eq:GGD_shift}
+\dfrac{1}{\tau_0}=	\dfrac{1}{\tau_c^{(1)}}-m k_\mathrm{rot}
+\end{equation}
+
+We discussed, such a shift is often related to a spatial delay in one interferometric path or
+electrical signal routing.Nonetheless, a shift in the \si{\us}-range implies a path length
+difference along the signal routing $z$, within several hundred meters, which is obviously not the
+case.
+Nevertheless, \ac{RPM} is sensitive to spatial misalignment in the xy-direction, as it is pointed
+out in the model of \cref{fig:GGD_xy}.If detectors D1 and D2 are not centered relative to the
+\ac{BS}, but shifted, e.g., by $\Delta x$, then it takes a time $\tau_0$ for a speckle visible to
+D1, to be also visible to D2.Further, $\tau_0$ increases the slower the rotation of the \ac{GGD}.In
+consequence, the second-order correlation will shift relative to time zero.We use this finding to
+determine the misalignment $\Delta x$.Without linewidth broadening of the laser and using
+\cref{eq:GGD_shift} $k_\mathrm{rot}\tau_0=\textrm{const}$.The misalignment $\Delta x$ is given by
+the time $\tau_0$ and the velocity $2r\pi k_\mathrm{rot}$of the \ac{GGD}.
+
+\begin{equation}
+\label{eq:shift}
+\Delta x=v_\mathrm{rot}\tau_0=2r\pi k_\mathrm{rot}\tau_0\underbracket{\rightarrow}_\textrm{with $\tau_c^{(1)}$}\Delta x=2r\pi \dfrac{1}{\frac{1}{\tau_c^{(1)}k_\mathrm{rot}}-m}
+\end{equation}
+
+With linewidth broadening of the laser we replace $k_\mathrm{rot}\cdot\tau_0$ accordingly.We
+illustrate the results in \cref{fig:GGD_disp} for the uncorrected (black triangles) and corrected
+case (blue triangles), where we estimate $\Delta x\approx\SI{3}{\um}$.\\
+Summarizing, we implemented \ac{RPM} to deterministically control the coherence properties of a
+\ac{PTLS} and verified our fitting routines.Furthermore we checked the alignment and determined the
+coherence time of the \ac{CW} laser which is impossible either from linewidth or temporal $g^{(2)}$
+measurement.
+
+
+\subsection{Validation of the Re-convolution Routine Using SWCNT and \texorpdfstring{WSe\textsubscript{2}}{WS2} data}\label{sec:g2_cw_SWCNT}
+The measured correlation data in the following paragraphs originates from \textit{Luo et al.}
+\cite{luo_deterministic_2018} and \textit{Khasminskaya et al.} \cite{khasminskaya_fully_2016}, who
+performed experiments on WSe\textsubscript{2} and carbon nanotubes, respectively.The evaluation was
+performed with the algorithms from this manuscript as a proof of their functionality on quantum
+light data.\Cref{fig:g2_Luo} communicates data from Luo et al.with a mono-exponential fit.
+From the data in \cref{fig:g2_Luo} \textit{Luo et al.} extracted the value $g^{(2)}(0)$ = \num{0.3}
+\cite{luo_deterministic_2018}.On the contrary, after reconvolution fitting of the data with
+\cref{eq:ConvImp} and the jitter of the measurement \SI{312}{\ps}, a value of $g^{(2)}_{1}(0)$ =
+\num{0.23\pm0.02} with a coherence time $\tau_{c,\,1}$ = \SI{4.27\pm0.37}{\ns} was found, for the
+antibunching signal.\textit{Luo et al.} found a value of $g^{(2)}_{1}(0)$ = \num{0.16\pm0.03} with a
+coherence time $\tau_{c,\,1}$ = \SI{3.8\pm0.2}{\ns} for the antibunching signal
+\cite{luo_deterministic_2018}.The fit results from \textit{Luo et al.} almost agrees with our fits
+within the margin of error.The remaining deviations may be caused by uncertainties during the
+re-digitization process of the literature data.\\
+\Cref{fig:g2_Khasminskaya} communicates data from \textit{Khasminskaya et al.} with a bi-exponential
+fit, where they extracted the value $g^{(2)}(0)$ = \num{0.52} (\cite{khasminskaya_fully_2016}
+Fig.~3b).On the contrary, after reconvolution fitting of the data with \cref{eq:ConvImpBlink} and
+the jitter of the measurement \SI{30}{\ps}, we found values of $g^{(2)}_{1}(0)$ = \num{0.33\pm0.01}
+with a coherence time $\tau_{c,\,1}$ = \SI{0.04\pm0.028}{\ns} for the antibunching signal, and for
+the bunching signal we found $g^{(2)}_{2}(0)$ = \num{1.12\pm0.01} with a coherence time
+$\tau_{c,\,2}$ = \SI{1.28\pm0.47}{\ns}.

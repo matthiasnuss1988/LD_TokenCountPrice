@@ -1,0 +1,147 @@
+The filter is assumed to be rectangular in the frequency regime with normalized amplitude
+$\frac{1}{\Delta\omega}$, so that $\int \mathcal{F}(\omega)\partial\omega=1$.Let’s denote
+$\omega_{1}=\omega_0-\frac{\Delta\omega}{2}$ and $\omega_{2}=\omega_0+\frac{\Delta\omega}{2}$.The
+corresponding temporal $g^{(1)}$ function reads as follows.
+
+\begin{equation}
+\label{eq:KhinchinExample11}
+g^{(1)}(\tau)=\int_{\omega_{1}}^{\omega_{2}}\exp{(-i\omega \tau)}\partial\omega=\exp{(-i\omega_0\tau)}\sinc{\Big(\dfrac{\tau\Delta\omega}{2}\Big)},
+\end{equation}
+
+where we used the axial symmetry of the sinc-function and
+$(\omega_2-\omega_0)=(\omega_0-\omega_1)=\Delta\omega/2$.
+From the Siegert relation it follows:
+
+\begin{equation}
+\label{Eq:KhinchinExample12}
+g^{(2)}(\tau)=1+\sinc^2{\Big(\dfrac{\tau\Delta\omega}{2}\Big)}
+\end{equation}
+
+For small $\tau$, $1\ll g^{(2)}\leq2$, bunched photons can be measured.For large $\tau$,
+$g^{(2)}\rightarrow$ \num{1}.\\
+We calculate the first zero of the sinc function, which refers to
+$\tau=\tau_c^{(1)}=2\pi/\Delta\omega$, in order to evaluate the falling time of $g^{(2)}$.
+In the wavelength regime, the spectral bandwidth $\lambda_1-\lambda_2$ reads
+
+\begin{equation}
+\label{eq:KhinchinExample13}
+\Delta\lambda=\dfrac{2\pi c(\omega_2-\omega_1)}{\omega_1\omega_2}\approx\dfrac{2\pi c\Delta\omega}{\omega^2_0}.
+\end{equation}
+
+From this consideration, it follows that
+
+\begin{equation}
+\label{eq:KhinchinExample14}
+\tau_c^{(1)}=\dfrac{\lambda^2_0}{c\Delta\lambda}.
+\end{equation}
+
+The smaller the optical bandwidth, the stronger the correlation signal.This matches the
+consideration of
+decreasing coherence for a broader wavelength spectrum.The formula in \cref{eq:KhinchinExample14}
+matches with the coherence time in \cref{sec:coherence}.This proves that the concept of coherence
+time is a useful tool for quantifying a system by its optical center wavelength and bandwidth.
+Let’s assume having an optical filter set at $\lambda_0$ = \SI{890}{\nm} and a $\Delta\lambda$ =
+\SIlist[list-units = brackets]{1;0.05}{\nm} (a similar composition is used in the lab):
+
+\begin{equation}
+\label{eq:KhinchinExample5}
+\tau_c^{(1)}(\Delta\lambda=\SI{1}{\nm})=\SI{3}{\ps}\qquad\tau_c^{(1)}(\Delta\lambda=\SI{0.05}{\nm})=\SI{53}{\ps}
+\end{equation}
+
+The signal drops within three \si{\ps} even for quite narrow optical bandwidth filtering
+($\Delta\lambda$ = \SI{1}{\nm}).This is an impossible time range to resolve with current
+time-tagging devices.Even using a \SI{1}{\nm} optical filter will therefore not resolve the shape of
+the correlation function but will only lead to an enhancement of $g^{(2)}(0)$.Only a monochromatic
+light source, e.g., a Hg lamp with $\Delta\lambda$ = \SI{0.05}{\nm} is resolvable.Furthermore, the
+value at $\tau=0$ drops to one after time $\tau_c^{(1)}$.
+
+
+\subsubsection{Impact-Broadened and Single-Molecular Light Source}\label{sec:Impact}
+The spectrum of a broadened impact source is Lorentz-shaped, centered around $\omega_0$
+\cite{fox_quantum_2006} of the form
+
+\begin{equation}
+\label{eq:KhinchinExample21}
+\mathcal{F}_\mathrm{Lorentz}(\omega)=\dfrac{\tau_c}{\pi\big[1+\tau^2_c(\omega-\omega_0)^2\big]}.
+\end{equation}
+
+The application of the Wiener--Khinchin theorem results in $g^{(1)}$.We consider a temporal offset
+$\tau_0$ of the zero position due to an electronic or spatial delay of the interferometer.
+
+\begin{equation}
+\label{eq:KhinchinExample22}
+g^{(1)}_\mathrm{Lorentz}(\tau)=\exp{\Big[-\Big(\dfrac{1}{\tau_c}+i\omega_0\Big)\big|\tau-\tau_0\big|\Big]}
+\end{equation}
+
+and with the Siegert relation we get
+
+\begin{equation}
+\label{eq:KhinchinExample23}
+g^{(2)}_\mathrm{Lorentz}(\tau) = 1 + \hat{Q}_0\exp\Big(-2\dfrac{|\tau-\tau_0|}{\tau_c}\Big).
+\end{equation}
+
+Of particular interest is the correspondence of the $\sigma$ criterion to resolve $x$ percent of the
+possible $g^{(2)}$ amplitude in the correlation regime, in the time domain.From
+\cref{eq:KhinchinExample23}, we derive
+
+\begin{equation}
+\label{eq:FWHMtauLorentz}
+\Delta_\mathrm{x,\, Lorentz}^{g^{(2)}(\tau)}=\tau_c\Big|\ln{\dfrac{-\hat{Q}_0}{x\hat{Q}_0+1}}\Big|\underbracket{\approx}_{\mathrm{x=0.997,\;\hat{Q}_0=-1}}6\tau_c.
+\end{equation}
+
+For a perfect \ac{SPS} ($\hat{Q}_0=-1$), in order to map 99.73\% from the curve, we have to measure
+at least $\pm3\tau_c$, starting from $\tau_0$.
+Accordingly, we also get the \ac{FWHM} with $x=0.5$:
+$\Delta_\mathrm{FWHM,}^\mathrm{g^{(2)}(\tau)}=\tau_c\ln{2}$.\newline
+An important consequence of the Siegert relation with $\hat{Q}_0=[-1,1]$ is, for bunched light only
+$\hat{Q}_0=[0,1]$ and for anti-bunched light only $\hat{Q}_0=[-1,0]$ is possible.
+
+
+\subsubsection{Doppler-Broadened Light Source}\label{sec:Doppler}
+Let us take a look at Doppler-broadened light with a Gaussian power spectrum or light that passes
+through a Gaussian-shaped optical filter, since such a Gaussian optical filter will be used in the
+experiments.
+
+\begin{equation}
+\label{eq:KhinchinExample24}
+\mathcal{F}_\mathrm{Gauss}(\omega)=\dfrac{1}{\sqrt{2\pi}\sigma_\omega}\exp{\Big[-\pi\Big(\dfrac{\omega-\omega_0}{\sqrt{2\pi}\sigma_\omega}\Big)^2\Big]} \underbracket{=}_{\mathrm{\cref{eq:KhinchinExample25}}}\tau_c\exp{\Big[-\pi(\omega-\omega_0)^2\tau^2_c\Big]}
+\end{equation}
+
+
+\begin{equation}
+\label{eq:KhinchinExample25}
+\mathrm{and}\quad\tau_c=\dfrac{1}{\Delta\omega}=\dfrac{1}{\sqrt{2\pi}\sigma_\omega}=\dfrac{2\sqrt{\ln{2}}}{\sqrt{\pi}\Delta_\mathrm{FWHM}^\omega}\approx\dfrac{1}{1.06\Delta_\mathrm{FWHM}^\omega}.
+\end{equation}
+
+We used $\Delta_\mathrm{FWHM}^\omega=2\sigma_w\sqrt{2\ln{2}}$, with the Gaussian standard deviation
+$\sigma_w$.
+From the Wiener--Khinchin theorem results
+
+\begin{equation}
+\label{eq:KhinchinExample26}
+g^{(1)}_\mathrm{Gauss}(\tau)=\exp{\Big[-\Big(\dfrac{1}{4\pi\tau^2_c}+i\omega_0\Big)\big|\tau-\tau_0\big|\Big]}
+\end{equation}
+
+and with the Siegert relation, we get
+
+\begin{equation}
+\label{eq:KhinchinExample27}
+g^{(2)}_\mathrm{Gauss}(\tau) = 1 + \hat{Q}_0\exp\Big(-\dfrac{|\tau-\tau_0|^2}{2\pi \tau^2_c}\Big).
+\end{equation}
+
+Analogously to the previous consideration, to resolve $x$ percent of the $g^{(2)}$ amplitude in the
+correlation range in the time domain, it follows from \cref{eq:KhinchinExample27}
+
+\begin{equation}
+\label{eq:FWHMtauGauss}
+\Delta_\mathrm{x}^\tau=2\tau_c\sqrt{\pi}\sqrt{2\Big|\ln{\dfrac{-\hat{Q}_0}{x\hat{Q}_0+1}}\Big|}\underbracket{\approx}_{\mathrm{x=0.997,\;\hat{Q}_0=-1}}12\tau_c
+\end{equation}
+
+For a perfect \ac{SPS} ($\hat{Q}_0$ = \num{-1}), in order to map \SI{99.73}{\percent} from the
+curve, we have to measure at least $\pm6\tau_c$, starting from $\tau_0$.
+Consequently, we also get the \ac{FWHM} with $x=0.5$: ($\hat{Q}_0$ = \num{-1}):
+$\Delta_\mathrm{FWHM,}^{g^{(2)}(\tau)}=2\tau_c\sqrt{\pi}\sqrt{2\ln{2}}$.
+
+
+\subsubsection{Non-Stationary Count Rate}\label{sec:Nonstationary}
+In a realistic situation, the count rate is never stationary.

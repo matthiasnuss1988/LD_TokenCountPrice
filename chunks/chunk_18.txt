@@ -1,0 +1,105 @@
+Note, for n-periodic signals $P_n(\tau)$ can be applied as the n-fold self-convolution of one signal
+period $P(t)$.
+
+\begin{equation}
+\label{eq:tempmode1}
+P_n(\tau)=(P_1\circledast P_2\circledast....P_{n-1}\circledast P_n)(\tau),
+\end{equation}
+
+To determine $P_n(\tau)$, the functional forms of the instrument response functions have to be
+known.When
+working with \ac{APD}s, a \textit{fs}-laser and a \ac{TDC}, $P(t)$ is frequently following a
+Gaussian distribution (the assumption provides accurate results, even if individual instrument
+functions are Lorentz-shaped).
+The \ac{IRF} of the system is then again a Gaussian
+
+\begin{equation}
+\label{eq:tempmode2}
+P_\mathrm{sys}(\tau)=\frac{1}{\sqrt{2\pi}\sigma_\mathrm{sys}}\cdot \exp{\left(-\dfrac{|\tau-\tau_0|^2}{2\sigma_\mathrm{sys}^2}\right)},
+\end{equation}
+
+where we calculate $\sigma_{\mathrm{sys}}$ from the known individual device jitter values.
+
+\begin{equation}
+\label{eq:system_jitter}
+\sigma_{\mathrm{sys}}=\sqrt{\sum_{n} (\sigma_n)^2}
+\end{equation}
+
+The largest temporal instrument jitter value $\sigma_n$ dominates $\sigma_\mathrm{sys}$.However,
+measuring the jitter of a single device is tricky.Other instruments are involved, which introduce
+jitter themselves.\\
+In a coincidence-based $g^{(2)}$ measurement, deconvolution methods must be applied in the case
+where the detector jitter is close to the coherence time $\tau_c$ of the light source
+(\cref{fig:Deconvolution}).
+The correlation function measured under these circumstances is given by the convolution of
+$g^{(2)}_\mathrm{intrinsic}$, the inherent properties of the light source and $P_{\mathrm{sys}}$.
+
+\begin{equation}
+\label{eq:g2_convolved_paper}
+g^{(2)}_\mathrm{\circledast}(m,\,\tau)=\Big(g^{(2)}_\mathrm{intrinsic}\circledast P_\mathrm{sys}\Big)(m,\,\tau)
+\end{equation}
+
+Nonetheless, numerical deconvolution is volatile with regard to noise and the signal vanishing
+level.
+
+
+\paragraph{Impact-Broadened Light Source}
+In the case of a Lorentzian spectral density function, the convoluted second order correlation,
+based on \cref{eq:g2_convolved_paper} is visible in \cref{eq:ConvImp}.Deviating from the definition
+of the exponent in \cref{eq:KhinchinExample23} we do not use the factor two
+\cite{luo_deterministic_2018}, in order to perform an excitation power-dependent correction of the
+inter-photon delay, since $2/\tau_c\rightarrow 1/\tau_f$ approaches the fluorescence lifetime limit
+only for zero pump power (cf.\cref{sec:powercorr}).
+
+\begin{align}
+\label{eq:ConvImp}
+g^{(2)}_\circledast(m,\,\tau)=&1+\dfrac{\hat{Q}_0}{2}\exp{\Big(\dfrac{v}{2}\Big)}
+\left(
+
+\begin{array}{c}
+e^{u_{-}} \\
+\Big.e^{u_{+}}\Big.\\
+\end{array}\right)\cdot
+
+\left(
+
+\begin{array}{c}
+\text{erfc}\big(\frac{u_-+v}{\sqrt{2v}}\big) \\
+\text{erfc}\big(\frac{u_++v}{\sqrt{2v}}\big)
+\end{array}\right)
+
+\end{align}
+
+with
+
+\begin{equation}
+\label{eq:ConvImpCond}
+v=\Big(\dfrac{\sigma_\mathrm{sys}}{\tau'_c}\Big)^2\qquad \text{and}\qquad u_\pm=\pm \dfrac{|\tau -\tau_0|}{\tau'_c}\underbracket{\rightarrow}_\mathrm{pulses}\pm\Big|\dfrac{m}{f\tau'_c}\Big|\text{, cf.}\footnote{For a pulsed measurement, we integrate the area of the peaks to get $C_N(m)$.Using the interpretation of $g^{(2)}$ as a conditional probability in \cref{eq:g2def4} and energy conservation, the resulting area is the probability density corresponding to the \ac{CW} case at $\tau=m/f$.Thus, we re-convolve the peak at $m$ with $C_N\Big(\tau=\dfrac{m}{f}-\tau_0\Big)$.}\\
+\end{equation}
+
+The parameter $\tau_c^{(1)'}$ is introduced in \cref{eq:realjitter9} and resembles the Lorentzian or
+Gaussian correlation time $\tau_\mathrm{c,\, Lorentz}$ or $\tau_\mathrm{c,\, Gauss}$.Furthermore
+$v\approx$ \num{1} quantifies the need for deconvolution, whereas $v\ll1$, states jitter effects can
+be neglected.The time offset $\tau_0$ compensates for different optical path lengths, as well as for
+electronic delays.
+The complementary Gaussian error function $\mathrm{erfc}(x)$ is defined as
+
+\begin{equation}
+\label{eq:erfc}
+\mathrm{erfc}(x)=1-\mathrm{erf}(x),
+\end{equation}
+
+where $\mathrm{erf}(x)$ is the Gaussian error function.
+Moreover, in the model, the normalized Mandel-Q parameter at zero time delay $\hat{Q}_0$
+\cite{xin-zheng_characterization_2008} from \cref{sec:NormalizedMandelQ}, is used as a fitting
+parameter to obtain $g^{(2)}(0)=1+\hat{Q}_0$ from the fit.\\
+Note, besides a drop in the visibility ($\nu_\mathrm{temp}$), the correlation function is also
+broadened.
+
+\begin{align}
+&g^{(2)}_\circledast(0)\rightarrow\nu_\mathrm{temp}=\exp \Big( \dfrac{v}{2} \Big) \cdot\mathrm{erfc}\Big( \sqrt{\dfrac{v}{2}}\Big)=\Big(\dfrac{g^{(2)}_\circledast(0)-1}{\hat{Q}_0} \Big)\label{eq:g2_impdeconvzero}\\
+&g^{(2)}_\circledast(m,\,\tau)\rightarrow\nu_\mathrm{temp}(m,\,\tau)=\Big(\dfrac{g^{(2)}_\circledast(m,\,\tau)-1}{\hat{Q}_0} \Big)\label{eq:g2_vistempoverall}
+\end{align}
+
+In a pulsed measurement, there is a short, but more error prone route to reveal the intrinsic
+parameters, where you only re-convolve the area of peak $m=0$ in \cref{eq:g2_impdeconvzero}.

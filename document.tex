@@ -1,0 +1,1189 @@
+\chapter{Coincidence-Based Second-Order Correlation}%\label{5_coincidence}
+%\minitoc% Creating an actual minitoc
+\chaptertoc
+
+A method that is often used to determine whether any light source is a \ac{SPS} is the second-order correlation function $g^{(2)}(t+\tau)$. Throughout this work, in most cases, we consider stationary processes, so the dependence on the time $t$ is considered implicit, whereas the dependence on $\tau$ is left explicit. 
+
+\section{Status-Quo}
+One way to measure this correlation function $g^{(2)}(\tau)$ is by photon interferometry. Since Amplitude interferometers like the Michelson interferometer have to deal with major challenges, requesting the coherence of the light detected at the different telescopes, electromagnetic waves must be detected with a precision smaller than the wavelength of the observed light at the two detection points to still recognize the interference. Furthermore, light from different telescopes has to be brought together with the same precision, making Michelson interferometry impractical and very elaborate.
+
+\subsection{The Hanbury Brown and Twiss Interferometer}
+A way out of this dilemma is the \ac{HBT} experiment.~The experiment, initially invented by Hanbury-Brown and Twiss in 1956, has the advantage of measuring the number of photons and their correlated intensity fluctuations instead of amplitudes. Consequently, \ac{HBT} is insensitive to the phase of electromagnetic waves.
+The setup for such an experiment is very famous. An incoming photon beam is split into two by a 50:50 \ac{BS}. Both beams are directed to a single-photon detector like in our case two Perkin Elmer Si \ac{APD}s (\ac{SPCM}-CD 2801 9380 Rev. G and \ac{SPCM}-AQR-13 11475). The electrical output signals of the detectors are monitored by a \ac{TDC} which measures the time difference between the signals from both detectors.
+
+\subsection{Photon Time Tagging}
+In this thesis, trigger thresholds (start--stop) are used to determine the arrival time of a photon instead of sampling the signal. Using these trigger thresholds, a more
+\begin{figure}[htp]
+	\centering
+	\includegraphics[width=0.7\linewidth]{g2_schematics}
+	\caption{Accumulated time differences clicks between two channels. Whenever the first tick descend from a “start” or “stop” click, the result is a positive or negative time difference (according to \cite{swabian_instruments_time_2021}).}
+	\label{fig:CorrelationShematics}
+\end{figure}
+\noindent frequent time sampling/binning is possible than by a fix trigger sampling of the \ac{APD} signal. When the signal from the start channel reaches the threshold, an event is recorded on the start device, and the corresponding time is the specific time tag of a photon on a two-photon histogram $c(\tau)$, indicated in \cref{fig:CorrelationShematics}. When $c(\tau)$ is enhanced at $\tau$ = \num{0}, photons tend to arrive simultaneously at the two detectors, and photon combinations with $\tau\approx$ \num{0} should exist more often than those with $|\tau|>$\num{0}. This is an indicator for photon bunching, as occurs in photon streams from thermal light sources. When observing a photon source with Poisson photon statistics, i.e., a laser, $c(\tau)$ is independent of $\tau$. If the incoming light originates from a single-photon source, two photons can't arrive simultaneously at both detectors and $c(0)$ = \num{0}. This means that no signal will be measured for a time difference of zero. As we move away from zero, the function value increases asymptotically in the Poisson case. 
+
+\subsection{The Wiener-Khinchin Theorem}\label{sec:Khinchin}
+The Wiener--Khinchin theorem relates the temporal first-order correlation function $g^{(1)}(\tau)$ to the normalized power spectrum by Fourier transformation $\mathcal{F}(\omega)$ of the light source.
+\begin{equation}\label{eq:WienerForward}
+	\mathcal{F}(\omega)=\dfrac{1}{2\pi}\int_{-\infty}^{\infty}g^{(1)}(\tau)\exp{(i\omega \tau)}\partial\tau
+\end{equation}
+The back transformation can also be used to calculate the temporal function $g^{(1)}$ of the power spectrum.
+\begin{equation}\label{eq:WienerBackward}
+	g^{(1)}(\tau)=\int_{-\infty}^{\infty}\mathcal{F}(\omega)\exp{(-i\omega \tau)}\partial\omega
+\end{equation}
+
+\subsection{The Siegert Relation}\label{sec:siegert}
+Originally developed for thermal light, the Siegert relation relates the first- and second-order correlation functions, assuming a large number of equivalent atoms emitting electromagnetic waves that interfere with the observer \cite{classen_incoherent_2017}. Apart from this, corrections can be made to also include Lorentzian- or Gaussian-shaped quantum light and take into account partial loss of coherence as well \cite{classen_incoherent_2017,ann_observation_2019,ferreira_connecting_2020} with the normalized Mandel Q-parameter $\hat{Q}$ derived in \cref{sec:NormalizedMandelQ}.
+\begin{equation}\label{eq:siegert}
+	g^{(2)}(\tau)=1+\hat{Q}_0\Big[g^{(1)}(\tau)g^{(1)}(\tau)^{*}\Big]=1+\hat{Q}_0\Big|g^{(1)}(\tau)\Big|^2
+\end{equation}
+We deduce the first-order correlation function using Fourier transformation from the spectral shape of the source via the Wiener-Khinchin theorem (\cref{sec:Khinchin}).
+
+\subsection{Coherence}\label{sec:coherence}
+Coherence is one of the toughest topics in modern optics lectures. Nevertheless, understanding coherence is essential for many applications \cite{pieper_visualizing_2019}, such as the optical coherence tomography \cite{tomlins_theory_2005} or correlation measurements with a \ac{HBT} setup \cite{hanbury_brown_test_1956}. Only a few experiments have been suggested thus far with the purpose to teach the basic concepts of spatial \cite{basano_simple_1996,jackson_subtleties_2018} or temporal coherence \cite{millet_undergraduate_1971}.~Nevertheless, the effect of decreasing coherence is omnipresent in all kinds of correlation experiments, as in this study. Thus coherence is a fundamental concept in modern optics which should be taught properly.\\
+Coherence expresses the ability of light to form interference patterns stationary in time and extended over a spatial domain, only visible if the light has a sufficient degree of coherence. Intensity interferometry, such as for single-molecule detection is strongly related to interference patterns, as will be illustrated in \cref{sec:lineshapes}. Thus, coherence describes the stability of light \cite{fox_quantum_2006} when propagating in space or time. 
+The spatial and temporal coherence of light is defined by spatial extent, the emitted central wavelength and the spectral width of the light source. The concept is best to understand if either spatial or temporal coherence is discussed.
+
+\subsubsection{Spatial Coherence}\label{sec:spatial_coherence}
+Spatial coherence is understandable by considering light emitted from a monochromatic source (temporally coherent), but with a finite spatial extent. The finite sample size can be considered as an ensemble of individual emitting centers that emit light at a different phase (cf. \cref{fig:spatial_coherence}, considering three centers of emission). Summing up all contributions causes a distribution of light in space where the phase is constant only within finite spatial domains (white gaps), the coherence cell or speckle, but it varies from domain to domain.
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.5\linewidth]{g2_spatial_coherence}
+	\caption{Concept of spatial coherence (adapted from \cite{pieper_visualizing_2019}). The spatial interferometric pattern of an extended source grows in a distance z. The white gaps are the coherence cells, within which the integrity of the coherence information is maintained.}
+	\label{fig:spatial_coherence}
+\end{figure} 
+\noindent In reality the spatially coherent areas fluctuate on a scale of the temporal coherence time $\tau_c$ which is in the $ps$-range and thus is hard to observe. However spatial coherence is observable for long coherence times $\tau_c$, when using random phase modulation, as we will reveal in \cref{sec:rpm} and use to characterize the coherence properties of the laser and the correlation setup.
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=1\linewidth]{g2_cittert_zernike_schematics}
+	\caption{Left: Schematic depiction of the van Cittert-Zernike theorem. The intensity distribution of a source in the source plane S is mapped to the the detection plane $D$. Right: Diffraction pattern from a coherently illuminated aperture of diameter a, mapped to two points in space with the path difference $|\boldsymbol{r}_2-\boldsymbol{r}_1|$. Furthermore, the resulting $g^{(2)}(\boldsymbol{r}_1,\,\boldsymbol{r}_2)$ is shown.}
+	\label{fig:cittert}
+\end{figure}
+\noindent Spatial coherence is modeled via the van Cittert-Zernike theorem, describing the relation between the spatial intensity distribution of an extended incoherent light source and the first-order spatial correlation function $g^{(1)}(\boldsymbol{r}_1, \boldsymbol{r}_2)$ \cite{van_cittert_wahrscheinliche_1934,zernike_concept_1938}. \Cref{fig:cittert} exhibits a homogeneous, quasi monochromatic and incoherent source with an intensity distribution in the red domain. Whereas $g^{(1)}(\boldsymbol{r}_1, \boldsymbol{r}_2)$ cannot be measured directly, it can be calculated via the Siegert relation (cf. \cref{eq:siegert} and \cref{eq:g2spatial1}) for incoherent sources. In fact, the Fraunhofer diffraction pattern for a coherent source with the same geometry, has the same functional form as $g^{(1)}(\boldsymbol{r}_1, \boldsymbol{r}_2)$. For a slit aperture, $g^{(1)}(\boldsymbol{r}_1, \boldsymbol{r}_2)$ is described by a sinc function, whereas a uniform quantum emitter (single-molecule) or excitation spot, modeled as a circular aperture, with diameter a, causes an airy pattern in space. Via the Siegert relation we get
+\begin{equation}\label{eq:g2spatial1}
+	g^{(2)}(\boldsymbol{r}_1, \boldsymbol{r}_2)=1+\hat{Q}_0\Big|\dfrac{2J_1(a\xi)}{a\xi}\Big|^2,
+\end{equation}
+with the first order Bessel function $J_1(x)$ and the Fourier frequency
+\begin{equation}\label{eq:g2spatial2}
+	\xi=\dfrac{\pi}{\lambda z}|\boldsymbol{r}_1-\boldsymbol{r}_2|.
+\end{equation}
+Based on that, we define the coherence radius $|\boldsymbol{r}_1-\boldsymbol{r}_2|=\rho_c$, as the distance between the first root of $J_1$ and the central peak at $|\boldsymbol{r}_1-\boldsymbol{r}_2|=0$. We find the first root at $x =3.8317$, and hence
+\begin{equation}\label{eq:g2spatial3}
+	a\dfrac{\pi}{\lambda z}\rho_c\stackrel{!}{=}3.8317 \rightleftarrows \rho_c\approx 1.22\dfrac{\lambda z}{a}.
+\end{equation}
+We yield the extension of the coherence cell in space $\rho_c$, where the cell and thus the length of maintained coherence properties extend over the distance z. This finding is important for the detector placement in correlation measurements. For instance if ${r}_1$ (distance of detector $D_1$) is fixed in the detection plane and the position of detector $D_2$ is varied along the green arrow in \cref{fig:cittert}, via \cref{eq:g2spatial1} we get the coherence loss due to an out of center sampling in the coherence cell.
+
+\subsubsection{Temporal Coherence}\label{sec:temporal_coherence}
+A useful tool to quantify temporal coherence is the (first-order) coherence time $\tau_c$ or the coherence length $l_c$. Within these parameters, the light is said to be coherent. Thus, the phase and amplitude of the light can be deduced at a certain position or time, with a high degree of certainty from a known position or time \cite{fox_quantum_2006}. In ideal interference experiments the used light is monochromatic, because interference patterns are built by summing up amplitudes of light. Only light of the same wavelength or at least of a very narrow interval shows phases with clear relations at different points. With increasing optical bandwidth, interference effects become less visible. Therefore, first order coherence is indirect proportional to the optical bandwidth. Thus, the first order coherence time is $\tau_c^{(1)}=1/{\Delta\nu}$, with $\Delta\nu$ the frequency bandwidth of light. The coherence time can be expressed by the wavelength bandwidth $\Delta\lambda$ via $c= \lambda\nu$ with the speed of light c:
+\begin{equation}\label{eq:coherence1}
+	\Delta\nu=\dfrac{\partial\lambda}{\partial\nu}\Big|_{\lambda_0}\Delta\nu=-\dfrac{c}{\lambda^2_0}\Delta\lambda.
+\end{equation}
+Here $\lambda_0$ is the central wavelength and the negative sign can be omitted since $\Delta\nu$ or $\Delta\lambda$ have no direction.
+Using $\tau_c^{(1)}=1/{\Delta\nu}$, we obtain the coherence time in dependence of the wavelength bandwidth:
+\begin{equation}\label{eq:coherence2}
+	\tau_c^{(1)}=\dfrac{\lambda^2_0}{c\Delta\lambda}
+\end{equation}
+The broader the optical bandwidth, the shorter the coherence time. The terms "coherence" and "correlation" are strongly related, and thus the coherence time can also be called the correlation time.\\
+For real light sources, there exists also a second order coherence time $\tau_c^{(2)}$, because of the lifetime of the molecule or an artificial process, leading to additional coherence properties (cf. \cref{sec:rpm}).
+For long-lived molecular signals the \textit{ns}-lifetime dominates the coherence time and in a correlation measurement we measure $\tau_c^{(2)}$. Though, for understanding mechanisms and influences on coherence, we restrict our discussion to linewidth-limited coherence $\tau_c^{(1)}$, whereas the same rules also apply for $\tau_c^{(2)}$ and we simply write $\tau_c$, where both $\tau_c^{(1)}$ and $\tau_c^{(2)}$ can apply.\\
+
+\subsection{Temporal Second-Order Correlation}
+To understand the expectations from a time tagging correlation experiment, we define the temporal $g^{(2)}$ function as a criterion for enhanced coherence\footnote{The coherence time $\tau_c$ (cf. \cref{sec:coherence}) is a measure of the steepness of the $g^{(2)}$ function in the correlation regime and is related to the area and the width (\cref{sec:Timeestimation,sec:lineshapes}) of the peak.} in the classical intensity picture. We assume two detectors recording the intensity in the far field within the same spatial
+mode. A thermal light field leads to large intensity fluctuations on time scales $t\gg\tau_c$, while for $t\ll\tau_c$ the intensity remains approximately constant. Assuming a constant average intensity $\braket{I(t)}=\braket{I}$, we can write
+the intensity registered at each detector as \cite{fox_quantum_2006}
+\begin{equation}\label{eq:Ifluc}
+	I_1(t)=I_2(t)=I(t)=\braket{I}+\Delta I(t),
+\end{equation}
+with $\Delta I(t)$ denoting time-dependent intensity fluctuations.
+
+\subsubsection{Classical Description}
+Introducing a time delay $\tau$ between the two detectors, the second order temporal intensity correlation function reads:
+\begin{subequations}\label{eq:g2classical}
+%\setlength{\abovedisplayskip}{1pt}
+\begin{alignat}{3}
+	g^{(2)}(\tau)=&\dfrac{\braket{I(t)I(t+\tau)}}{\braket{I(t)}^2}= \dfrac{\bigl \langle\big(\braket{I}+\Delta I(t)\big)\big(\braket{I}+\Delta I(t+\tau)\big)\bigr \rangle}{\bigl \langle\braket{I}+\Delta I(t)\bigr \rangle^2}\\
+	=&\dfrac{\bigl \langle \braket{I}^2+\Delta I(t)\braket{I}+\braket{I}\Delta I(t+\tau)+\Delta I(t)\Delta I(t+\tau)\bigr \rangle}{\braket{I}^2}\\
+	&\quad\Rightarrow\quad 1+ \dfrac{\braket{\Delta I(t)\Delta I(t+\tau)}}{\braket{I(t)}^2}=1+\underbracket{\hat{Q}(\tau)}_{\in\;[0,\;1]}
+\end{alignat}
+\setlength{\belowdisplayskip}{1pt}
+\end{subequations}
+We used, $\braket{\Delta I(t)}$ = \num{0}, since the fluctuations are random.~$\braket{\Delta I(t)\Delta I(t+\tau)}$ = \num{0} on time scales larger than the coherence time ($t\gg\tau_c$). Then, the fluctuations are no longer correlated in time. In this case \cref{eq:g2classical} equals one. For smaller time delays ($t\ll\tau_c$) $\braket{\Delta I(t)\Delta I(t+\tau)}\neq 0$, the fluctuations remain correlated \cite{fox_quantum_2006}, expressed by the time-dependent normalized single-pulse Mandel Q-parameter $\hat{Q}(\tau)$, which is explained in \cref{sec:NormalizedMandelQ}. One finding is that a source whose intensity fluctuations tend to zero is coherent in the second order. An example is laser light in the classical description. In contrast, a thermal source proclaims higher correlations (bunching) for small values of $\tau$, which is associated with an increased probability of secondary photon detecting. Whereas for larger $\tau$ $g^{(2)}$ approaches 1.
+
+\subsubsection{Quantum Mechanical Description}
+In experimental quantum optics at the ultra-diluted light level, single-photon counting modules are frequently deployed. To accommodate for that, we apply the representation of the second-order correlation function in the particle view. This representation includes the complete definition range for $g^{(2)}$. In addition to coherent and bunched light, $g^{(2)}$ provides a criterion for reduced coherence as it occurs in non-classical anti-bunched light.
+\begin{subequations}\label{eq:g2quantum}
+%\setlength{\abovedisplayskip}{1pt}
+\begin{alignat}{2}
+	g^{(2)}(\tau)=&\dfrac{\braket{\hat{a}^\dagger(t)\hat{a}^\dagger(t+\tau)\hat{a}(t)\hat{a}^\dagger(t)}}{\braket{\hat{a}^\dagger(t)\hat{a}(t)}^2}=\dfrac{\braket{n(t)n(t+\tau)}}{\braket{n(t)}^2}\underbracket{=}_\mathrm{\text{\cite{fox_quantum_2006}}}\dfrac{\braket{n^2(\tau)}-\braket{n(\tau)}}{\braket{n(\tau)}^2}\\
+	\underbracket{=}_\mathrm{\cref{eq:g2def2}}&\dfrac{\sigma_n^2(\tau)-\overline{n}(\tau)+\overline{n}(\tau)^2}{\overline{n}(\tau)^2}=1+\dfrac{\sigma_n^2(\tau)-\overline{n}(\tau)}{\overline{n}(\tau)^2}=1+\underbracket{\hat{Q}(\tau)}_{\in\;[-1,\;1]}
+\end{alignat}
+\setlength{\belowdisplayskip}{1pt}
+\end{subequations}
+Here, $\hat{a}(t)$ describes the annihilation operator in the mode corresponding to time $t$ in the particle view and the variance is $\sigma_n^2$.
+\begin{equation}\label{eq:g2def2}
+	\braket{n^2}=\sigma_n^2-\overline{n}^2
+\end{equation}
+The classical description in \cref{eq:g2classical} and the quantum mechanical description in \cref{eq:g2quantum} are equivalent under certain conditions since the field is given by the expectation value of the photon number operator,
+\begin{equation}\label{eq:g2def3}
+	\braket{I}\propto\braket{n}=\braket{\hat{a}^\dagger\hat{a}}=\overline{n},
+\end{equation}
+which is equivalent to the mean number of photons in the mode. These conditions are coherent ($g^{(2)}$ = \num{0}) and bunched light sources ($g^{(2)}>$\num{1}). The intensity fluctuations in \cref{eq:g2classical} are always positive and anti-bunched states with $g^{(2)}<1$ cannot be reached. 
+Any state for which $g^{(2)}(0) < 1$ is said to be nonclassical according to the antibunching criterion. As an example, a Fock state $\ket{n}$ has $g^{(2)}(0) =1-1/n$, whereas for a thermal state, $g^{(2)}(0)=2$.\\
+Analogous to $I(t)\propto\braket{\hat{a}^\dagger(t)\hat{a}(t)}$, which gives the probability to detect a photon at the time
+$t$, $g^{(2)}$ can be interpreted as a conditional probability:
+\begin{equation}\label{eq:g2def4}
+	g^{(2)}(\tau)=\dfrac{P(t|t+\tau)}{P(t)}
+\end{equation}
+$P(t)$ is the probability of detecting a photon at time $t$ and $P(t|t+\tau)$ the conditional probability of detecting a second photon at time $t + \tau$, if the first photon was detected.
+
+\paragraph{Remark on $\hat{Q}(\tau)$} We emphasize our finding: The difference between the classical description and the quantum mechanical description of $g^{(2)}$, is a limited definition range of the normalized Mandel Q-parameter (compare the last parts of \cref{eq:g2classical,eq:g2quantum}. Furthermore, motivated by the similarity of the last part in \cref{eq:g2quantum,eq:g2def6}, it will be shown via the Wiener--Khinchin theorem and the Siegert relation (\cref{sec:siegert}), for light sources with Lorentzian and Gaussian-shaped spectral density functions, $\hat{Q}(\tau)$ can be factorized:\\ $\hat{Q}(\tau)=\hat{Q}_0 f(\tau)$, where $f(\tau)=\exp(-\alpha|\tau-\tau_0|)$ is an exponential scaling function \cite{ann_observation_2019}.
+
+\section{Data Analysis and Derivations}
+The goal is to deduce an analysis method that creates a graph from the time-tagging experiment that can be interpreted as the intrinsic function $g^{(2)}$ of the light source.
+
+\subsection{Time Difference Spectra: Finite Sampling}
+Although there is no natural quantization of $t$ in $g^{(2)}$, it is in the measurement due to time binning. This yields an adaptation of "nature" to the experiment. A second problem is the interpretation of \textit{intensity}. Again, in a natural system, there is no limit and no quantization of intensity. It is a continuous curve evaluated in time. However, the only thing one can obtain from the measurement is whether
+there is a photon time stamp or not. There is also no information about the number of photons.
+\begin{itemize}
+	\item The former continuous time $t$ is quantized by the minimum binwidth $\tau_\mathrm{bin}$ = \SI{1}{\ps} form the \textit{Swabian Instruments Time Tagger Ultra}. This also holds for the time difference $\tau$.
+	\item The intensity $I(t)$ at a time $t$ consists of only two states: $I(t) = 1$ if there is a photon, $I(t) = 0$ if there is none.
+\end{itemize}
+What do these perceptions mean to the numerator of \cref{eq:g2classical}? Now, averaging over the product $I(t)I(t + \tau)$ is not integrating, but summarizing this expression over all possible time tags:
+\begin{equation}\label{eq:g2finite1}
+	\int_{t}I(t)I(t+\tau)\partial t\quad\Rightarrow\quad\sum_t I(t)I(t+\tau)
+\end{equation}
+The sum argument is the product of two intensities, which can only be \num{0} or \num{1}. The sum over all time bins t at a given time difference $\tau$ returns the absolute number of coincidences.
+
+\subsection{Normalization of \texorpdfstring{$\boldsymbol{g^{(2)}}$}{g2 Function}}
+A spectrum exhibiting the number of coincidences for each time difference $\tau$ is already very close to the intrinsic $g^{(2)}(\tau)$ function. It must be normalized, which is done by the denominator in \cref{eq:g2classical}. Nevertheless in a real measurement, due to background contribution and convolution with the \ac{IRF} of the setup, there is still a difference between this spectrum $c_N(\tau)$ and $g^{(2)}$. 
+
+\begin{figure}[htp]
+	\centering
+	\includegraphics[width=0.8\linewidth]{g2_tailnorm}
+	\caption{Upper panel: Coincidence histogram $c(\tau)$. The Poisson baseline normalization is performed at $|\tau|\approx$ \SI{1}{\s}. The correlation region is depicted in red.\\
+		Lower panel: Example for the normalized time difference histogram. Importantly, the shape of the histogram is not altered by basline normalization. }
+	\label{fig:tailnorm}
+\end{figure}
+\noindent That is why, in general, a distinction is made between $c_N(\tau)$ and $g^{(2)}$.
+\begin{equation}\label{eq:g2finite2}
+	\braket{I(t)I(t+\tau)}=\dfrac{1}{\mathrm{N}}\sum_\mathrm{i=1}^\mathrm{N}I(t_i)I(t_i+\tau)\qquad \textrm{and}\qquad \braket{I(t)}^2=\Big(\dfrac{1}{N}\sum_\mathrm{i=1}^\mathrm{N} I(t_i)\Big)^2
+\end{equation}
+where $N$ is the total number of bins ($T_t/\tau_\mathrm{bin}$). Thus, the expression for $c_N(\tau)$ in the case of an ideal spectrum ($c_N(\tau)=g^{(2)}$) is as follows.
+\begin{equation}\label{eq:g2finite4}
+	g^{(2)}=c_N(\tau)=N\dfrac{\sum_\mathrm{i=1}^\mathrm{N} I(t_i)I(t_i+\tau)}{\Big(\sum_\mathrm{i=1}^\mathrm{N} I(t_i)\Big)^2}.
+\end{equation}
+\Cref{eq:g2finite4} is also valid for the intensity $I(t_i)> 1$ of each time bin. As one expects $c_N(\tau) = 1$ for $|\tau|\gg 0$. A way to normalize $c(\tau)$ is to calculate the mean value in a range far beyond the correlation regime.\\
+A fictional time difference histogram with several bins is displayed in \cref{fig:tailnorm}. The histogram is normalized to the yellow baseline with an average count number per bin of $c(\tau)$ = \num{200}, which is determined for $|\tau|\approx$ \SI{1}{\s}. Since the coincidence region around $\tau=0$ is typically in the \si{ps} to \si{ns} range, the correlation signal is scaled and not altered by the baseline in the "tail" region.
+To compute the expected event number $\braket{I(t)}^2$ in the "tail" region, one can imagine a correlation with the total measurement time $T_t$ and the total numbers of events $N_\mathrm{start}$ and $N_\mathrm{stop}$ in channel \num{0} or \num{1}. The maximum number of coincidences in the time regime is $N_\mathrm{start}N_\mathrm{stop}$, as every photon from channel \num{0} can be compared to a photon in channel \num{1}. In addition, large time differences near $T_t$ may not occur as frequently as small ones. While the maximum deviation from the Poisson case (in the number of events per bin) is around $\tau=0$, we see a linear decrease towards zero at $ \tau= \pm T_t$. \Cref{fig:Normtriangle} sketches the expected event numbers for a super-Poisson light source. The width of the boxes is typically in the sub-\si{\ns} range. Usually, the evaluation region is only a few nanoseconds, whereas the measurement times are in the range of minutes or even hours. Therefore, the effect of decreasing the number of events in the time-difference spectrum with larger time differences is extremely small, and the fluctuations of the correlation should be the fluctuation of the Poisson baseline, determined by M in the plot.
+\begin{figure}[htp]
+	\centering
+	\includegraphics[width=0.75\linewidth]{g2_norm}
+	\caption{Number of coincident events depending on the time difference $\tau$}
+	\label{fig:Normtriangle}
+\end{figure}
+\noindent This value M can be derived geometrically by \cref{eq:Normderivation}, deduced from \cref{fig:Normtriangle}. 
+\begin{equation}\label{eq:Normderivation}
+	N_\mathrm{start}N_\mathrm{stop}=\dfrac{1}{2}N_\mathrm{bins}|M| \underbracket{\Leftarrow}_\mathrm{super-Poisson}2\Delta_{0,\, T_t,\, M}\underbracket{\Rightarrow}_\mathrm{sub-Poisson}=\dfrac{1}{2}N_\mathrm{bins}|M|
+\end{equation}
+Note that for a sub-Poisson light source the value M is negative, which is why we use $|M|$ and the area of the triangle is $|M|N_\mathrm{bins}-N_\mathrm{start}N_\mathrm{stop}$, where $\Delta_\mathrm{0,T_t,\,|M|}$ is a triangle with corners at the origin, $|M|$ and $T_t$. Solved for $|M|$ with $N_\mathrm{bins} = 2T_t/\tau_\mathrm{bin}$, we get the following:
+\begin{equation}\label{eq:Normderivation2}
+	|M|=\tau_\mathrm{bin}\dot{N}_\mathrm{start}\dot{N}_\mathrm{stop}T_t
+\end{equation}
+$\dot{N}_\mathrm{start,\, stop}= N_\mathrm{start,\, stop}/T_t$ are the (average) photo-electron count rates. Note the normalization $|M|$ in \cref{eq:Normderivation2} comes out to be independent of the light statistics. Consequently, the uncertainty of the Poisson baseline is
+\begin{equation}\label{eq:Normderivation3}
+	|\Delta M|=\sqrt{\tau_\mathrm{bin}\dot{N}_\mathrm{start}\dot{N}_\mathrm{stop}T_t}\quad\Rightarrow\quad\sigma_\mathrm{g^{(2)}}=\dfrac{|\Delta M|}{|M|}=\dfrac{1}{\sqrt{\tau_\mathrm{bin}\dot{N}_\mathrm{start}\dot{N}_\mathrm{stop}T_t}}
+\end{equation}
+In the picture of $g^{(2)}$, we normalize the time difference spectrum by dividing each bin by the average number of coincidences, which is almost exactly $|M|$ in the evaluation region. We also note that the total count rate product, which is not necessarily divided equally between both detectors, underestimates $|M|$. The results are too large and unstable $g^{(2)}$ values, which we investigate from a quantum statistical perspective in \cref{sec:beamsplittercorr}. Comparing the experimental baseline fluctuations with $\sigma_\mathrm{g^{(2)}}$ is a good criterion to judge whether the baseline is stable during measurement.
+
+\subsubsection{Normalization for a CW Light Source}
+To calculate $g^{(2)}$ for a \ac{CW} light source, the measured histogram data $c(\tau)$ is first normalized to the Poisson baseline \cite{beveratos_room_2002,swabian_instruments_time_2021}:
+\begin{equation}\label{eq:cwNormg2}
+	C^\mathrm{CW}_N(\tau)=\dfrac{1}{\tau_\mathrm{bin}\dot{N}_\mathrm{start}\dot{N}_\mathrm{stop}T_t}c(\tau)
+\end{equation}
+After normalization, a photon source with Poisson photon statistics, i.e. a laser, $C^\mathrm{CW}_N(\tau)$ has a constant value of one, regardless of the time difference. Thermal light sources with super-Poisson statistics exhibit values that are larger than one. For times other than zero, the function also approaches one. \Cref{fig:g2cwpulsed}a points out such a normalization for a \ac{NV} center in a nanocrystal. The zero-time value of the uncorrected normalized correlation function given by cref{eq:cwNormg2} is $C^{CW}_N(0)$ = \num{0.17}. The fit is performed with the model derived in \cref{sec:decon}.\newline
+Anyway, the coincidence-based method also has some drawbacks. When a second photon arrives shortly after the first one, the second photon cannot be detected and a second detector is needed, due to the dead time $\tau_D$ after each detected photon. It takes about \SIlist{57;97}{\ns} (in this thesis) until the signal can reach the threshold again. Furthermore, photon bunching effects on \si{ps}-scales are impossible to detect with only one detector in photon counting mode. The method that suits better to the specific situation depends on many factors and should be considered well.
+
+\subsubsection{Normalization for a Pulsed Light Source}
+If light originates from a pulsed photon source (\cref{fig:g2cwpulsed}b and not from a continuously emitting photon source (\cref{fig:g2cwpulsed}a, we need a different approach for evaluating $g^{(2)}$. The time-difference histogram of a pulsed light source has prominent peaks for each pulse in the observed time span, where the peak at $\tau=0$ vanishes for a single-photon source. Here, the coincidences between peaks do not reach zero, because of the overlapping of adjacent peaks.
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=1\linewidth]{g2_cw-pulsed}
+	\caption{a) $g^{(2)}(\tau)$ for a \ac{NV} center in a nanocrystal. The time bin is $\tau_\mathrm{bin}$ = \SI{0.3}{\ns}, the total integration time is $T_t$ = \SI{323}{\s} and the laser intensity impinging on the sample is \SI{2.7}{\mW}. The count rates on each photodiode are $\dot{N}_\mathrm{start}$ = \SI{22.5}{\kHz} and $\dot{N}_\mathrm{stop}$ = \SI{24.5}{\kHz}. b) Pulsed correlation function of the same single NV center. The pulse repetition frequency is $f$ = \SI{10}{\MHz}, pulse width \SI{1.2}{\ns} and excitation mean power \SI{0.9}{\mW}. Count rates are $\dot{N}_\mathrm{start}$ = \SI{10.5}{\kHz} and $\dot{N}_\mathrm{stop}$ = \SI{1.0}{\kHz}. Total time is $T_t$ = \SI{588}{\s} and $\tau_\mathrm{bin}$ = \SI{2}{\ns}. The normalized area is represented by numbers above the peaks (adapted from \cite{beveratos_room_2002}).}
+	\label{fig:g2cwpulsed}
+\end{figure}
+\noindent Contrary to a continuous light source, only histogram values for certain discrete time differences, i.e., integer multiples of the distance between pulses are reasonable. To obtain the normalized histogram value $C^\mathrm{ml}_N(m)$ for each pulse $m$, we divide the area of any given pulse by the Poisson limit, which would be obtained for that pulsed source. \cite{beveratos_room_2002}:
+\begin{equation}\label{eq:mlNormg2}
+	C^\mathrm{ml}_N(m)=\dfrac{f}{\dot{N}_\mathrm{start}\dot{N}_\mathrm{stop}T_t}c(m),\qquad \textrm{with}\qquad c(m)=\sum_{-\epsilon}^{\epsilon}c(\tau)\textrm{ \cite{santori_triggered_2001}}
+\end{equation}
+We sum up the histogram $c(\tau)$ in a range $2\epsilon$ around each pulse center. We choose $\epsilon$ to obtain an accurate area result in a range of three standard deviations $(3\sigma)$ of the pulse. Thereafter, the normalization is similar to the \ac{CW} case, but since all data in the bin of a pulse are collated into one value, the normalization is independent of $\tau_\mathrm{bin}$, but utilizes the pulse frequency $f$.
+
+\subsection{Different Lineshapes}\label{sec:lineshapes}
+Time resolution is the key to measure a signal within a reasonable time frame. A quantitative view on this issue is taken in \cref{sec:Timeestimation}.
+Fortunately, most signals, e.g., from single molecules are well resolvable, due to lifetime-broadening in the \si{\ps}- to \si{\ns}-range. Let us first consider $g^{(2)}$ for different spectral line shapes.
+\subsubsection{Rectangular Filter}
+As an example imagine an optical filter only passing frequencies in a range $[\omega_0-\frac{\Delta\omega}{2},\,\omega_0+\frac{\Delta\omega}{2}]$ around the central frequency $\omega_0$ of the signal with a bandwidth $\Delta\omega$. The filter is assumed to be rectangular in the frequency regime with normalized amplitude $\frac{1}{\Delta\omega}$, so that $\int \mathcal{F}(\omega)\partial\omega=1$. Let’s denote $\omega_{1}=\omega_0-\frac{\Delta\omega}{2}$ and $\omega_{2}=\omega_0+\frac{\Delta\omega}{2}$. The corresponding temporal $g^{(1)}$ function reads as follows.
+\begin{equation}\label{eq:KhinchinExample11}
+	g^{(1)}(\tau)=\int_{\omega_{1}}^{\omega_{2}}\exp{(-i\omega \tau)}\partial\omega=\exp{(-i\omega_0\tau)}\sinc{\Big(\dfrac{\tau\Delta\omega}{2}\Big)},
+\end{equation}
+where we used the axial symmetry of the sinc-function and $(\omega_2-\omega_0)=(\omega_0-\omega_1)=\Delta\omega/2$.
+From the Siegert relation it follows:
+\begin{equation}\label{Eq:KhinchinExample12}
+	g^{(2)}(\tau)=1+\sinc^2{\Big(\dfrac{\tau\Delta\omega}{2}\Big)}
+\end{equation}
+For small $\tau$, $1\ll g^{(2)}\leq2$, bunched photons can be measured. For large $\tau$, $g^{(2)}\rightarrow$ \num{1}.\\
+We calculate the first zero of the sinc function, which refers to $\tau=\tau_c^{(1)}=2\pi/\Delta\omega$, in order to evaluate the falling time of $g^{(2)}$.
+In the wavelength regime, the spectral bandwidth $\lambda_1-\lambda_2$ reads
+\begin{equation}\label{eq:KhinchinExample13}
+	\Delta\lambda=\dfrac{2\pi c(\omega_2-\omega_1)}{\omega_1\omega_2}\approx\dfrac{2\pi c\Delta\omega}{\omega^2_0}.
+\end{equation}
+From this consideration, it follows that
+\begin{equation}\label{eq:KhinchinExample14}
+	\tau_c^{(1)}=\dfrac{\lambda^2_0}{c\Delta\lambda}.
+\end{equation}
+The smaller the optical bandwidth, the stronger the correlation signal. This matches the consideration of
+decreasing coherence for a broader wavelength spectrum. The formula in \cref{eq:KhinchinExample14} matches with the coherence time in \cref{sec:coherence}. This proves that the concept of coherence time is a useful tool for quantifying a system by its optical center wavelength and bandwidth.
+Let’s assume having an optical filter set at $\lambda_0$ = \SI{890}{\nm} and a $\Delta\lambda$ = \SIlist[list-units = brackets]{1;0.05}{\nm} (a similar composition is used in the lab):
+\begin{equation}\label{eq:KhinchinExample5}
+	\tau_c^{(1)}(\Delta\lambda=\SI{1}{\nm})=\SI{3}{\ps}\qquad\tau_c^{(1)}(\Delta\lambda=\SI{0.05}{\nm})=\SI{53}{\ps}
+\end{equation}
+The signal drops within three \si{\ps} even for quite narrow optical bandwidth filtering ($\Delta\lambda$ = \SI{1}{\nm}). This is an impossible time range to resolve with current time-tagging devices. Even using a \SI{1}{\nm} optical filter will therefore not resolve the shape of the correlation function but will only lead to an enhancement of $g^{(2)}(0)$. Only a monochromatic light source, e.g., a Hg lamp with $\Delta\lambda$ = \SI{0.05}{\nm} is resolvable. Furthermore, the value at $\tau=0$ drops to one after time $\tau_c^{(1)}$.
+
+\subsubsection{Impact-Broadened and Single-Molecular Light Source}\label{sec:Impact}
+The spectrum of a broadened impact source is Lorentz-shaped, centered around $\omega_0$ \cite{fox_quantum_2006} of the form
+\begin{equation}\label{eq:KhinchinExample21}
+	\mathcal{F}_\mathrm{Lorentz}(\omega)=\dfrac{\tau_c}{\pi\big[1+\tau^2_c(\omega-\omega_0)^2\big]}.
+\end{equation}
+The application of the Wiener--Khinchin theorem results in $g^{(1)}$. We consider a temporal offset $\tau_0$ of the zero position due to an electronic or spatial delay of the interferometer.
+\begin{equation}\label{eq:KhinchinExample22}
+	g^{(1)}_\mathrm{Lorentz}(\tau)=\exp{\Big[-\Big(\dfrac{1}{\tau_c}+i\omega_0\Big)\big|\tau-\tau_0\big|\Big]}
+\end{equation}
+and with the Siegert relation we get
+\begin{equation}\label{eq:KhinchinExample23}
+	g^{(2)}_\mathrm{Lorentz}(\tau) = 1 + \hat{Q}_0\exp\Big(-2\dfrac{|\tau-\tau_0|}{\tau_c}\Big).
+\end{equation}
+Of particular interest is the correspondence of the $\sigma$ criterion to resolve $x$ percent of the possible $g^{(2)}$ amplitude in the correlation regime, in the time domain. From \cref{eq:KhinchinExample23}, we derive
+\begin{equation}\label{eq:FWHMtauLorentz}
+	\Delta_\mathrm{x,\, Lorentz}^{g^{(2)}(\tau)}=\tau_c\Big|\ln{\dfrac{-\hat{Q}_0}{x\hat{Q}_0+1}}\Big|\underbracket{\approx}_{\mathrm{x=0.997,\;\hat{Q}_0=-1}}6\tau_c.
+\end{equation}
+For a perfect \ac{SPS} ($\hat{Q}_0=-1$), in order to map 99.73\% from the curve, we have to measure at least $\pm3\tau_c$, starting from $\tau_0$.
+Accordingly, we also get the \ac{FWHM} with $x=0.5$: $\Delta_\mathrm{FWHM,}^\mathrm{g^{(2)}(\tau)}=\tau_c\ln{2}$.\newline
+An important consequence of the Siegert relation with $\hat{Q}_0=[-1,1]$ is, for bunched light only $\hat{Q}_0=[0,1]$ and for anti-bunched light only $\hat{Q}_0=[-1,0]$ is possible.
+
+\subsubsection{Doppler-Broadened Light Source}\label{sec:Doppler}
+Let us take a look at Doppler-broadened light with a Gaussian power spectrum or light that passes through a Gaussian-shaped optical filter, since such a Gaussian optical filter will be used in the experiments.
+\begin{equation}\label{eq:KhinchinExample24}
+	\mathcal{F}_\mathrm{Gauss}(\omega)=\dfrac{1}{\sqrt{2\pi}\sigma_\omega}\exp{\Big[-\pi\Big(\dfrac{\omega-\omega_0}{\sqrt{2\pi}\sigma_\omega}\Big)^2\Big]} \underbracket{=}_{\mathrm{\cref{eq:KhinchinExample25}}}\tau_c\exp{\Big[-\pi(\omega-\omega_0)^2\tau^2_c\Big]}
+\end{equation}
+\begin{equation}\label{eq:KhinchinExample25}
+	\mathrm{and}\quad\tau_c=\dfrac{1}{\Delta\omega}=\dfrac{1}{\sqrt{2\pi}\sigma_\omega}=\dfrac{2\sqrt{\ln{2}}}{\sqrt{\pi}\Delta_\mathrm{FWHM}^\omega}\approx\dfrac{1}{1.06\Delta_\mathrm{FWHM}^\omega}.
+\end{equation}
+We used $\Delta_\mathrm{FWHM}^\omega=2\sigma_w\sqrt{2\ln{2}}$, with the Gaussian standard deviation $\sigma_w$.
+From the Wiener--Khinchin theorem results
+\begin{equation}\label{eq:KhinchinExample26}
+	g^{(1)}_\mathrm{Gauss}(\tau)=\exp{\Big[-\Big(\dfrac{1}{4\pi\tau^2_c}+i\omega_0\Big)\big|\tau-\tau_0\big|\Big]}
+\end{equation}
+and with the Siegert relation, we get
+\begin{equation}\label{eq:KhinchinExample27}
+	g^{(2)}_\mathrm{Gauss}(\tau) = 1 + \hat{Q}_0\exp\Big(-\dfrac{|\tau-\tau_0|^2}{2\pi \tau^2_c}\Big).
+\end{equation}
+Analogously to the previous consideration, to resolve $x$ percent of the $g^{(2)}$ amplitude in the correlation range in the time domain, it follows from \cref{eq:KhinchinExample27}
+\begin{equation}\label{eq:FWHMtauGauss}
+	\Delta_\mathrm{x}^\tau=2\tau_c\sqrt{\pi}\sqrt{2\Big|\ln{\dfrac{-\hat{Q}_0}{x\hat{Q}_0+1}}\Big|}\underbracket{\approx}_{\mathrm{x=0.997,\;\hat{Q}_0=-1}}12\tau_c
+\end{equation}
+For a perfect \ac{SPS} ($\hat{Q}_0$ = \num{-1}), in order to map \SI{99.73}{\percent} from the curve, we have to measure at least $\pm6\tau_c$, starting from $\tau_0$.
+Consequently, we also get the \ac{FWHM} with $x=0.5$: ($\hat{Q}_0$ = \num{-1}): $\Delta_\mathrm{FWHM,}^{g^{(2)}(\tau)}=2\tau_c\sqrt{\pi}\sqrt{2\ln{2}}$.
+
+\subsubsection{Non-Stationary Count Rate}\label{sec:Nonstationary}
+In a realistic situation, the count rate is never stationary. Instead, it suffers from a bleaching trend, e.g., caused by degradation, thermal drift, or diffusion. In the case of single molecules, additionally "triplet blinking" has often been observed and connected to a third shelving state, which traps the excitation and causes a delayed relaxation with a typical decay rate of in the \si{ns}- to \si{ms}-range.
+
+\paragraph{Intensity Bleaching (Decay Over Time)}
+For quantum dots and dye molecules often the effect of intensity bleaching is known. Observed decay rates $\tau_\mathrm{decay}$ range from the \textit{ms}- to \textit{hour}-regime \cite{komatsuzaki_compact_2015}.~Considering these rates, we look at the resulting $g^{(2)}$ function for a Lorentzian-shaped signal with intensity bleaching.
+\begin{equation}\label{eq:KhinchinExample28}
+	g^{(2)}_\mathrm{decay,\, Lorentz}(\tau) = 1 + \hat{Q}_0\exp\Big[-2\Big(\dfrac{1}{\tau_\mathrm{decay}}+\dfrac{1}{\tau_\mathrm{c,\, ex.}}\Big)|\tau-\tau_0|\Big]
+\end{equation}
+The spectral density function $\mathcal{F}(\omega)$ was multiplied by an exponential decay. Since $\tau_\mathrm{decay}\gg\tau_c,\,\tau_\mathrm{ex}$, the coherence and excited state lifetime of the sample, the decay dynamics from the point of view of the correlation time is a stationary process. Furthermore, from \cref{eq:KhinchinExample28} it is clear that $\tau_c$ is quite insensitive to "slow" signal drops. 
+
+\paragraph{Triplet Blinking}
+Triplet blinking can occur as fast as $\tau_\mathrm{ex}$\footnote{Here $k_\mathrm{21}=1/\tau_\mathrm{ex}$}, within nanoseconds. Therefore, we have to solve the rate equations explicitly (\cref{fig:Blinking_b}). 
+\begin{figure}[htp]
+	\centering
+	\begin{subfigure}{0.49\linewidth}
+		\centering
+		\includegraphics[width=1\linewidth]{g2_blinking_left}
+		\caption{}
+		\label{fig:Blinking_a}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}{0.445\linewidth}
+		\centering
+		\includegraphics[width=1\linewidth]{g2_blinking_right}
+		\caption{}
+		\label{fig:Blinking_b}
+	\end{subfigure}
+	\caption{a) Normalized peak area of \cref{fig:g2cwpulsed}: Right as function of the peak number $m$. The data is fitted with \cref{eq:KhinchinExample30}, assuming a random blinking of the NV center (adapted from \cite{beveratos_room_2002}). b) Three-level model to understand the "triplet blinking" effect of single-molecules (adapted from \cite{tombesi_bunching_2002}).}
+\end{figure}
+\noindent A detailed derivation can be found in \cite{tombesi_bunching_2002}. Blinking effects introduce mixed light statistics, and the Siegert relation gives two exponential decays with two different $\hat{Q}_0$ prefactors.
+\paragraph{CW excitation} These $\hat{Q}_0$ prefactors correspond to the respective bunching and antibunching parts of the correlation in \cref{fig:g2cwpulsed}:left.
+\begin{equation}\label{eq:KhinchinExample29}
+	g^{(2)}_\mathrm{triplet}(\tau) = 1 + \underbracket{\hat{Q}_0}_\mathrm{e.g.\;\num{-0.8}}\exp\Big(k_1|\tau-\tau_0|\Big)\underbracket{-(1+\hat{Q}_0)}_{\rightarrow \num{-0.2}}\exp\Big(-k_2|\tau-\tau_0|\Big)
+\end{equation}
+We use $k_1=k_\mathrm{tm}+k_\mathrm{1m}$ and $k_2=k_\mathrm{tm}-k_\mathrm{1m}$, with $k_\mathrm{tm}\geq k_\mathrm{1m}$ and therefore $k_1>k_2$, where $k_\mathrm{tm}$ and $k_\mathrm{1m}$ derive from the rates in \cref{fig:Blinking_b}.
+\begin{equation}\label{eq:KhinchinExample210}
+	k_\mathrm{tm}=k_\mathrm{12}+k_\mathrm{21}+k_\mathrm{23}+k_\mathrm{32},\qquad k_\mathrm{1m}=\sqrt{\Big(k_\mathrm{12}+k_\mathrm{21}-k_\mathrm{23}-k_\mathrm{32}\Big)^2+4k_\mathrm{21}k_\mathrm{23}}
+\end{equation}
+The effect of a blinking triplet represents a too low $g^{(2)}(0)$. Based on these results and with $\tau=\tau_0$ it follows $g^{(2)}(0)=1-0.8-0.2=0$, stating a perfect \ac{SPS}.Despite $\hat{Q}_0$ only amounts to \num{-0.8}, and thus $g^{(2)}(0)=0.2$. In such a case, fitting the measured data with \cref{eq:KhinchinExample29} is necessary, to obtain the intrinsic $g^{(2)}(0)$ value.
+
+\paragraph{Pulsed Excitation}
+A simple model to describe bunching and antibunching in the pulsed measurements of \cref{fig:g2cwpulsed}:Right and \cref{fig:Blinking_a} assumes random blinking between two conditions: A fully bright and a dark condition, with rate constants $k_\mathrm{on}=1/\tau_\mathrm{on}$ and $k_\mathrm{off}=1/\tau_\mathrm{off}$ \cite{beveratos_room_2002,santori_triggered_2001}. 
+\begin{equation}\label{eq:KhinchinExample30}
+	g^{(2)}_\mathrm{triplet}(m\neq0) = 1 + \dfrac{k_\mathrm{on}}{k_\mathrm{off}}\exp\Big[-\Big(k_\mathrm{on}+k_\mathrm{off}\Big)\Big|\dfrac{m}{f}\Big|\Big]
+\end{equation}
+Fitting the data of \cref{fig:Blinking_a} with \cref{eq:KhinchinExample30} delivers $\tau_\mathrm{off}$, the mean time during which the excitation is trapped in the meta-stable state and $\tau_\mathrm{on}$, the mean emission time.
+
+\subsection{Signal Strength and Time Estimation via Significance Level}\label{sec:Timeestimation}
+For a reliable $g^{(2)}$ value, it is important to know after some measurement time how trustworthy the $g^{(2)}$ signal is compared to the statistical fluctuations of the uncorrelated part in the tail region. Therefore, it is essential to calculate the expected number of counts in each time-difference bin, the uncertainty, and the effect on the normalized $g^{(2)}$ function.
+The effect of a correlation signal on the measured histogram $c_N(\tau)$ is calculated using the correlation time and the line width of the signal, as derived for Lorentzian and Gaussian light in \cref{sec:Impact,sec:Doppler}. Even with high-end electronics ($\tau_\mathrm{bin}$ =\SI{1}{\ps}), the time steps are orders of magnitude higher than typical sub-picosecond correlation times. Therefore, it is demanding to sample the shape of $g^{(2)}$ in the case of monochromatic light (compare with \cref{eq:coherence2}).
+\begin{figure}[htp]
+	\centering
+	\begin{subfigure}{0.49\linewidth}
+		\centering
+		\includegraphics[width=1\linewidth]{g2_signalstrength}
+		\caption{}
+		\label{fig:Signalstrength}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}{0.485\linewidth}
+		\centering
+		\includegraphics[width=1\linewidth]{g2_gauss_jitter}
+		\caption{}
+		\label{fig:Gaussjitter}
+	\end{subfigure}
+	\caption{a) Normalized histogram $C_N(\tau)$ for Lorentzian light. The filled area is $\hat{Q}_0\tau_c$. b) Schematic of a Gaussian-broadened signal, due to jitter.}
+\end{figure}
+%\begin{figure}[ht]
+%	\centering
+%	\includegraphics[width=0.85\linewidth]{g2_signalstrength}
+%	\caption{Normalized histogram $C_N(\tau)$ for Lorentzian light. The filled area is $\hat{Q}_0\tau_c$.}
+%	\label{fig:Signalstrength}
+%\end{figure}
+\noindent Light sources with long excited state lifetimes $\tau_\mathrm{ex}$, as in the case of single molecules, experience an extension of the coherence effects of the two-photon correlation into the \si{ns}-range and convey a significantly broadened $g^{(2)}$ curve. Thus, single-molecular light is well resolvable in conventional $g^{(2)}$ measurements.\\
+We calculate the signal strength $S$ (contrast) from the area under the curve of the $g^{(2)}$ function relative to the Poisson baseline (\cref{fig:Signalstrength}).
+\begin{equation}\label{eq:SignalstrengthLorentz}
+	S_\mathrm{Lorentz}=\int_{-\infty}^\infty [g^{(2)}(\tau)-1]\partial\tau = \int_{-\infty}^\infty \hat{Q}_0\exp\Big(-2\dfrac{|\tau-\tau_0|}{\tau_c}\Big)\partial\tau =\hat{Q}_0\tau_c
+\end{equation}
+When Gaussian light is observed, the same result can be found by defining the correlation time appropriately. In \cref{sec:Doppler}, the shape of the $g^{(2)}$ function of chaotic light was derived with a Gaussian-shaped profile.
+\begin{equation}\label{eq:SignalstrengthGauss}
+	S_\mathrm{Gauss} =\int_{-\infty}^\infty \hat{Q}_0\exp\Big(-\dfrac{|\tau-\tau_0|^2}{2\pi \tau^2_c}\Big)\partial\tau =\hat{Q}_0\sqrt{2}\pi\tau_c=\hat{Q}_0\tau_\mathrm{c,\, Gauss}
+\end{equation}
+Integrating $g^{(2)}$ is an elegant way to estimate the coherence and excited state lifetime.
+
+\paragraph{Ideal Electronics: No Timing Jitter}\label{sec:Nojitter}
+We consider a perfect system with an electronic time resolution of $\tau_e$ = \num{0}, but with $\tau_\mathrm{bin}$ = \SI{1}{\ps}. The entire Lorentzian correlation signal with height $h$ is stored in the bin at $\tau=\tau_0$. By choosing the smallest bin width $\tau_\mathrm{bin}$, we obtain the expected height of the first bin relative to one.
+\begin{equation}\label{eq:Sheight}
+	S=\hat{Q}_0\tau_c=\tau_\mathrm{bin}h\quad\Rightarrow\quad h=\dfrac{\hat{Q}_0\tau_c}{\tau_\mathrm{bin}}
+\end{equation}
+A quantitative statement of the measured signal is the significance $n$, as the relationship between the signal bin and the baseline fluctuation.
+\begin{equation}\label{eq:StoB1}
+	n=\dfrac{S}{B}
+\end{equation}
+In theory, one expects the a Poisson background. According to \cref{eq:Normderivation3}, the significance and required measurement time $T_t$ are derived.
+\begin{equation}\label{eq:StoB2}
+	n=\dfrac{h}{\sigma_g^{(2)}}=|\hat{Q}_0|\tau_c\sqrt{\dfrac{\dot{N}_\mathrm{start}\dot{N}_\mathrm{stop}T_t}{\tau_\mathrm{bin}}}\quad\Rightarrow\quad T_t=\Bigg(\dfrac{n}{\hat{Q}_0\tau_c}\Bigg)^2\dfrac{\tau_\mathrm{bin}}{\dot{N}_\mathrm{start}\dot{N}_\mathrm{stop}}
+\end{equation}
+\Cref{eq:StoB2} has an important consequence: The significance, total count rate product, the normalized Mandel $\hat{Q}$-Parameter, as well as $\tau_c$, enter the equation quadratically. Doubling the significance or reducing the count rate to half requires a four-time longer measurement. It is therefore desirable to adjust the measurement setup in a way that the rates become maximal and split equally between both detectors to minimize the measurement time. Moreover, a signal with a highly sub- or super-Poisson character ($|\hat{Q}_0|\approx$ \num{1}) can be resolved faster than the Poisson case ($|\hat{Q}_0|$ = \num{0}). Long-lived signals, when $\tau_c$ becomes $\tau_\mathrm{ex}$, also shorten the measurement time.
+
+\paragraph{Linewidth-Limited Coherence}
+If the coherence time $\tau_c$ is limited by the spectral shape of the signal, lets recall $\tau_c=k \frac{\lambda^2_0}{c\Delta\lambda}$ from \cref{eq:coherence2}. We have added the factor $k$ for a Lorentzian or Gaussian shape with $k$ = \num{1} or $k$ = \num{0.667}, respectively and transform \cref{eq:StoB2}.
+\begin{equation}\label{eq:StoB3}
+	T_t= \Bigg(\dfrac{nc\Delta\lambda}{\hat{Q}_0 k\lambda^2_0}\Bigg)^2\dfrac{\tau_\mathrm{bin}}{\dot{N}_\mathrm{start}\dot{N}_\mathrm{stop}}
+\end{equation}
+In addition to the parameter influences discussed above, one sees that signals with a large wavelength bandwidth, also increase the measurement time, as well as measuring in the UV in contrast to the NIR region. Thus, narrowband spectral bandpass filtering is also a useful tool for reducing measurement time as well\footnote{While spectral filtering helps to filter out background signals, narrow-band filtering only works for an arbitrarily adjustable output power of the source. A reduced spectral bandwidth is almost 1:1 accompanied by a reduction of the count rate so that the effect of reduced measurement time becomes negligible.}.
+
+\paragraph{Real Electronics with Timing Jitter}
+Timing-uncertainty of the electronics, caused by the timing jitter of the single-photon detector, spreads the correlation signal over several bins. The signal strength $S$, is the peak area. The resulting peak can be assumed to be Gaussian. The signal strength S is calculated by determining the area under the Gauss peak. \Cref{fig:Gaussjitter} intimates a schematic correlation signal of such a jitter-broadened Gaussian function.
+\begin{equation}\label{eq:realjitter1}
+	C_\mathrm{N,\, Gauss}(\tau) = 1+\hat{Q}_0\exp\Big(-\dfrac{|\tau-\tau_0|^2}{2\sigma^2_\mathrm{t}}\Big),\;\textrm{with}\;\;\hat{Q}_0>0
+\end{equation}
+The integral of the entire Gauss function (blue area in \cref{fig:Gaussjitter}) is given by \cref{eq:realjitter2} using the total temporal jitter of the experiment $\sigma_\mathrm{t}$.
+\begin{equation}\label{eq:realjitter2}
+	S_\mathrm{Gauss} =\hat{Q}_0\sqrt{2}\pi\tau_\mathrm{c,\, exp}
+\end{equation}
+The problem which needs to be solved for calculating the significance $n=\frac{S}{B}$ is to evaluate the background $B$ of this peak.\\
+Therefore, imagine calculating the peak area by summarizing the bin values $s_i$ of $N_\mathrm{bins}$ in the peak regime and the uncertainty $\Delta S$ of the blue-marked area.
+\begin{equation}\label{eq:realjitter3}
+	S=\tau_\mathrm{bin}\sum_{i=1}^{N_\mathrm{bins}}s_i\qquad \Delta S=\tau_\mathrm{bin}\sqrt{\sum_{i=1}^{N_\mathrm{bins}}\Delta s^2_i}
+\end{equation}
+We assume that all signal bins have the same uncertainty $\Delta s_i = s\forall i$, which is accessible in the outer "tail" regime via \cref{eq:Normderivation3}, where no correlation should exist and white noise is expected. Consequently, the entire background signal uncertainty simplifies to:
+\begin{equation}\label{eq:realjitter4}
+	\Delta S=w\sqrt{N_\mathrm{bins}\Delta s^2}=\tau_\mathrm{bin}\Delta s\sqrt{N_\mathrm{bins}}=\tau_\mathrm{bin}\sigma_{g^{(2)}}\sqrt{N_\mathrm{bins}}.
+\end{equation}
+Of course, \cref{eq:realjitter4} requires start- and end-bins for the calculation to gain the parameter $N_\mathrm{bins}$, which are not given by the nature of the Gaussian function, as its values never decrease to zero. Therefore, by convention, the range of two standard deviations $\sigma_t$ left and right from the Gaussian median is set as limits. This total evaluation length is called $D$.
+\begin{equation}\label{eq:realjitter5}
+	D=4\sigma_\mathrm{sys}
+\end{equation}
+Transferring this to the bin view
+\begin{equation}\label{eq:realjitter6}
+	D= N_\mathrm{bins}\tau_\mathrm{bin}\Rightarrow N_\mathrm{bins} =\dfrac{4\sigma_\mathrm{sys}}{\tau_\mathrm{bin}}
+\end{equation}
+We derive the uncertainty on $S$ via \cref{eq:realjitter4}, which is the background.
+\begin{equation}\label{eq:realjitter7}
+	B=\Delta S= \sigma_{g^{(2)}}\sqrt{4\sigma_\mathrm{sys} \tau_\mathrm{bin}}
+\end{equation}
+We determine the significance and the required measurement time.
+\begin{equation}\label{eq:realjitter8}
+	n=\dfrac{S}{B}=\dfrac{|\hat{Q}_0|\tau'_c}{\sigma_{g^{(2)}}\sqrt{4\sigma_t \tau_\mathrm{bin}}}=\dfrac{|\hat{Q}_0|\tau'_c}{2}\sqrt{\dfrac{\dot{N}_\mathrm{start}\dot{N}_\mathrm{stop}T_t}{\sigma_\mathrm{sys}}}\quad\Rightarrow\quad T_t=\Bigg(\dfrac{2n}{\hat{Q}_0\tau'_c}\Bigg)^2\dfrac{\sigma_\mathrm{sys}}{\dot{N}_\mathrm{start}\dot{N}_\mathrm{stop}}
+\end{equation}
+Since Gaussian and Lorentzian-shaped correlation results are possible in \cref{eq:realjitter8}, we use $\tau'_c$:
+\begin{equation}\label{eq:realjitter9}
+	\tau'_c=\begin{cases}
+		\tau_c &\text{for \;}\tau_\mathrm{c,\, Lorentz}\\
+		\sqrt{2}\pi\tau_c&\text{for \;}\tau_\mathrm{c,\, Gauss}
+	\end{cases}
+\end{equation}
+In addition to the previous observations, the measurement time scales with $\sigma_\mathrm{sys}$.
+
+\subsection{Visibility Reducing Factors of the Intrinsic \texorpdfstring{$\boldsymbol{g^{(2)}}$ Value}{g2}}\label{sec:g2_visibility}
+When measuring the temporal correlation function of a light source, $g^{(2)}$ is influenced by several experimental factors. In this section, we provide an in-depth analysis of the 
+individual parameters affecting $g^{(2)}$ in terms of shape and visibility. We distinguish between irreversible and reversible visibility reduction. While the reduced visibility due to signal noise and an uneven \ac{BS} ratio can be improved by longer sample statistics (cf. \cref{sec:Timeestimation,sec:beamsplittercorr}), irreversible visibility reductions have to be corrected compulsorily.\\
+We reveal correction factors $\nu_\mathrm{vis}$ to extract the theoretical correlation function $g^{(2)}_\mathrm{intrinsic}$ (abbreviated with $g^{(2)}(m,\,\tau)$, which describes the correlations inherently present in the light field emitted by the light source, from $g^{(2)}_\mathrm{meas}$, which represents the normalized correlation function that can actually be measured (abbreviated with $C_N(m,\,\tau)$) with a given detection setup.\\
+We start with the original correlation function, which can be based on the physical properties of the light source, e.g., Doppler-(cf. \cref{eq:KhinchinExample27}) or impact-broadened (cf. \cref{eq:KhinchinExample23}). Here, we assume that the light field consists of only one mode, resulting in $g^{(2)}(0)$ = 0, 1, or 2 . In experiments even so, there is always the possibility that more than one spatial and/or temporal mode is detected by the setup. Since single-photon counting modules, such as an \ac{APD}, cannot distinguish between different modes, the correlation function of the detected light field has reduced visibility. In this context, we introduce the definition of visibility, which is a multiplicand of the normalized Mandel Q-Parameter.
+\begin{equation}\label{eq:vis}
+	\nu_\mathrm{vis}=\dfrac{C_N(0)-1}{\hat{Q}_0},
+\end{equation}
+representing the actual value of how far the (anti)-bunching peak in the second-order correlation function exceeds its baseline of 1. 
+For the following analysis of the individual factors affecting $g^{(2)}$, we assume the current visibility is the only influence on the correlation function. In \cref{sec:decon}, the effects of all factors are summarized.
+
+\subsubsection{Background Radiation}
+In practice, it is impossible to shield the experimental setup from all types of background radiation. This can be either stray light, thermal radiation, or any other source causing uncorrelated photon counts. If the background is constant, i.e., independent of the photo-electron count rate of the correlated photon stream coming from the light source, we measure the signal strength (dark count rate) by blocking the light source. Regularly the average background count rate $\dot{N}_\mathrm{bg}$ also depends on the average signal count rate $\dot{N}_\mathrm{intrinsic}$ of the light source. We determine its strength with respect to the actual count rate present in the experiment $\bar{N}_\mathrm{meas}$, as a superposition of the intrinsic signal (S) and Poisson dark and background (B) from the environment \cite{chu_single_2017}.
+
+Whenever there is a coincident two-photon event, either of the two photons stems from the light source or the background. Only the combination of two photons from the light source will exhibit correlations, for those photons due to the (anti)-bunching nature of the light source. The other pairings, referring to two background photons, or one background photon and one photon of the light source, do not contribute to the (anti)-bunching signal, as they occur randomly. Hence, we write the measured correlation function as
+\begin{subequations}\label{eq:g2_from_normalized_histogram}
+%\setlength{\abovedisplayskip}{1pt}
+\begin{alignat}{3}
+	C_N(\tau,\, m)&=1+\dfrac{S^2}{\big(S+B\big)^2}\Big(g^{(2)}_\mathrm{intrinsic}-1\Big)\\
+	&=1+\rho^2\Big(g^{(2)}_\mathrm{intrinsic}-1\Big)\\
+	&=1+\nu_\mathrm{bg}\Big(g^{(2)}_\mathrm{intrinsic}-1\Big),
+\end{alignat}
+\setlength{\belowdisplayskip}{1pt}
+\end{subequations}
+where $S$ and $B$ are the mean signal and background \SIrange[range-units = brackets]{6}{8}{\percent} in \cref{fig:Background}, respectively.
+\begin{figure}[htp]
+	\centering
+	\includegraphics[width=0.5\linewidth]{g2_bgcorr}
+	\caption{Spatially resolved fluorescence image of a (6,4)-\ac{SWCNT}. For background correction, the signal $S$ and the background $B$ are averaged in the marked areas.}
+	\label{fig:Background}
+\end{figure}
+\noindent The fraction defines a factor $\nu_\mathrm{bg}\in[0,\,1]$ that denotes the decrease in overall visibility dependent on the background signal, with the signal-to-background ratio $\rho=\frac{S}{S+B}$ \cite{beveratos_room_2002}. This equation is equivalent to \cref{eq:g2bgcomp}, derived from photon statistics, using the Mandel-Q parameter. This is easy to understand by a closer look at the property of the convolution of two random variables $S$ and $B$ (\cref{sec:Remarkbg}).
+
+\subsubsection{Polarization Modes}
+Assuming propagation in z-direction, the polarization state of each photon of an arbitrary light field can be expanded in the base of two orthogonal polarization modes.
+\begin{equation}\label{eq:polmodes1}
+	\ket{\psi}=c_x\ket{\psi_x}+c_y\ket{\psi_y}
+\end{equation}
+with the two orthogonal polarization modes $\ket{\psi_x}$ and$\ket{\psi_y}$ ($\braket{\psi_x|\psi_y}=0$ and $c_x,\, c_y\in \mathbb{C}$). Only if two coincidental photons are indistinguishable with respect to polarization, the photon pair can be correlated. We use the probability for a photon to be polarized in x- or y-direction
+\begin{align}\label{eq:polmodes2}
+	|\braket{\psi_x|\psi}|^2&=|c_x|=p_x\\
+	|\braket{\psi_y|\psi}|^2&=|c_y|=p_y\nonumber,
+\end{align}
+with $p_x+p_y=1$.
+Accordingly to the argumentation for background light, the visibility of the (anti-) bunching peak can be calculated by dividing the probability of detecting two photons of the same mode by the entire event space.
+\begin{equation}\label{eq:polmodes3}
+	\nu_\mathrm{pol}=\dfrac{p_x^2+p_y^2}{\big(p_x+p_y\big)^2}=1-2p_xp_y
+\end{equation}
+The degree of polarization $\Theta_p$ of a light field is expressed by the fraction of the intensity fully polarized ($I_x,\,-I_y)$ to the total intensity and can be extracted from the offset and amplitude in a polarization measurement, using polarizers.
+\begin{equation}\label{eq:polmodes4}
+	\Theta_p=\dfrac{I_x-I_y}{I_x+I_y}=|p_x-p_y|\quad\rightarrow\quad\Theta_p^2=p_x^2+p_y^2-2p_xp_y\underbracket{=}_{p_x+p_y=1}1-4p_xp_y
+\end{equation}
+Completely unpolarized light exhibits $\Theta_p=0$, whereas we get $\Theta_p=1$ for fully unidirectional polarized light.
+To link $\Theta_p$ to the visibility $\nu_\mathrm{pol}$, we use the squared degree of polarization $\Theta_P^2$.
+\begin{equation}\label{eq:polmodes5}
+	\nu_\mathrm{pol}=1-2p_xp_y\underbracket{=}_{\mathrm{\cref{eq:polmodes4}}}1+\dfrac{\Theta_P^2-1}{2}
+\end{equation}
+Fully polarized light delivers $\nu_\mathrm{pol}=1$, accounting for all photons yield the same polarization and are therefore correlated. In contrast fully unpolarized and circularly polarized light results in $\nu_\mathrm{pol}=0.5$, halving the visibility.\\
+Note, for background intensity matching the signal intensity the visibility was reduced to 1/4 . In case of equally strong polarization modes, the visibility is only reduced to 1/2, since every mode is correlated within itself, while this is not the case for the background radiation.
+
+\subsubsection{Coherence Losses} When measuring coincidence-based temporal second-order correlation, we sample the light statistics at specific points in time, within the coherence time. Therefore we have to measure at the center of the spatial and temporal coherence cell. This criterion is a matter of detector placement, to prevent coherence losses, as we will communicate.
+
+\paragraph{Spatial Coherence Losses} Classical light with finite extension produces a speckle pattern in the far field that is static for short times compared to $\tau_c$. The dependence of the speckle size on the source extension is thereby determined by the van Cittert--Zernike theorem and the speckle defines the spatial coherence cell.\\
+In \cref{sec:spatial_coherence} we revealed, spatial correlations can only be found between two detectors separated within the coherence radius $\rho_c\approx 1.22 \lambda z/a$. In fact, only photons emerging from the same coherence cell can be correlated, accounting for both, spatial and temporal correlation. We pointed out, when measuring $g^{(2)}$, the incoming photons are ideally detected at the same point in space, so there is no detector separation in terms of $|\boldsymbol{r}_1-\boldsymbol{r}_2|$(cf. \cref{fig:cittert}) like for spatial measurements. 
+
+\subparagraph{Reduction due to z-Misalignment} However it is difficult to position both detectors at equal distances from the \ac{BS}. Furthermore equidistant separation is often hindered by experimental circumstances, as in our initial setup. We observed $\Delta r=|\boldsymbol{r}_1-\boldsymbol{r}_2|\approx \SI{0.15}{m}$, decreasing the visibility of $g^{(2)}$.
+\begin{equation}\label{eq:g2coherencelossz}
+\nu_\mathrm{spatial,\Delta r}=\Big|\dfrac{2J_1(a\xi)}{a\xi}\Big|^2\underbracket{=}_\mathrm{Abbe-Limit}\Big|\dfrac{2J_1(\chi_1)}{\chi_1}\Big|^2,\quad \rho_c\approx 2.44zN_A
+\end{equation}
+In this work, the transform-limited focus in a microscope with numerical aperture $N_A=1.4$ determines the aperture $a$. Thus, spatial coherence properties become independent of wavelength $\lambda_0$. For our fluorescence microscopy quantum coherence experiments on individual (6,4)-\acp{SWCNT} with unequal path length and with $z\approx\SI{2}{\m}$, $\lambda_0\approx\SI{875}{\nm}$ and $a\approx\SI{310}{\nm}$, we found: $\chi_1\approx0.17z$ and $\sigma_c\approx3.42z$.\\
+Thus the spatial coherence radius is $\sigma_c=\SI{8.83}{\m}$ and $\nu_\mathrm{spatial,\,\Delta r}\approx 0.998$. Consequently, spatial coherence loss, due to misplacement in $z$ direction can be neglected, but is important for detector placement right after the source, e.g., $z=\SI{0.1}{\m}$, where $\nu_\mathrm{spatial,\,\Delta r}\approx 0.47$.
+
+\subparagraph{Reduction due to xy-Misalignment}
+A further source for spatial coherence loss is a misplacement of one interferometric arm in the xy direction, which would cause probing of the correlation at a different positions inside detector $D_2$. This situation leads to a probe of the coherence properties at an off-center position in the coherence cell and result in reduced visibility $\nu_\mathrm{spatial,xy}$. The reduction follows the same rules as $\nu_\mathrm{spatial,\Delta r}$ and is negligible for a small detector chip of the \ac{SPCM}, using a cage system and at a large distance z. Although the misalignment in xy is large at short z, the two detected coincidence photons are always uncorrelated, due to emerging from different coherent cells.
+
+\subparagraph{Reduction due to Detector Size}
+In practice the detector has a finite acceptance area, which can potentially cover more than one coherence cell and thus different spatial modes $\Omega \in [0,\,1\,...\, n]$ as more coherence cells are involved.
+We will not go into the details of the rigorous mathematical derivation of $g^{(2)}$ in terms of spatial modes $\Omega$. The interested reader is referred to \cite{pscherer_measurement_2016}.
+We look into a simple approximation which is conceptually valid for all kinds of experiments. Therefore, we first simplify $J_1$ in \cref{eq:g2spatial1}, as well as the acceptance function of the SPCM \cite{perkin_data_2001} to a Gaussian, which introduces a small error \cite{pscherer_measurement_2016}.
+\begin{equation}\label{eq:g2coherencelossxy}
+	\nu_\mathrm{spatial,SPCM}=\dfrac{1}{1+\dfrac{2\sigma^2_\mathrm{SPCM}}{\rho_c^2}}\underbracket{\approx}_{\text{Using areas instead}}\dfrac{1}{1+\dfrac{\sigma_\mathrm{SPCM}^2}{\rho_c^2}}=\dfrac{1}{1+\Omega_\mathrm{spatial}},
+\end{equation}
+with $\sigma_\mathrm{SPCM}$, the standard deviation of spatial detector acceptance (cf. \cite{perkin_data_2001}). If the detector is much smaller than $\rho_c$ we get the full visibility, while for increasing detector size we approach $g^{(2)}(0)=1$. In many practical cases, neither the acceptance function of the detector, nor the intensity distribution in the source plane can be fully described by a pure Gaussian. In such a case we introduce the detector area $A_\mathrm{SPCM}$ and the coherence cell area $A_c=\pi\rho^2_c$. The ratio of both approximates the number of coherence cells fitting inside the detector, i.e., number of spatial modes $\Omega_\mathrm{spatial}$ averaged in the correlation measurement. Using $\rho_c$ from the van Cittert-Zernike theorem and $A_\mathrm{SPCM}=\pi\sigma_\mathrm{SPCM}^2=\SI{0.049}{\square \mm}$, we find $\Omega_\mathrm{spatial}=5\cdot10^{-10}\approx0$.\\
+
+\textbf{Remark on Spatial Modes} We emphasize, for calculating the number of averaged spatial modes, $A_\mathrm{SPCM}$ is not always the actual detector area, but is determined by the spatial choke point along the optical path. For instance if the light field is already restricted to one spatial mode by using a high-NA microscope with tight-focus aperture a, or an optical fiber entrance much smaller than the average coherence cell at this position in the beam path. In such a case, the visibility of $g^{(2)}$ will not be decreased for any given detector area. In the presented work, the spatial visibility reduction is determined by the microscope focus size, since we use a radiation-shielded setup, even when crossing larger apertures during propagation along z, no new modes are added that would reduce the visibility.
+
+\paragraph{Temporal Coherence Losses}\label{sec:temp_coh_loss} More restrictive boundaries are set in our experiments for preventing temporal coherence losses. In \cref{sec:spatial_coherence}, we derived the coherence length in space $l_c=c\tau_c$. Taking into account the spectral shape of $g^{(2)}$ from \cref{sec:lineshapes}, the size of the coherence cell is also given by the point at which the coincidence probability has decreased to the $1/e$ value. 
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.5\linewidth]{g2_lcloss}
+	\caption{Temporal coherence loss and reduced visibility due to detector separation $\Delta r$ for emitters with $\tau_c=\SI{0.1}{ns}$ and $\tau_c=\SI{1}{ns}$ and for a Lorentzian (blue) and Gaussian (red) lineshape. The coherence cells are green and the dotted lines exhibit the trend for $\tau_c=\SI{0.1}{ns}$.}
+	\label{fig:g2_lcloss}
+\end{figure}
+\noindent If the detectors are separated by $\Delta r$, we sample the coherence properties in the temporal coherence cell at position $\Delta r/c$, which defines the maximum $g^{(2)}$ value for any temporal correlation measurement at $\tau_0$. Since the relative position of $\Delta r/c$ in the coherence cell alters with coherence time $\tau_c$, the visibility $\nu_\mathrm{l_c}$ at a fixed $\Delta r$, will also change for different light sources:
+\begin{equation}\label{eq:g2coherencelosstemp}
+	\nu_\mathrm{l_c}^\mathrm{Lorentz}=e^{-\dfrac{\Delta r}{l_c}};\qquad\nu_\mathrm{l_c}^\mathrm{Gauss}=e^{-\Big(\dfrac{\Delta r}{l_c}\Big)^2}
+\end{equation}
+This finding is depicted in \cref{fig:g2_lcloss} for two different emitters with $\tau_c=\SI{0.1}{\ns}$ and $\tau_c=\SI{1}{\ns}$, as well as for a Lorentzian (blue) and Gaussian (red) lineshape. We see at the boarders of the coherence cells (green) for $\tau=\tau_c$, the $g^{(2)}$ function and thus the visibility, has decreased to the $1/e$ value. Furthermore, it is expressed, if $\Delta r$ is \SI{3}{cm} and \SI{30}{cm}, the values correspond to $l_c$ and the visibility also reduces to the $1/e$ value.
+
+\subparagraph{Summary} We elucidated, spatial and temporal coherence are similar concepts, but differ in origin and strength of coherence loss for a given setup. The size of the temporal coherence cell is defined by the source spectral extension and excited state lifetime. In this perspective, the coherence time is given by the point at which the coincidence probability has decreased to the $1/e$ value. The coherence loss is dependent on the light source and amounts to a $1/e$-reduction if $\Delta r$ is a few centimeters.
+In contrast, the size of the spatial coherence cell is defined by the source's spatial extension. Photons gain coherence for longer propagation distances z and by passing tiny apertures which filter spatial modes (cf. \cref{eq:g2spatial3}). The coherence radius is thereby not the $1/e$-value of $J_1$, but the first zero of $J_1$. The coherence loss is independent of the light source and negligible for small apertures or large distances to the detector pair.
+
+\subsubsection{Quantum Statistical Reduction of the Visibility}\label{sec:beamsplittercorr}
+The statistical behavior of photons at a \ac{BS} elucidates some of the most fundamental quantum phenomena such as quantum superposition and
+randomness \cite{weihs_photon_2001}.
+\begin{figure}[htp]
+	\centering
+	\includegraphics[width=0.4\linewidth]{g2_beamsplitter}
+	\caption{Action of a \ac{BS} on an incident photon pair.}
+	\label{fig:g2_beamsplitter}
+\end{figure}
+\noindent Nevertheless, experiments often fail to detect the same rates on the start and stop detectors. For a loss-free \ac{BS} ($p_2=1-p_1$), there are trivial reasons, such as an unequal \ac{BS} ratio $p_1:p_2\neq 0.5:0.5$ or an unequal dead time for the detectors, where not all events are registered on one detector. In any case, light statistics from the source and photon bunching never affect the proportion of light detected at the start and stop detectors at equilibrium conditions $(\tau,\, t\gg\tau_c)$. While from the view point of classical physics a \ac{BS} is a rather simple device, its operation becomes highly non-trivial when we consider quantum behavior as for correlation measurements. Therefore we ask "How does a \ac{BS} act on two particle incidents simultaneously and how does the interaction influence photon bunching measurements?". First we consider a balanced \ac{BS} ($p_2=p_1$), where one photon is incident via route (0) (\cref{fig:g2_beamsplitter}). The photon has a 50\% chance of ending up in either port (1) or in port \textcolor{red}{(2)}. Quantum mechanically we write the operation of the \ac{BS} using states $\ket{0},\,\ket{1}$ and $\ket{\textcolor{red}{2}}$ as
+\begin{equation}\label{eq:bs}
+	\ket{0}\rightarrow\dfrac{1}{\sqrt{2}}(\ket{1}+i\ket{\textcolor{red}{2}})
+\end{equation}
+For simplicity we assumed, the \ac{BS} as completely symmetric. This symmetry implies that a wave experiences a phase shift of $\pi/2$ upon reflection relative to transmission \cite{weihs_photon_2001}, as signified by the phase factor $i$ in \cref{eq:bs}. If we envisage a continuous stream of photons equidistant in time and incident from beam port (0), then the detectors positioned in outgoing beams (1) and \textcolor{red}{(2)} will each register a random sequence of photons, as each single-photon has the same probability to be detected either in (1) or in \textcolor{red}{(2)}. This is a direct consequence of the probabilistic interpretation of the quantum state in \cref{eq:bs}. In other words the introduction of a \ac{BS} introduces new noise in the outgoing beams, degrading the statistics.\\
+For two incident photons, as depicted in \cref{fig:g2_beamsplitter}, the operation of the \ac{BS} reads:
+\begin{align}
+\ket{0}_1 \ket{0}_{\textcolor{red}{2}}&\quad\rightarrow\quad\dfrac{1}{2}(\ket{1}_1+i\ket{\textcolor{red}{2}}_1)(\ket{1}_{\textcolor{red}{2}}+i\ket{\textcolor{red}{2}}_{\textcolor{red}{2}})\\
+&\quad\rightarrow\quad\dfrac{1}{2}(\ket{1}_1\ket{1}_{\textcolor{red}{2}}+i\ket{1}_1\ket{\textcolor{red}{2}}_{\textcolor{red}{2}}+i\ket{\textcolor{red}{2}}_1\ket{1}_{\textcolor{red}{2}}-\ket{\textcolor{red}{2}}_1\ket{\textcolor{red}{2}}_{\textcolor{red}{2}}),
+\end{align}
+with the index addressing the initial photon. Each of the two photons behaves independently just as classical particles would do, but end up with different probabilities in the states $\ket{1}$ and $\ket{\textcolor{red}{2}}$. Although, in a coincidence-based $g^{(2)}$ experiment, it is essential to detect all coincidence events at $\tau=0$, to allow the most accurate $g^{(2)}(0)$ evaluation and classification of the light source. We will intimate that besides the adding of new noise, a \ac{BS} introduces an error in the determination of $g^{(2)}(0)$, which is severe, even if $p_1\neq p_2$ and must be considered.\\
+Let us have a look at n-bunching photons passing through a \ac{BS}. In \cref{fig:tree_dagram} we see a tree diagram, where each of the $n\leq4$ bunching photon passes through a \ac{BS} to a start (1) and a stop detector \textcolor{red}{(2)}, with each photon having probability $p_1$ or $p_2$ to reach ether detector. In the case of one photon $(n=1)$, the photon goes ether to the start detector with $p_1$ or to the stop detector with $p_2$. The more photons bundle, the greater the number of possible branches of the tree diagram, which scales with $2^n$. Here, $\mathrm{P_i}$ denotes
+\begin{figure}[ht]
+	\centering
+	\includegraphics[scale=0.5]{g2_tree_diagram}
+	\caption{In the tree diagram, each of $n\leq4$ bunching photon passes through a \ac{BS} to a start (1) and a stop detector \textcolor{red}{(2)}, with probability $p_1$ and $p_2$.}
+	\label{fig:tree_dagram}
+\end{figure}
+\noindent the product path probability of a branch. We can see from the diagram that for a detection scheme where a start event must be followed by an event at the stop detector to allow coincidence counting, the event counts at which the first photon arrives at the stop detector are lost (dashed lines), already introducing an error. In our detection system, the order of start and stop detector is not fixed, but where the photon arrives first is taken into account. However, bunching/antibunching is only detected correctly if the \ac{BS} always directs at least one photon to the stop detector when several photons are bunched. This is because the counter cannot distinguish whether one or more photons arrive at the same time and only delivers one coincidence count.
+
+A \ac{BS} does not fulfill this criterion for $n>1$, as you can see from the paths marked in red, where all the bundled photons are directed to only one detector and consequently no coincidence event is detected. The sum of these paths represents the loss probability of a coincidence measurement $P_\mathrm{loss}$, whereas the coincidence count probability of correctly detected events $P_\mathrm{coinc}$ is given by the sum of all other paths. The total probability of all paths $P_\mathrm{total}$ follows from stochastic considerations and can be represented by Pascal's triangle,
+\begin{equation}\label{eq:treediagram}
+	P_\mathrm{total}=\sum_{k=0}^n \binom{n}{k}p_1^{n-k}p_2^k;\quad P_\mathrm{loss}=\begin{cases}0 & n=1\\p_1^n+p_2^n& n>1\end{cases};\quad P_\mathrm{coinc}=P_\mathrm{total}-P_\mathrm{loss}\textrm{, with }n\in\mathbb{N} 
+\end{equation}
+where the numbers on the edge of the nth row are the binomial coefficients of the highest-order terms $p_1^n$ and $p_2^n$, whose sum is $P_\mathrm{loss}$. The terms of the kth column of the nth line, are the binomial coefficients for $p_1^{n-k}$ and $p_2^k$, where the sum can be written as $P_\mathrm{total}=(p_1+p_2)^n$.
+
+Since these probabilities are related to every histogram count obtained by the $g^{(2)}$ method, we calculate the relative probability of detecting a coincidence count event $P_\mathrm{rel}=(1+P_\mathrm{loss}/P_\mathrm{coinc})^{-1}$ in \cref{fig:pltn}, which measures the underestimation of $g^{(2)}$. It is obvious, depending on $p_1 (p_2=1-p_1)$ and the number of simultaneous photon events, the coincidence-histogram is more or less accurate. For $p_1=0.5$ we find the highest accuracy with $P_\mathrm{rel}>0.9$ for $n>5$ and a minimum with $P_\mathrm{rel}=0.5$ for $n=2$, while for $p_1\neq 0.5$, the accuracy drops to lower values.
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.5\linewidth]{g2_bs_pltn}
+	\caption{Relative probability of detecting a coincidence count event, vs. amount of photon number events and splitting probability $p_1$.}
+	\label{fig:pltn}
+\end{figure}
+\noindent Unfortunately, the number of photon events that hit the \ac{BS} is not constant, so that the plot against n does not reflect a real light source. We have to consider the photon number statistics which indicate the distribution of the number of photon events in the light source.
+
+\paragraph{Poisson Light Statistics}
+\begin{figure}[htp]
+	\centering
+	\begin{subfigure}{0.49\linewidth}
+		\centering
+		\includegraphics[width=1\textwidth]{g2_bs_pltPoissonmu}
+		\caption{}
+		\label{fig:pltPoissonmu}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}{0.49\linewidth}
+		\centering
+		\includegraphics[width=1\textwidth]{g2_bs_pltThermalmu}
+		\caption{}
+		\label{fig:pltThermalmu}
+	\end{subfigure}
+	\caption{a) Relative probability of detecting a coincidence count event for a Poisson light source, vs. average number of photons and the splitting probability $p_1$. b) The same for thermal light.}
+	%\label{fig:three graphs}
+\end{figure}
+\noindent An example is a Poisson light source that emits a steady-state photon stream with the mean photon number $\bar{n}$, observed in a time interval $t$. The probability distribution is given by \cref{eq:poissonsum}.
+\begin{equation}\label{eq:poissonsum}
+	P_\mathrm{poiss}(\bar{n})=\dfrac{\bar{n}^n}{n!}e^{-\bar{n}};\qquad \bar{n}=\sum_{n=0}^\infty n P_\mathrm{poiss}(n)
+\end{equation}
+The Poisson distribution has to be multiplied by n to weight the actual count number with its probability. Then we perform a summation over n to reveal the dependency on $\bar{n}$.
+\begin{equation}\label{eq:pcoincPoisson1}
+	P_\mathrm{poiss}^\mathrm{coinc}(\bar{n})=\dfrac{1}{\bar{n}}\sum_{n=0}^\infty n P_\mathrm{poiss}(n)P_\mathrm{coinc}(n)
+\end{equation}
+We are interested in the probability of coincidence counts stored in the histogram or lost, depending on the mean photon count rate $ {n}$. Thus, we additionally weight each term in \cref{eq:pcoincPoisson1} by $P_\mathrm{coinc}(n)$ and divide the result by $\bar{n}$.
+\begin{equation}\label{eq:pcoincPoisson2}
+	P_\mathrm{poiss}^\mathrm{coinc}(\bar{n})= e^{-\bar{n} }+ e^{-\bar{n} p_1}\Big(p_1-1\Big)-p_1e^{\bar{n} (p_1-1)}+1;\qquad P_\mathrm{poiss}^\mathrm{loss}(\bar{n})=1-P_\mathrm{poiss}^\mathrm{loss}(\bar{n})
+\end{equation}
+The relative probability of detecting a coincidence count event in \cref{fig:pltPoissonmu} is by construction identical with $P_\mathrm{poiss}^\mathrm{coinc}(\bar{n})$. In a real measurement, we only measure the coincidence counts $c_\mathrm{poiss}^\mathrm{coinc}=\bar{n} P_\mathrm{poiss}^\mathrm{coinc}$, but the loss counts $c_\mathrm{poiss}^\mathrm{loss}=\bar{n} P_\mathrm{poiss}^\mathrm{loss}$ are missing. %%In order to correct the photon histogram for this we multiply each histogram count $c_\mathrm{mes}$ by $P_\mathrm{poiss}^\mathrm{coinc}(\bar{n})^{-1}$, or make sure the mean photon number is high and $p_1\approx 0.5$ to have a high coincidence probability $P_\mathrm{poiss}^\mathrm{coinc}$ 
+
+\paragraph{Thermal Light Statistics}
+The probability distribution for a thermal light source is given by \cref{eq:thermalsum}.
+\begin{equation}\label{eq:thermalsum}
+	P_\mathrm{thermal}(\bar{n})=\dfrac{\bar{n}^n}{(1+\bar{n})^{n+1}};\qquad \bar{n}=\sum_{n=0}^\infty n P_\mathrm{thermal}(n)
+\end{equation}
+Analogue to the Poisson case, we multiply the thermal distribution by n, to weight the actual count number with its probability. Then we perform a summation over n to reveal the dependency on $ \bar{n}$ (\cref{fig:pltThermalmu}).
+\begin{equation}\label{eq:pcoincThermal1}
+	P_\mathrm{thermal}^\mathrm{coinc}(\bar{n})=\dfrac{1}{\bar{n}}\sum_{n=0}^\infty n P_\mathrm{thermal}(n)P_\mathrm{coinc}(n)
+\end{equation}
+We are interested in the probability of coincidence counts stored in the histogram or lost, depending on the mean photon count rate $\bar{n}$. Thus, we additionally weight each term in \cref{eq:pcoincThermal1} by $P_\mathrm{coinc}(n)$ and divide the result by $\bar{n}$.
+\begin{equation}\label{eq:pcoincThermal2}
+	P_\mathrm{thermal}^\mathrm{coinc}(\bar{n})= \dfrac{1}{(1+\bar{n})^2}-\dfrac{1-p_1}{(1+\bar{n} p_1)^2}-\dfrac{p_1}{[1 +\bar{n}(1-p_1)]^2}+1;\quad P_\mathrm{thermal}^\mathrm{loss}( \bar{n})=1-P_\mathrm{thermal}^\mathrm{coinc}(\bar{n})
+\end{equation}
+The thermal distribution is wider than the Poisson distribution, thus it takes higher steady-state count rates $\bar{n}$ to obtain the same $P_\mathrm{coinc}(\bar{n})$ as for the Poisson case, if one follows an iso-$p_1$ line.\\
+An important consequence of our findings is, one has to ensure for the first time step s, $\bar{n}=\dot{n}t$ is in the red area. This can be achieved either by increasing the count rate $\dot{n}$ or the sampling time per step $t$. Otherwise an error is introduced in the estimation of $g^{(2)}$ and one has to correct the photon histogram by multiplying each histogram count $c_\mathrm{mes}$ by $P^\mathrm{coinc}(\bar{n})^{-1}$. 
+To give an example, we have a steady-state photon rate of \SI{20}{\kHz}, a acquisition timer per step of \SI{1}{\s} and a deadjusted \ac{BS} with $p_1$=\SI{1}{\percent}. We measure 2000 bins from \SI{-10}{\ns} to \SI{+10}{\ns} in steps of \SI{10}{\ps}. Thus, per bin, the count rate $\dot{n}$ for the coincidence event at $t+\tau$ is \SI{10}{\per \s}. In \cref{eq:pcoincThermal2} we find $P_\mathrm{thermal}^\mathrm{coinc}(\dot{n}t)\approx 0.1$. During the measurement the conditional probability of finding a second photon will not increase, no matter how long the measurement takes, since each time step introduces the same error in the estimation of $g^{(2)}$. Our results are confirmed by the findings of \textit{Luo et al.}. They elucidated, unbalanced linear propagation efficiencies will reduce the single-event Mandel Q-parameter \cite{huang_single_2007}. In this thesis for measuring $g^{(2)}$ at the ultra-diluted light level, we choose not more than 1000\,bins. In this case an acquisition time per time step of \SI{1}{\s} is enough for count rates $\bar{n}\geq$\SI{10}{\kHz}, to sample in the red area with $P^\mathrm{coinc}\gg$\SI{90}{\percent}. We found this for a deadjusted beamsplitter ratio down to $p_1=0.2$, to exclude the Poisson light source (cf. \cref{fig:pltPoissonmu}).
+
+\subsubsection{Temporal Modes}\label{sec:g2_temp_modes}
+The famous experiment of Hanbury-Brown and Twiss used the spatial second-order correlation function to determine the diameter of the star Sirius \cite{hanbury_brown_test_1956}. What made the experiment so
+challenging was the time resolution of the detection process. With the electronics used, the photon arrival time could only be determined to an accuracy of about \SI{10}{\ns}, while the
+coherence time was $\tau_c^{(1)}\approx\SI{0.1}{\ps}$. The uncertainty imprinted onto the arrival time of each photon is called the \textit{timing jitter} (individual instrumental and global system jitter). The jitter does not only influence the visibility of $g^{(2)}$, but it changes the functional form according to all included individual measuring \ac{IRF}s.\\
+We assume the arrival time of each photon is distributed according to a probability density $P(t)$, representing the uncertainty due to the timing jitter of an individual measuring instrument.
+Accordingly, the time difference $\tau$ between two photons, affected by n instruments, is distributed by $P_n(\tau)$, which can be calculated by the n-fold convolution of the probability density of $n$ instruments. Note, for n-periodic signals $P_n(\tau)$ can be applied as the n-fold self-convolution of one signal period $P(t)$.
+\begin{equation}\label{eq:tempmode1}
+	P_n(\tau)=(P_1\circledast P_2\circledast....P_{n-1}\circledast P_n)(\tau),
+\end{equation}
+To determine $P_n(\tau)$, the functional forms of the instrument response functions have to be known. When
+working with \ac{APD}s, a \textit{fs}-laser and a \ac{TDC}, $P(t)$ is frequently following a Gaussian distribution (the assumption provides accurate results, even if individual instrument functions are Lorentz-shaped).
+The \ac{IRF} of the system is then again a Gaussian
+\begin{equation}\label{eq:tempmode2}
+	P_\mathrm{sys}(\tau)=\frac{1}{\sqrt{2\pi}\sigma_\mathrm{sys}}\cdot \exp{\left(-\dfrac{|\tau-\tau_0|^2}{2\sigma_\mathrm{sys}^2}\right)},
+\end{equation}
+where we calculate $\sigma_{\mathrm{sys}}$ from the known individual device jitter values.
+\begin{equation}\label{eq:system_jitter}
+	\sigma_{\mathrm{sys}}=\sqrt{\sum_{n} (\sigma_n)^2}
+\end{equation}
+The largest temporal instrument jitter value $\sigma_n$ dominates $\sigma_\mathrm{sys}$. However, measuring the jitter of a single device is tricky. Other instruments are involved, which introduce jitter themselves.\\
+In a coincidence-based $g^{(2)}$ measurement, deconvolution methods must be applied in the case where the detector jitter is close to the coherence time $\tau_c$ of the light source (\cref{fig:Deconvolution}).
+The correlation function measured under these circumstances is given by the convolution of $g^{(2)}_\mathrm{intrinsic}$, the inherent properties of the light source and $P_{\mathrm{sys}}$.
+\begin{equation}\label{eq:g2_convolved_paper}
+g^{(2)}_\mathrm{\circledast}(m,\,\tau)=\Big(g^{(2)}_\mathrm{intrinsic}\circledast P_\mathrm{sys}\Big)(m,\,\tau)
+\end{equation}
+Nonetheless, numerical deconvolution is volatile with regard to noise and the signal vanishing level.
+
+\paragraph{Impact-Broadened Light Source}
+In the case of a Lorentzian spectral density function, the convoluted second order correlation, based on \cref{eq:g2_convolved_paper} is visible in \cref{eq:ConvImp}. Deviating from the definition of the exponent in \cref{eq:KhinchinExample23} we do not use the factor two \cite{luo_deterministic_2018}, in order to perform an excitation power-dependent correction of the inter-photon delay, since $2/\tau_c\rightarrow 1/\tau_f$ approaches the fluorescence lifetime limit only for zero pump power (cf. \cref{sec:powercorr}). 
+\begin{align}\label{eq:ConvImp}
+	g^{(2)}_\circledast(m,\,\tau)=&1+\dfrac{\hat{Q}_0}{2}\exp{\Big(\dfrac{v}{2}\Big)}
+	\left(
+	\begin{array}{c}
+		e^{u_{-}} \\
+		\Big.e^{u_{+}}\Big.\\
+	\end{array}\right)\cdot
+	\left(
+	\begin{array}{c}
+		\text{erfc}\big(\frac{u_-+v}{\sqrt{2v}}\big) \\
+		\text{erfc}\big(\frac{u_++v}{\sqrt{2v}}\big)
+	\end{array}\right)
+\end{align}
+with
+\begin{equation}\label{eq:ConvImpCond}
+v=\Big(\dfrac{\sigma_\mathrm{sys}}{\tau'_c}\Big)^2\qquad \text{and}\qquad u_\pm=\pm \dfrac{|\tau -\tau_0|}{\tau'_c}\underbracket{\rightarrow}_\mathrm{pulses}\pm\Big|\dfrac{m}{f\tau'_c}\Big|\text{, cf. }\footnote{\noindent For a pulsed measurement, we integrate the area of the peaks to get $C_N(m)$. Using the interpretation of $g^{(2)}$ as a conditional probability in \cref{eq:g2def4} and energy conservation, the resulting area is the probability density corresponding to the \ac{CW} case at $\tau=m/f$. Thus, we re-convolve the peak at $m$ with $C_N\Big(\tau=\dfrac{m}{f}-\tau_0\Big)$.}\\
+\end{equation}
+The parameter $\tau_c^{(1)'}$ is introduced in \cref{eq:realjitter9} and resembles the Lorentzian or Gaussian correlation time $\tau_\mathrm{c,\, Lorentz}$ or $\tau_\mathrm{c,\, Gauss}$. Furthermore $v\approx$ \num{1} quantifies the need for deconvolution, whereas $v\ll1$, states jitter effects can be neglected. The time offset $\tau_0$ compensates for different optical path lengths, as well as for electronic delays.
+\begin{figure}[htp]
+	\centering
+	\includegraphics[width=0.5\linewidth]{g2_vis_temp}
+	\caption{Comparison of the decrease in visibility $\nu_\mathrm{temp}$, for Lorentzian and Gaussian line shapes vs. $\sigma_\mathrm{sys}/\tau_c$.}
+	\label{fig:Deconvolution}
+\end{figure}
+\noindent The complementary Gaussian error function $\mathrm{erfc}(x)$ is defined as
+\begin{equation}\label{eq:erfc}
+	\mathrm{erfc}(x)=1-\mathrm{erf}(x),
+\end{equation}
+where $\mathrm{erf}(x)$ is the Gaussian error function.
+Moreover, in the model, the normalized Mandel-Q parameter at zero time delay $\hat{Q}_0$ \cite{xin-zheng_characterization_2008} from \cref{sec:NormalizedMandelQ}, is used as a fitting parameter to obtain $g^{(2)}(0)=1+\hat{Q}_0$ from the fit.\\
+Note, besides a drop in the visibility ($\nu_\mathrm{temp}$), the correlation function is also broadened.
+\begin{align}
+&g^{(2)}_\circledast(0)\rightarrow\nu_\mathrm{temp}=\exp \Big( \dfrac{v}{2} \Big) \cdot\mathrm{erfc}\Big( \sqrt{\dfrac{v}{2}}\Big)=\Big(\dfrac{g^{(2)}_\circledast(0)-1}{\hat{Q}_0} \Big)\label{eq:g2_impdeconvzero}\\
+&g^{(2)}_\circledast(m,\,\tau)\rightarrow\nu_\mathrm{temp}(m,\,\tau)=\Big(\dfrac{g^{(2)}_\circledast(m,\,\tau)-1}{\hat{Q}_0} \Big)\label{eq:g2_vistempoverall}
+\end{align}
+In a pulsed measurement, there is a short, but more error prone route to reveal the intrinsic parameters, where you only re-convolve the area of peak $m=0$ in \cref{eq:g2_impdeconvzero}. After background correction we can use \crefrange{eq:ConvImp}{eq:ConvImpCond}, if we know $\tau_c$ from a exponential lifetime fit to a pulse in the pulsed histogram.
+For an arbitrary $\tau$ or $m$ step we define analogue the temporal visibility $\nu_\mathrm{temp}(\tau,\, m)$ in \cref{eq:g2_vistempoverall}. Nevertheless, due to the convolution in the nominator of \cref{eq:g2_vistempoverall} this time we can not factorize terms for $\tau=0$. Instead in this way, we introduce $g^{(2)}_\mathrm{intrinsic}$, into the one-step reconvolution fit in \cref{eq:totalvis2}.
+
+\paragraph{Doppler-Broadened Light Source}
+For a Doppler-broadened light source in \cref{eq:KhinchinExample22}, the data has to be fitted with \cref{eq:ConvDoppler}
+\begin{equation}\label{eq:ConvDoppler}
+	C_N(\tau)=1+\dfrac{\hat{Q}_0}{\sqrt{1+2\pi v}}\exp{\Big(\dfrac{-\pi u^{2}}{1+2\pi v}\Big)},
+\end{equation}
+with the substitutions of \cref{eq:ConvImpCond}, using $\tau'_c=\tau_\mathrm{c,\, Gauss}=\sqrt{2}\pi\tau_c$ in the denominator.\\
+Analogue to the previous discussion, we get the visibility $\nu_\mathrm{temp}$ which can also be used for the more error prone route in a pulsed measurement.
+\begin{equation}
+g^{(2)}_\circledast(0)\rightarrow\nu_\mathrm{temp}=\dfrac{1}{\sqrt{1+2\pi v}}\label{eq:g2_dopplerdeconvzero}\\
+\end{equation}
+The expression for $\nu_\mathrm{temp}(m,\,\tau)$ stays the same as before, independent of the light source.\\
+The decreasing visibility in dependency of $\sigma_\mathrm{sys}/\tau_c$ is illustrated in \cref{fig:Deconvolution} for both impact- and Doppler-broadened light.
+We find for both, if $\sigma_\mathrm{sys}\approx \tau_c$, the visibility of the correlation function is already reduced to 37\% of its original value and an increasing timing jitter is smearing out the bunching peak \cite{hanbury_brown_test_1956}.
+Furthermore, the plot proclaims, the difference between Gaussian and Lorentzian shaped light, in terms of jitter is marginal. Hence, we can define the decreasing visibility factor because of the timing jitter:
+\begin{equation}
+\nu_\mathrm{temp}\approx \dfrac{1}{1+2\pi\nu}=\dfrac{1}{1+\Omega^2_\mathrm{temp}}\label{eq:g2_vistemp}\\
+\end{equation}
+where $\Omega_\mathrm{temp}$ denotes the number of temporal modes averaged in the measurement due to timing jitter, starting at zero analogue to the TEM00 mode.
+
+\paragraph{Lorentzian Light Source with Triplet Blinking} Having a mixture of antibunched and bunched light, the convolution is bi-exponential.
+\begin{equation}\label{eq:ConvImpBlink}
+	g^{(2)}(m,\,\tau)=1+\dfrac{\hat{Q}_\mathrm{j0}}{2} \cdot \exp{\Big(\dfrac{v_j}{2}\Big)}
+	\left(\begin{array}{c}
+		e^{\big.u_{-}\big.} \\
+		e^{\big.u_{+}\big.}\\
+	\end{array}\right)
+\left(\begin{array}{c}
+		\text{erfc}\big(\frac{u_{-}^j+v^j}{\sqrt{2v^j}}\big) \\
+		\text{erfc}\big(\frac{u_{+}^j+v^j}{\sqrt{2v^j}}\big)
+	\end{array}\right)
+\end{equation}
+with the Einstein notation $j=\{1,2\}$ (summation if $j$ occurs in the index and exponent).
+\begin{equation}\label{eq:ConvImpBlinkCond}
+	v_j=\Bigg(\dfrac{\sigma_\mathrm{sys}}{\tau'_\mathrm{cj}}\Bigg)^2\qquad \text{and}\qquad u_{\pm,\, j}=\pm \dfrac{|\tau -\tau_0|}{\tau'_\mathrm{cj}}\underbracket{\rightarrow}_\mathrm{pulsed}\pm\Big|\dfrac{m}{f\tau'_\mathrm{cj}}\Big|\\
+\end{equation}
+Here, j denotes the term for bunched and antibunched light with j = \num{1} and \num{2}, respectively. The discussion about the visibility is straightforward and analogue to the previous discussions.
+Deviating, for a pulsed measurement, we can only re-convolve the area of peak $m$, if we know $\tau_\mathrm{c,\,1}$ and $\tau_\mathrm{c,\,2}$ from a bi exponential lifetime measurement. Note, this time we have to evaluate at least two pulse areas to get the information about both, $\hat{Q}_\mathrm{10}$ and $\hat{Q}_\mathrm{20}$.
+From the re-convolution fit we get the fit parameters and we use $g^{(2)}_\mathrm{j0}-1=\hat{Q}_\mathrm{j0}$. Note, $\hat{Q}_{10}>0$ and $\hat{Q}_{20}<0$ has to be always fulfilled to assign the j=\num{1} and j = \num{2} term to the contribution of bunched and anti-bunched light, respectively.\\
+
+\subsubsection{Binwidth}
+Since the binwidth can not be choosen arbitrarily small, the height of the 0th bin will always be reduced. To derive the visibility decrease from the binsize we assume the binsize is given by $\tau_\mathrm{bin}$ and the height of the $x$th bin is
+\begin{equation}\label{eq:visbin1}
+C_N(x\tau_\mathrm{bin})=\dfrac{1}{\tau_\mathrm{bin}}\int_\mathrm{x\tau_\mathrm{bin}}^\mathrm{(x+1)\tau_\mathrm{bin}}g^{(2)}_\circledast(\tau)\partial\tau.
+\end{equation}
+The visibility relative to the Poisson baseline follows.
+\begin{subequations}\label{eq:visbin2}
+%\setlength{\abovedisplayskip}{1pt}
+\begin{alignat}{3}
+	C_N(x\tau_\mathrm{bin})-1&=\dfrac{1}{\tau_\mathrm{bin}}\int_\mathrm{0}^\mathrm{\tau_\mathrm{bin}}g^{(2)}_\mathrm{intrinsic}(\tau)_\circledast\partial\tau-1\\
+							 &=\dfrac{1}{\tau_\mathrm{bin}}\int_\mathrm{0}^\mathrm{\tau_\mathrm{bin}}\Big(P_\mathrm{sys}\circledast g^{(2)}_\mathrm{intrinsic}\Big)(\tau)\partial\tau-1\\
+	\dfrac{C_N(x\tau_\mathrm{bin})-1}{\hat{Q}_0} &=\dfrac{1}{\tau_\mathrm{bin}}\int_\mathrm{0}^\mathrm{\tau_\mathrm{bin}}\dfrac{ g^{(2)}_\circledast(\tau)\partial\tau-1}{\hat{Q}_0}=\nu_\mathrm{temp,\, bin}
+\end{alignat}
+\setlength{\belowdisplayskip}{1pt}
+\end{subequations}
+Thereby, we set all other visibility decreasing factors to 1.~Only the timing jitter has to be taken into account, since it is the parameter influencing the functional form of $g^{(2)}(\tau)_\circledast$ and therefore the effect of binning.
+If the binwidth is negligible in comparison to the jitter and coherence time ($\tau_\mathrm{bin}\rightarrow 0$), which is the case for our experiments,
+\begin{equation}\label{eq:visbin3}
+\nu_\mathrm{temp,\, bin}=\nu_\mathrm{temp}
+\end{equation}
+which is the result from the temporal modes in \cref{eq:g2_dopplerdeconvzero}, since the integral vanishes.
+Next, let the timing jitter be much larger than the coherence time $(\sigma_\mathrm{sys}\gg\tau'_c)$. The shape of the convolution will be determined by $P_\mathrm{sys}(\tau)$:
+\begin{equation}\label{eq:visbin4}
+	\nu_\mathrm{temp,\, bin}=\nu_\mathrm{temp}\int_\mathrm{0}^\mathrm{\tau_\mathrm{bin}}P_\mathrm{sys}(\tau)\partial\tau=\nu_\mathrm{temp}\nu_\mathrm{bin},
+\end{equation}
+which, according to Fubini's integral theorem, is fulfilled for almost every experiment. This can be seen by the fact that even with $\sigma_\mathrm{sys},\tau_c=\tau_\mathrm{bin}$ you only get 4\% deviation with $\nu_\mathrm{temp,\, bin}$ from the factorized version in the decrease of visibility.
+
+\subsubsection{One-Step Re-convolution of \texorpdfstring{$\boldsymbol{g^{(2)}}$}{g2}}\label{sec:decon}
+%This problem is solved by the reconvolution fitting method, which provides stable results.
+We discussed, the correlation function assigned to the photons of a single mode is decreased in visibility by uncorrelated background radiation, multiple polarization
+modes, as well as due to spatial coherence loss. Quantum statistical reduction of visibility due to the \ac{BS} is also present, especially in the case of unequal count rates, but can be overcome by a longer acquisition time per time step, where we have choosen \SI{1}{\s}, which is sufficient for . Moreover, we found that a finite resolution concerning coincidence arrival times, i.e., the timing jitter, further decreases the visibility as well as broadens the correlation function. We looked into the effect of a finite histogram binsize and found by a proper choice, it is negligible in our experiments.\\ We express the height of the 0th bin in terms of the total visibility $\nu_\mathrm{vis}$, composed from all individual parameters, discussed in this section, to include the result in the re-convolution fit routine.
+\begin{subequations}\label{eq:totalvis}
+%\setlength{\abovedisplayskip}{1pt}
+\begin{alignat}{3}
+\nu_\mathrm{vis}=\dfrac{C_N(0)-1}{\hat{Q}_0}&=\nu_\mathrm{bg}\nu_\mathrm{pol}\nu_{xy}\nu_t(0)\label{eq:totalvis1}\\
+\rightarrow\dfrac{C_N(\tau)-1}{\hat{Q}_0}&=\nu_\mathrm{bg}\nu_\mathrm{pol}\nu_{xy}\nu_t(\tau)=\nu_\mathrm{bg}\nu_\mathrm{pol}\nu_{xy}\Big(\dfrac{P_\mathrm{sys}(\tau)\circledast g^{(2)}_\mathrm{intrinsic}(\tau)-1}{\hat{Q}_0}\Big)\label{eq:totalvis2}\\
+\rightarrow C_N(m,\,\tau)&=\nu_\mathrm{bg}\nu_\mathrm{pol}\nu_{xy}\Big(g^{(2)}_\circledast-1\Big)+1\label{eq:totalvis3}
+%\Big(\dfrac{S}{S+B}\Big)^2\cdot\Big(\dfrac{P^2+1}{2}\Big)\cdot\Big(\dfrac{1}{1+N_\mathrm{xy}}\Big)\cdot\Big(\dfrac{1}{\sqrt{1+N^2_t}}\Big)
+%In the case of a Lorentzian spectral density function, the measured normalized histogram $C_N(\tau)$ reads \cite{luo_deterministic_2018}
+\end{alignat}
+\setlength{\belowdisplayskip}{1pt}
+\end{subequations}
+\subsubsection{Power-Correction of the Correlation Time \texorpdfstring{$\boldsymbol{\tau_c}$}{tauc}}\label{sec:powercorr}
+Furthermore, from the experimental values $k_\mathrm{c,\, exp}$, the lifetime $\tau_f$ of the \ac{SPS} can be determined:
+\begin{equation}\label{eq:taufpump}
+	k_\mathrm{c,\, exp}=\frac{1}{\tau_c}=\frac{\Gamma_f}{2}+\frac{\sigma_\mathrm{SPS}\cdot I_\mathrm{pump}}{h\cdot\nu_\mathrm{pump}},
+\end{equation}
+where $h$ is the Planck constant, $\nu_\mathrm{pump}$ = \SI{398.16}{\THz} is the center frequency of the excitation laser, $\Gamma_f$ is the inverse lifetime \cite{treussart_photon_2001}, and $\sigma_\mathrm{SPS}=\sigma_\mathrm{(6,4)-SWCNT}$ = \SI{2e-17}{\per\m\squared} is the absorption cross section of the \ac{SPS}. 
+We extracted the lifetime from $k_\mathrm{c,\, exp}$, where the inter photon delay has an upper bound of $2\tau_f$ for spontaneous emission of a two-level molecule \cite{maser_few-photon_2017}. With laser pumping, the power term lowers the inter-photon delay by stimulated emission, which has to be corrected.
+
+\subsubsection{Summary of the Procedure}\label{sec:summarydeconv}
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.8\linewidth]{g2_procedure}
+	\caption{Flow chart of the procedure of the $g^{(2)}$ and lifetime mode.}
+	\label{fig:g2_procedure}
+\end{figure}
+\noindent \Cref{fig:g2_procedure} displays the procedure of the $g^{(2)}$- and lifetime mode.~We sample the measurement in a timed loop from $s=1$ to $t$ and a time step of \SI{1}{\s}, until the end is reached at $T_t$. During the measurement we read out a cumulative counter and coincidence histogram. For the histogram we distinguish between the pulsed and \ac{CW} case.\\
+For the pulsed case the raw histogram is cleaned up by moving the histogram along the time axis so that the $m=0$ peak is centered at $\tau_0$. Furthermore, a linear baseline offset is removed. We then split the histogram into sub-histograms for each pulse and calculate difference sub-histograms utilizing the sub-histograms from the previous step $s$ and integrate the sub-histograms for every pulse. We calculate the difference sub-histograms to be able to normalize correctly for temporal bleaching trends in the actual count rate.\\
+Moreover, from the cumulative counter we calculate the actual count rates of time step s and weight the actual count rates with the sum over all difference sub-histograms from a time step s. In such a way we generate a weighted rate for each time step s.~Next, we normalize the integrated difference sub-histograms for each pulse with the weighted rate, for each time step s to correctly normalize $g^{(2)}$ for arbitrary signal trends (cf. \cref{sec:g2_error_lifetime}). The resulting quantity has the dimension of $\delta g^{(2)}$ for every step s and thus we have to sum these values up for all steps s.\\
+After $T_t$ is reached, we perform a one-step reconvolution (cf. \cref{sec:decon}) fit, utilizing the jitter and visibility reducing factors. The actual jitter is interpolated from the power-dependent jitter measurements in \cref{sec:powerjitter} by using a third-order fit and the sum of the weighted count rates form start and stop detector. The visibility reducing factors were calculated beforehand, as outlined in \cref{sec:g2_visibility}.
+In the case of incident pulses without flat phase, e.g., featuring double pulses, a Lorentz-shaped histogram fit can provide a clean signal instead of using the cumulative histograms for the procedure. The correlation time is calculated from the pulse slopes using the lifetime procedure of \cref{sec:lifetime}. Thereafter we perform a power correction due to stimulated emission upon laser excitation \cite{beveratos_room_2002,treussart_photon_2001} to reveal $\tau_F$, which enters the one-step reconvolution fit. The result is the intrinsic $g^{(2)}$ curve.\\
+For \ac{CW} excitation, the difference histogram can be normalized directly, whereupon all other evaluation steps are the same as for the pulsed case, except for the correlation time, which can be obtained directly from the reconvolution fit, featuring more data points.\\
+For the error calculation of $g^{(2)}$ we apply a more advanced error propagation technique, considering covariance matrices. The reason is, the start and stop count rates are statistically correlated by the \ac{BS} and the coincidence counts depend on the count rates as well. For the corresponding error propagation rules see \cref{sec:g2_error_lifetime}. 
+
+\section{Continuous Wave Measurements}
+We deploy the \ac{CW} methods for $g^{(2)}$ measurements to rate the noise contamination and accuracy of the evaluation routines and the digital setup.
+We check the Poisson baseline of the $g^{(2)}$ normalization and the fluctuations of the noise floor for consistency with the theory. Furthermore, we use a home-built \ac{RPM} module to test the coherence properties of the setup and the accuracy of the re-convolution routine.
+We reconstruct $g^{(2)}(0)$ and $\tau_c$ using the re-convolution routine for digitized data on \ac{SWCNT} and $WSe_2$ and compare the values with literature.
+\subsection{Characterization of the Noise Floor}
+Comparing the experimental baseline $|M|$ and its fluctuations $\sigma_\mathrm{g^{(2)}}$ with the theoretical expectation (cf. \cref{eq:Normderivation2,eq:Normderivation3}) is a good criterion to judge whether the baseline is stable during measurements. Moreover, different noise sources can lead to increased noise around zero of a $g^{2}$ measurement and limit the achievable signal contrast, such as the mobile communication frequencies $\SI{800}{\MHz}$ and $\SI{950}{\MHz}$, or a nonlinearity of the \ac{TDC} device \cite{zmija_design_2018}. Particularly we look into cross correlation measurements evaluated in the range of $\pm\SI{500}{\ns}$ around zero, since this is the range where we evaluate antibunching/bunching properties usually. To evaluate the baseline and connected noise we used a \ac{CW} \ac{TiSa} laser source with $\lambda_0\approx \SI{750}{\nm}$ in the \ac{HBT} setup and test different parameter combinations for the \ac{TDC}. Hence, we check whether the baseline is affected by these parameter combinations ($\dot{N}_\mathrm{start}$, $\dot{N}_\mathrm{stop}$, $\tau_\mathrm{bin}$ and overall measurement time $T_t$), according to the theory: 
+\begin{equation}\label{eq:g2_noise_floor_M}
+	|M|=\dot{N}_\mathrm{start}\cdot \dot{N}_\mathrm{stop}\cdot\tau_\mathrm{bin}\cdot T_t,\quad\mathrm{and}\quad \sigma_\mathrm{g^{(2)}}=\dfrac{1}{\sqrt{|M|}}
+\end{equation}
+The initial parameter combination is $\tau_\mathrm{bin}=\SI{1}{\ns}$, $\dot{N}_\mathrm{start}+\dot{N}_\mathrm{stop}\approx \SIrange{500}{550}{\kHz}$, and $T_t\approx\SI{30}{\s}$ in \cref{fig:g2_noise}b, where we varied one parameter each in \cref{fig:g2_noise}a, c and d, respectively. This is a conscious arrangement to test the baseline normalization to result in a perfect 1 everywhere in the $g^{(2)}$ spectrum, only influenced by statistical shot noise fluctuations. 
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=1\textwidth]{g2_noise}
+	\caption{Upper panel: Count rates for start and stop detectors (black and red triangles) and coincidence-weighted count rates (solid lines), for the $g^{(2)}$ measurements in the lower panel: a) $\tau_\mathrm{bin}=\SI{1}{\ns}$, $\dot{N}_\mathrm{start}=\SI{47}{\kHz}$, $\dot{N}_\mathrm{stop}=\SI{61}{\kHz}$ and $T_t=\SI{32}{\s}$, b) $\tau_\mathrm{bin}=\SI{1}{\ns}$, $\dot{N}_\mathrm{start}=\SI{203}{\kHz}$, $\dot{N}_\mathrm{stop}=\SI{275}{\kHz}$ and $T_t=\SI{32}{\s}$, c) $\tau_\mathrm{bin}=\SI{1}{\ns}$, $\dot{N}_\mathrm{start}=\SI{217}{\kHz}$, $\dot{N}_\mathrm{stop}=\SI{291}{\kHz}$ and $T_t=\SI{300}{\s}$ and d) $\tau_\mathrm{bin}=\SI{10}{\ns}$, $\dot{N}_\mathrm{start}=\SI{248}{\kHz}$, $\dot{N}_\mathrm{stop}=\SI{310}{\kHz}$ and $T_t=\SI{30}{\s}$.}
+	\label{fig:g2_noise}
+\end{figure}
+\noindent 
+We display the time trace of the actual count rate of the start and stop detector (black and red triangles), as well as the coincidence-histogram weighted count rate (solid lines) in the upper panels of \cref{fig:g2_noise}.
+\begin{table}[h!]
+	\vspace{-0.5cm}
+	\centering
+	\caption{Statistical parameters of the coincidence count baseline of $g^{(2)}$ measurements. The deviation in $|M|/\sigma_\mathrm{g^{(2)}}$ of the experiment, from the theory is also indicated.}
+	\scalebox{0.9}{
+		\begin{tabular}{ccccc}	
+			\toprule
+			$|M|\pm\sigma_\mathrm{g^{(2)}}$&a)&b)&c)&d)\\\cmidrule[1pt]{1-5}
+			Theory&$91.7\pm9.6$&$23064\pm152$&$18944\pm138$&$1786.4\pm42.3$\\\addlinespace[4pt]
+			Experiment&$91.0\pm9.5$&$23218\pm154$&$18666\pm144$&$1799\pm43$\\\hline\hline\addlinespace[4pt]
+			Deviation\,[\%] &$0.76/1.0$&-$0.7/-1.3$&$1.5/-4.3$&$-0.7/1.7$\\\addlinespace[4pt]\bottomrule
+	\end{tabular}}
+	\label{tab:g2_noise_compare}
+\end{table}
+\noindent In the lower panels the absolute number of coincidence events (black lines) are displayed on the right side of each panel and $g^{(2)}$ data (blue) as well as the average (red) is shown on the left side. As expected from \cref{eq:g2_noise_floor_M}, the fluctuations $\sigma_\mathrm{g^{(2)}}$ of the baseline decrease, if an initial parameters increases. We evaluate the means $|M|$ and standard deviations $\sigma_\mathrm{g^{(2)}}$ of the experimental coincidence histogram counts in the illustrated ranges of the panels and compare the results with the theoretical expectation, using the parameter combinations. The results are recorded in \cref{tab:g2_noise_compare}.\\
+We see the theoretical baselines lie within a $1-\sigma$ uncertainty of the experimental values and deviate by a maximum of \SI{2}{\percent} from the theory. Also the fluctuations of the baselines are similar and deviate by a maximum of 5\% from the theory.
+That means the $g^{2}$ values of the baseline are stable and fit quite well the theory for all observed parameter combinations and the fluctuations of the baseline are Poisson-limited. Thus, in the current \ac{HBT} setup we can achieve the theoretical possible signal contrast and further noise contamination in $g^{2}$ is neglected.
+
+\subsection{Random Phase Modulation}\label{sec:rpm}
+As we have pointed out, in an \ac{HBT} experiment, one experiences visibility reduction, e.g., due to spatial misalignment and temporal coherence loss. These losses cannot be separated from the intrinsic properties of the light.~However, for developing a trustworthy method to detect quantum light, it is necessary to know the ideal outcome of every experiment. Therefore, it is useful to have a light source where you can control the coherence properties deterministically and which is not affected by temporal coherence loss, to test the setup and the fitting routines. 
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=1\textwidth]{GGD_schematics}
+	\caption{Schematics of \ac{RPM} with a rotating \ac{GGD}.}
+	\label{fig:GGD_schematics}
+\end{figure}
+\noindent Natural thermal light sources like Mercury arc lamps are accessible to the experimenter, but have very short coherence times.~That is, they suffer from visibility reducing factors and are not controllable in terms of $\hat{Q}_0$ and $\tau_c$.~One possibility to realize a deterministic light source is using \ac{RPM}. A rotating \ac{GGD} is illuminated by a laser \cite{huang_measuring_2016}.~The granular surface of the disc provides a large number of scattering centers hit by the photons of the beam and many single independent waves with independent phases are generated, lowering the coherence \cite{asakura_spatial_1970}.~The superposition of these waves leads to a spatially varying intensity distribution (with mean $\bar{n}$ and standard deviation $\sigma_n$), called a speckle pattern. Each speckle represents a coherence cell, where photons of the same speckle are spatially coherent to each other, while photons from different speckles are uncorrelated.\\
+First, we look at the spatial coherence properties of a rotating \ac{GGD}. Using the Van Cittert--Zernike theorem, we determine the coherence radius $\rho_c\approx 1.22 \lambda_0 z/a$, analogue to \cref{sec:spatial_coherence}. The size of the speckles is determined by the size of the laser beam diameter $a$ on the disc, the center wavelength $\lambda_0$, and detection distance $z$. We observe bright and dark areas in the speckle pattern which can be modeled by a random walk \cite{goodman_fundamental_1976} for the electric field through the \ac{GGD} in \cref{fig:GGD_schematics}. The corresponding spatial intensity distribution is described by the Boltzmann statistic.~By rotating the disc, speckles from this intensity distribution (so-called thermal light) are called fully developed \cite{halpaap_experimental_2020} and we measure $g^{(2)}=2$.\\
+Nevertheless, the speckle pattern depends on angle-, polarization- and wavelength diversity of the laser \cite{goodman_fundamental_1976}.~These factors can reduce the measured $g^{(2)}(0)$.
+In \cref{fig:GGD_schematics} angular diversity occurs, if the incident angular distribution of the focused beam on the \ac{GGD} does not match the angular distribution towards the collimation lens, as it is the case for a partial collimated beam, entering the first lens. The reduction is related to the angular ratios.
+Polarization diversity occurs, since a polarized laser beam incident on a depolarizing surface will experience depolarization due to multiple scattering. The resulting speckle pattern is composed of two equally polarized, orthogonal polarization states, leading to a reduction of the visibility $\nu_\mathrm{pol}$. 
+Wavelength diversity can be understood by the rough surface effect of the \ac{GGD}. The speckle pattern of different wavelengths inside the beam is uncorrelated, if the average relative phase-shift created by the surface is $\geq2\pi$ \cite{goodman_fundamental_1976}.~Using the average surface profile height variation $\sigma_z$, the required wavelength difference is
+\begin{equation}\label{eq:GGD_surface}
+	\delta\lambda=\dfrac{\lambda_0^2}{2\sigma_z}.
+\end{equation}
+If the used \ac{CW} laser has a spectral width $\Delta \lambda$, the visibility reduction is $\propto\Delta\lambda/\delta\lambda$. When choosing the grit of the diffuser, one has to maintain $\delta\lambda\gg\Delta\lambda$ to fully thermalize the light source. Common \acs{GGD}s have grit sizes ranging from 120--1500\,grit resulting in $\sigma_z=$ \SIrange{133}{13}{\um}, respectively. For our TiSa \ac{CW} excitation with $\lambda_0=\SI{753.46}{\nm}$ and a 1500 grit, we get $\delta\lambda\approx \SI{22}{\nm}$. Thus, even if we take an upper limit for the spectral with of the laser $\Delta \lambda =\SI{1}{\nm}$ (cf. \cref{fig:GGD_krot_tauc_fit}), we expect a maximum of \SI{4}{\percent} visibility reduction due to wavelength diversity. Wavelength diversity is also a reason why for a pulsed \textit{fs}-laser, we are unable to thermalize the light, since then $\Delta\lambda=\lambda_0^2/c\tau_p$, with $c$ the speed of light and $ \tau_p\approx \SI{13}{\fs}$ the pulse width.\\
+
+The temporal properties of the rotating \Ac{GGD} are more delicate. In the stationary case, the speckle pattern in \cref{fig:GGD_schematics} does not change with time and the coherence properties are determined by the laser ($g^{(2)}\approx 1$).\
+Still, rotating the \ac{GGD}, the position of the illuminated spot on the glass is changed. 
+	\begin{figure}[t!]
+		\centering
+		\includegraphics[width=0.75\linewidth]{GGD_curves}
+		\caption{$g^{(2)}(\tau)$ (blue) for rotating frequencies $k_\mathrm{rot}=$ \SI{300}{\Hz}, \SI{200}{\Hz}, \SI{150}{\Hz}, \SI{100}{\Hz}, \SI{75}{\Hz}, \SI{50}{\Hz} and \SI{0}{\Hz}. We indicate every 20th data point and the peaks are centered to zero. The red lines are the one-step re-convolution fit results and the black dots correspond to the coincidence-histogram. The black dotted line is the trace of the \ac{FWHM} for different $k_\mathrm{rot}$.}
+		\label{fig:GGD_curves}
+	\end{figure}
+\noindent The intensity fluctuations, with $\bar{n}$ and $ \sigma_n$ at the detectors will change. Following, the imprinted temporal correlation in a speckle decrease until the disc completed a rotation cycle, thereafter only redundant information is generated. Thus the correlation time is inversely proportional to the rotation rate of the disc ($\tau_c \propto 1/k_\mathrm{rot}$) and can be adjusted.\\
+
+Utilizing this technique, we generate a \ac{PTLS} by transmission of the single frequency \SI{749.5}{\nm} TiSa laser through the rotating \ac{GGD}. This method is suitable to simulate a light source with low intensity and a very long coherence time \cite{martienssen_coherence_1964,estes_scattering_1971} in the range of \SI{1}{\us}--\SI{1}{\ms}. The laser power was adjusted by a neutral density filter, then focused on the rotating disk using a plano-convex lens. to keep the frequency stable, we used a feedback loop where a hall sensor measured the actual number of revolutions and an algorithm adjusted the current of the motor appropriately. Reducing the stray room light was important for measuring a long coherence time.~The product of the average rate and coherence time has to be small($\dot{N}\tau_c\ll1$), to avoid dead time effects lowering $g^{(2)}$. That is, the longer coherence time requires a lower photon rate. On the other hand, the detected photon counts of the light source must exceed the background photon counts, which amount about \SI{5}{\percent} of the detected photon rate of \SI{300}{\kHz} in our case.\\
+We varied the coherence time of the \ac{PTLS} with $k_\mathrm{rot}$ to compare the deduced coherence time with the theoretical predication in \cref{fig:GGD_curves}. The barely visible coincidence histogram (black) manifests a stable scaling factor of $\approx 1.6$ to the second-order correlation. Further on, $g^{(2)}(0)>1$ for all $k_\mathrm{rot}$ indicates stable thermalization of the light field. We trace the \ac{FWHM} for $k_\mathrm{rot}$=\SI{300}{\Hz} to $k_\mathrm{rot}$=\SI{50}{\Hz} (black dotted line), observing an increase of the FWHM with $k_\mathrm{rot}$. For $k_\mathrm{rot}$=\SI{0}{\Hz}, we observe no thermalization, but a straight line, as expected for the Poisson result of a coherent laser source.
+The coherence times $\tau_c^{(2)}$ of the \ac{PTLS} can be derived from a one-step reconvolution fit using \cref{eq:totalvis3}.
+The random phase modulation not only converts the light source to be pseudo-thermal, but also broadens the linewidth, where both, a Gaussian and a Lorentzian Lineshape, can apply. As illustrated in \cref{fig:GGD_curves} (red lines), the Lorentzian exponential decay curve is more suitable than the Gaussian line shape. It is due the backscattering random phase modulation is similar to the mechanism of collision broadening, which broadens the spectrum to a Lorentzian shape.\\
+For monochromatic light with negligible linewidth $\Delta\lambda\approx 0$, the coherence time of the \ac{PTLS} is proportional to the inverse of the rotating frequency \cite{estes_scattering_1971}
+\begin{equation}\label{eq:GGD_krotsimple}
+	\dfrac{1}{\tau_c^{(2)}}=m\cdot k_\mathrm{rot}=\dfrac{4\sqrt{\pi}r}{d}k_\mathrm{rot};\qquad\tau_c^{(2)} k_\mathrm{rot}=\dfrac{1}{m}=\textrm{const}, 
+\end{equation}
+with r as the radius from the disc center to the spot with spot diameter $d$. \Cref{eq:GGD_krotsimple} is a good approximation for high rotating frequencies, where the scattering broadening is much larger than the laser linewidth \cite{huang_measuring_2016}.
+\begin{figure}[htp]
+	\centering	
+	\begin{subfigure}{0.49\linewidth}
+		\centering
+		\includegraphics[width=1\textwidth]{GGD_krot_fit}
+		\caption{}
+		\label{fig:krotfit}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}{0.485\linewidth}
+		\centering
+		\includegraphics[width=1\textwidth]{GGD_krot_tauc_fit}
+		\caption{}
+		\label{fig:GGD_krot_tauc_fit}
+	\end{subfigure}
+	\caption{a) Experimental inverse coherence time $1/\tau_c^{(2)}$ vs. $k_\mathrm{rot}$, to test for a linear relation ship. b) Experimental $\tau_c^{(2)}\cdot k_\mathrm{rot}$ vs. $k_\mathrm{rot}$. The theoretical calculation, excluding finite linewidth of the laser, results a constant (black dots). However, the experimental data (red dots) suggest a model including laser linewidth (blue dots). The inset reveals the spectrum of the \ac{CW} laser.}
+\end{figure}
+\noindent We test the relationship of the inverse coherence time to $k_\mathrm{rot}$ in \cref{fig:krotfit}. We observe a linear relationship (red fit line) with the slope $m_\mathrm{exp}$ = \SI{80620\pm2831}{}.~From a theoretical investigation of \cref{eq:GGD_krotsimple} we get $m_\mathrm{theo}$ = \SI{83289\pm17280}{}, matching $m_\mathrm{exp}$ within the error and supporting the linear relationship. We used $r=\SI{45.1\pm2.5}{\mm}$ and $\Delta k_\mathrm{rot}\approx\SI{10}{\Hz}$, the error of the frequency control. We calculated $d=\SI{3.84\pm0.77}{\um}$ by using the lens equation $d=4\lambda_0 f/(\pi D)$, with the beam diameter before the focusing lens $D$ = \SI{2.50\pm0.50}{\mm} and focal length $f$ = \SI{10}{\mm}. The errors of the derived quantities result from Gaussian error propagation. Moreover, we also observed an offset in the fit data.~In \cref{fig:GGD_krot_tauc_fit}, we plot $\tau_\mathrm{c,\, exp}^{(2)} k_\mathrm{rot}$ vs. $k_\mathrm{rot}$, which in theory is constant (black points).~Even so, our experimental data (red points) deviate from a constant for low rotating frequencies. For a finite linewidth of the \ac{CW} laser (cf. inset \cref{fig:GGD_krot_tauc_fit}), the convolution of the incident light and the broadening of the rotating \ac{GGD} should be considered.~The coherence time of the \Ac{PTLS} including the incident laser linewidth then reads:
+\begin{equation}\label{eq:GGD_krotadvanced}
+		\dfrac{1}{\tau_c^{(2)}}=-\dfrac{1}{\tau_c^{(1)}}+m\cdot k_\mathrm{rot},
+\end{equation}
+where $\tau_c^{(1)}$ is the first order coherence time of the laser\footnote{For a coherent source such as a laser, the coherence time is not directly accessible via second-order correlation, nor via a spectrometer.}. We extract $\tau_c^{(1)}=\SI{0.3620\pm0.0063}{\us}$ from the offset in \cref{fig:krotfit}. Following, $\tau_\mathrm{c,\, exp}^{(2)} k_\mathrm{rot}$ is no longer constant, but depends on the rotating rate $k_\mathrm{rot}$.
+\begin{equation}\label{eq:krot_tauc_fit}
+	\tau_c^{(2)} k_\mathrm{rot}=\dfrac{1}{-\frac{1}{\tau_c^{(1)}k_\mathrm{rot}}+m}
+\end{equation}
+This equation implies, the finite linewidth correction becomes pronounced for a low rotating frequency, where the scattering broadening $m\cdot k_\mathrm{rot}$ is in the order of the inverse coherence time of the laser. The negative sign in \cref{eq:GGD_krotadvanced} suggests, the laser's coherence must be overcome to realize the thermal light source. In contrast, $\tau_c^{(2)}\cdot k_\mathrm{rot}$ remains constant for high rotation rates, with $k_\mathrm{rot}\gg 1/\tau_c^{(1)}$. \Cref{fig:GGD_krot_tauc_fit} also highlights the discussed result of laser linewidth correction to the model (blue data points), which is in good agreement with the experimental values.\\
+\begin{figure}[htp]
+	\centering
+	\begin{subfigure}{0.49\textwidth}
+		\centering
+		\includegraphics[width=1\textwidth]{GGD_g2}
+		\caption{}
+		\label{fig:GGD_g2}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}{0.49\textwidth}
+		\centering
+		\includegraphics[width=1\textwidth]{GGD_shift}
+		\caption{}
+		\label{fig:GGD_shift}
+	\end{subfigure}
+	\caption{a) $g^{(2)}(0)$ vs. $k_\mathrm{rot}$. b) Experimental inverse shift of the peak centers $1/\tau_0$ vs. $k_\mathrm{rot}$, to test a linear relation ship. }
+\end{figure}
+\noindent Considering signal strength as defined in \cref{eq:SignalstrengthLorentz} as blue shaded areas under the curves in \cref{fig:GGD_curves}, we obtain $g^{(2)}(0)\tau_c^{(2)}$. This result implies $g^{(2)}(0)=\mathrm{const}$ for a \ac{PTLS}, as $k_\mathrm{rot}$ controls $\tau_c^{(2)}$. In \cref{fig:GGD_g2} we investigate $g^{(2)}(0)$ vs. $k_\mathrm{rot}$, which shows a constant trend, as expected. We explain the deviation $g^{(2)}(0)\neq2$ by possible angular diversity of the input beam since we could not fine-tune the distance of the focus lens due to experimental limitations. We can exclude polarization and wavelength diversity, since the experimental outcome did not change by using a polarizer before and after the \ac{GGD}. Moreover, for wavelength diversity to result in the observed $\sqrt{2}$ reduction of $g^{(2)}(0)$, it takes $\Delta\lambda=\delta\lambda\sqrt{2}\approx \SI{31}{\nm}$, which we did not observe from the linewidth of the \ac{CW} laser in the inset of \cref{fig:GGD_krot_tauc_fit}.~ At $k_\mathrm{rot}$ = \SI{35}{\Hz} the deviating $g^{(2)}(0)\approx 1.32$ indicates the onset of thermalization of the light source, since according to \cref{eq:GGD_krotadvanced} at this rotation rate, the first-order coherence time of the laser is compensated for.\\
+Our data from \cref{fig:GGD_curves} also exhibits an increasing shift of the peak center $\tau_0$ for lower rotation rates. Analogue to the coherence time, we tested for a linear relationship of $1/\tau_0$ to $k_\mathrm{rot}$ in \cref{fig:GGD_shift}. We observe a linear relationship (red fit line), with the same absolute slope and offset, but an opposite sign.
+\begin{equation}\label{eq:GGD_shift}
+	\dfrac{1}{\tau_0}=	\dfrac{1}{\tau_c^{(1)}}-m k_\mathrm{rot}
+\end{equation}
+We discussed, such a shift is often related to a spatial delay in one interferometric path or electrical signal routing. Nonetheless, a shift in the \si{\us}-range implies a path length difference along the signal routing $z$, within several hundred meters, which is obviously not the case.
+\begin{figure}[htp]
+	\centering
+	\begin{subfigure}{0.48\textwidth}
+		\centering
+		\includegraphics[width=1\textwidth]{GGD_xy}
+		\caption{}
+		\label{fig:GGD_xy}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}{0.49\textwidth}
+		\centering
+		\includegraphics[width=1\textwidth]{GGD_disp}
+		\caption{}
+		\label{fig:GGD_disp}
+	\end{subfigure}
+	\caption{a) Model for the shift $\tau_0$ increasing at lower $k_\mathrm{rot}$, to determine the misalignment of D1 and D2 relative to the center of the \ac{BS}. b) Misalignment $\Delta x$ excluding (black) and including (blue) laser linewidth.}
+\end{figure}
+\noindent Nevertheless, \ac{RPM} is sensitive to spatial misalignment in the xy-direction, as it is pointed out in the model of \cref{fig:GGD_xy}. If detectors D1 and D2 are not centered relative to the \ac{BS}, but shifted, e.g., by $\Delta x$, then it takes a time $\tau_0$ for a speckle visible to D1, to be also visible to D2. Further, $\tau_0$ increases the slower the rotation of the \ac{GGD}. In consequence, the second-order correlation will shift relative to time zero. We use this finding to determine the misalignment $\Delta x$. Without linewidth broadening of the laser and using \cref{eq:GGD_shift} $k_\mathrm{rot}\tau_0=\textrm{const}$. The misalignment $\Delta x$ is given by the time $\tau_0$ and the velocity $2r\pi k_\mathrm{rot}$of the \ac{GGD}.
+\begin{equation}\label{eq:shift}
+	\Delta x=v_\mathrm{rot}\tau_0=2r\pi k_\mathrm{rot}\tau_0\underbracket{\rightarrow}_\textrm{with $\tau_c^{(1)}$}\Delta x=2r\pi \dfrac{1}{\frac{1}{\tau_c^{(1)}k_\mathrm{rot}}-m}
+\end{equation} 
+With linewidth broadening of the laser we replace $k_\mathrm{rot}\cdot\tau_0$ accordingly. We illustrate the results in \cref{fig:GGD_disp} for the uncorrected (black triangles) and corrected case (blue triangles), where we estimate $\Delta x\approx\SI{3}{\um}$.\\
+Summarizing, we implemented \ac{RPM} to deterministically control the coherence properties of a \ac{PTLS} and verified our fitting routines. Furthermore we checked the alignment and determined the coherence time of the \ac{CW} laser which is impossible either from linewidth or temporal $g^{(2)}$ measurement.
+
+\subsection{Validation of the Re-convolution Routine Using SWCNT and \texorpdfstring{WSe\textsubscript{2}}{WS2} data}\label{sec:g2_cw_SWCNT}
+The measured correlation data in the following paragraphs originates from \textit{Luo et al.} \cite{luo_deterministic_2018} and \textit{Khasminskaya et al.} \cite{khasminskaya_fully_2016}, who performed experiments on WSe\textsubscript{2} and carbon nanotubes, respectively. The evaluation was performed with the algorithms from this manuscript as a proof of their functionality on quantum light data. \Cref{fig:g2_Luo} communicates data from Luo et al. with a mono-exponential fit.
+\begin{figure}[htp]
+	\centering
+	\begin{subfigure}{0.49\textwidth}
+		\centering
+		\includegraphics[width=1\textwidth]{g2_luo}
+		\caption{}
+		\label{fig:g2_Luo}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}{0.48\textwidth}
+		\centering
+		\includegraphics[width=1\textwidth]{g2_khasminskaya}
+		\caption{}
+		\label{fig:g2_Khasminskaya}
+	\end{subfigure}
+	\caption{a) $g^{(2)}$ data on WSe\textsubscript{2} with a mono-exponential fit using \cref{eq:ConvImp} (red). b) $g^{(2)}$ data on carbon nanotubes with a bi-exponential fit using \cref{eq:ConvImpBlink} (red).}
+	%\label{fig:three graphs}
+\end{figure}
+\noindent From the data in \cref{fig:g2_Luo} \textit{Luo et al.} extracted the value $g^{(2)}(0)$ = \num{0.3} \cite{luo_deterministic_2018}. On the contrary, after reconvolution fitting of the data with \cref{eq:ConvImp} and the jitter of the measurement \SI{312}{\ps}, a value of $g^{(2)}_{1}(0)$ = \num{0.23\pm0.02} with a coherence time $\tau_{c,\,1}$ = \SI{4.27\pm0.37}{\ns} was found, for the antibunching signal. \textit{Luo et al.} found a value of $g^{(2)}_{1}(0)$ = \num{0.16\pm0.03} with a coherence time $\tau_{c,\,1}$ = \SI{3.8\pm0.2}{\ns} for the antibunching signal \cite{luo_deterministic_2018}. The fit results from \textit{Luo et al.} almost agrees with our fits within the margin of error. The remaining deviations may be caused by uncertainties during the re-digitization process of the literature data.\\
+\Cref{fig:g2_Khasminskaya} communicates data from \textit{Khasminskaya et al.} with a bi-exponential fit, where they extracted the value $g^{(2)}(0)$ = \num{0.52} (\cite{khasminskaya_fully_2016} Fig.~3b). On the contrary, after reconvolution fitting of the data with \cref{eq:ConvImpBlink} and the jitter of the measurement \SI{30}{\ps}, we found values of $g^{(2)}_{1}(0)$ = \num{0.33\pm0.01} with a coherence time $\tau_{c,\,1}$ = \SI{0.04\pm0.028}{\ns} for the antibunching signal, and for the bunching signal we found $g^{(2)}_{2}(0)$ = \num{1.12\pm0.01} with a coherence time $\tau_{c,\,2}$ = \SI{1.28\pm0.47}{\ns}. In contrast, \textit{Khasminskaya et al.} found a value of $g^{(2)}_{1}(0)$ = \num{0.365\pm0.149} with a coherence time $\tau_{c,\,1}$ = \SI{0.041\pm0.080}{\ns} for the antibunching signal \cite{khasminskaya_fully_2016} and for the bunching signal $g^{(2)}_{2}(0)$ = \num{1.189\pm0.009}, with a coherence time $\tau_{c,\,2}$ = \SI{1.418\pm0.080}{\ns} \cite{khasminskaya_fully_2016}. Within the margin of error, our fit agrees with the fit results from \textit{Khasminskaya et al.}
+
+\section{Pulsed Measurements}
+In this section we deploy the developed methods to discuss and analyze the $g^{(2)}$ results from pulsed sources as from supposed individual \acp{SWCNT}, but also from the laser. We will characterize different sources for jitter and analyze the excitation power-dependency. Moreover, we derive and deploy a method for life time determination and re-convolution from the coincidence-histogram.
+
+\subsection{Characterization of Jitter} 
+For revealing the intrinsic properties of the light source, we conveyed in \cref{sec:g2_temp_modes}, one has to know the system jitter $\sigma_\mathrm{sys}$. We calculate the timing jitter by measuring the distribution of the delay $\tau$ between the start and stop pulses of the single-photon device. The output pulses are discriminated by the TDC and subsequently correlated.
+
+\subsubsection{Jitter of the TDC and the SPCM}
+\noindent We determine the jitter $\sigma_\mathrm{TT}$ from the \ac{IRF} of the \ac{TDC}, by using the internal square-wave test signal of the \ac{TDC}.
+\begin{figure}[htp]
+	\centering
+	\begin{subfigure}{0.49\linewidth}
+		\centering
+		\includegraphics[width=1\linewidth]{IRF_TT}
+		\caption{}
+		\label{fig:IRF_TT}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}{0.485\linewidth}
+		\centering
+		\includegraphics[width=1\linewidth]{IRF_sys}
+		\caption{}
+		\label{fig:IRF_sys}
+	\end{subfigure}
+	\caption{a) Correlation measurement, using the \ac{TDC} and the internal test signal, for the auto-correlation (green) and cross-correlation (red) of the start and stop channel). b) Zero-peak of the pulsed \ac{HBT} experiment at a combined count rate of \SI{80}{\per\ms}. A Lorentz fit (red) agreed with the data}
+\end{figure}
+\noindent We routed the signal to two input channels and performed an auto (start-start) and cross correlation (start-stop) measurement (\cref{fig:IRF_TT}). The self-convolution of a periodic square-wave function is a Gaussian. From a Gaussian fit, we get the \ac{FWHM} $\Delta_\mathrm{FWHM}^\tau$ of the timing distribution, which is $23.7$~ps for both cases. We obtain the jitter from the \ac{TDC} $\sigma_\mathrm{TT}=\Delta_\mathrm{FWHM}^\tau/2\sqrt{2\ln2}$ = \SI{10.06}{\ps} for both channels. From \cref{eq:system_jitter}, the jitter of a single channel is \SI{7.12}{\ps} and comparable with \SI{8}{\ps}, as specified by the manufacturer \cite{swabian_instruments_time_2021}. We further examined a delay between the auto and cross correlation of \SI{40}{ps}. The delay is caused by the electrical signal routing and regarded as the electrical delay introduced by the \ac{TDC} in all measurements.\\
+Next, we measured the \ac{IRF} of the setup, using \ac{HBT} interferometry. The laser pulse length is \SI{13}{\fs} and much smaller than the timing jitter of the \ac{APD}s. Hence, we assume photons from the same pulse to arrive coincidentally at the detectors and thus neglect the influence of the \textit{fs}-laser \cite{nemallapudi_single_2016}. With this method we do not reveal the individual \ac{SPCM} timing jitters, $\sigma_i$ but the combined $\sigma_\mathrm{sys}$. This poses no disadvantage, as $\sigma_\mathrm{sys}$ determines the uncertainty in $ g^{(2)}$.
+We extracted the zero-peak of the histogram at $\tau\approx0$. A Lorentzian fit to the peak in \cref{fig:IRF_sys} revealed $\Delta_\mathrm{FWHM}^\tau$ of \SI{690}{\ps}. From error propagation applied on Gaussian jitter values, we obtain $\sigma_\mathrm{sys}=\Delta_\mathrm{FWHM}^\tau/2\approx$ \SI{350}{\ps}, using \cref{eq:system_jitter} and a combined count rate of \SI{80}{\kHz}. Based on \cref{eq:system_jitter}, the jitter of a single \ac{APD} is \SI{250}{\ps} in accordance with the data sheet \cite{perkin_data_2001}.
+
+\subsubsection{Power-dependent Jitter of the System}\label{sec:powerjitter}
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=1\linewidth]{IRF_power_hist}
+	\caption{Zero-peak at $\approx\tau=0$ of the coincidence histogram for various relative excitation powers (P=1-1000) compared to the single-photon operating regime. We fitted Gaussian, Lorentzian and GaussMod$_2$ envelopes to the histograms.}
+	\label{fig:IRF_power_hist}
+\end{figure}
+\noindent However, for a higher combined count rate of \SI{7000}{\kHz}, $\sigma_\mathrm{sys}$ = \SI{501}{\ps}. We find the jitter depends on the count rate. Nonetheless to reveal the intrinsic properties of the suspected single-molecular light, an accurate $\sigma_\mathrm{sys}$ is needed.
+Moreover, the functional shape of the pulsed histogram revealed slight variations for $P=1$ at the single molecule level up to ten times ($P=10$), hundred times ($P=100$) excitation strength and so on, in \cref{fig:IRF_power_hist}.
+To precisely determine the functional form, the mechanism for power-dependent broadening and accurate jitter values, we varied the attenuation of the fs-laser. 
+Thus, the count rate of the detection channels can be accurately controlled. For each count rate the zero-peak of $g^{(2)}(\tau)$ is shown in \cref{fig:IRF_power_hist} and fitted with a Lorentz and Gauss model. A Gaussian fit does not account for the tail towards the right end of the spectrum, especially for higher powers. In contrast a Lorentz fit agrees quite well. Such a tail in a Si-\ac{SPCM}, also observed by \textit{Puill et al.} \cite{nemallapudi_single_2016} and \textit{Acerbi et al.} \cite{acerbi_characterization_2014}, can be a result of delayed signals generated by photons that get converted deeper in the semiconductor junction. As photon absorption takes place with an exponential probability, the number of delayed conversions will also go down exponentially \cite{brunner_comprehensive_2016}.
+\begin{equation}\label{eq:GaussMod2}
+f(a,\, \tau_0,\, \sigma,\, \tau_\mathrm{exp})=\dfrac{a}{2\sqrt{2}\sigma}e^{-\Big[
+		\dfrac{1}{2}\begin{pmatrix}
+			1 \\
+			1 \\
+		\end{pmatrix}
+	\hspace{-3pt}
+		\begin{pmatrix}
+			\,\,\,\,\, z_{-}\\
+			-z_{+}\\
+		\end{pmatrix}\Big]^2}\hspace{-3pt}\Big[
+	\begin{pmatrix}
+		1\\
+		1\\
+	\end{pmatrix}
+\hspace{-5pt}
+	\begin{pmatrix}
+		z_{-}\\
+		z_{+}\\
+	\end{pmatrix}\Big]\Big[
+	\begin{pmatrix}
+		e^{z^2_{-}}\\
+		e^{z^2_{+}}\\
+	\end{pmatrix}
+\hspace{-5pt}
+	\begin{pmatrix}
+		\mathrm{erfc}(z_{-})\\
+		\mathrm{erfc}(z_{+})\\
+	\end{pmatrix}\Big],
+\end{equation}
+with
+\begin{equation}\label{eq:GaussMod2zeta}
+	z_{\pm}=\dfrac{1}{\sqrt{2}}\Big(\dfrac{\sigma}{\tau_\mathrm{exp}}\pm\dfrac{\tau-\tau_0}{\sigma}\Big).
+\end{equation}
+ In view of this logic, we fitted the histogram with \cref{eq:GaussMod2}, the convolution of the Gaussian and the exponential probability distributions. Here we used amplitude a, the Gaussian jitter $\sigma$ and the exponential relaxation time $\tau_\mathrm{exp}$. Such a function, called exponentially modified Gaussian function (GaussMod), can be constructed to account for the exponential probability process in emission (as we used it for life time fitting cf. \cref{sec:lifetime}), denoted by index "1", or as given in \cref{eq:GaussMod2}, to account for an exponential probability process in emission and absorption in a junction, denoted by index "2".
+\begin{figure}[htp]
+	\centering
+	\begin{subfigure}{0.49\linewidth}
+		\centering
+		\includegraphics[width=1\linewidth]{IRF_power_jitter_models}
+		\caption{}
+		\label{fig:IRF_power_jitter_models}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}{0.485\linewidth}
+		\centering
+		\includegraphics[width=1\linewidth]{IRF_power_jitter}
+		\caption{}
+		\label{fig:IRF_power_jitter}
+	\end{subfigure}
+	\caption{a) Extracted jitter for various average count rates, from a Lorentz (blue dots) and Gauss-modulated exponential fit parameters of the zero peak, with $\sigma$ (red triangles) and variable $\tau_\mathrm{ex}$ (single-photon triangles). The black triangles combine $\tau_\mathrm{ex}$ and $\sigma$ to a system jitter $\sigma_\mathrm{sys}$. b) Extracted jitter values from a Lorentz fit for of the complete pulsed histogram and various average count rates. The red line is a polynomial fit to the data, from which we calculate the individual \ac{SPCM} jitter (black).}
+\end{figure}
+\noindent We want to verify if the mechanism of photons getting converted deeper in the junction is present in our data. Therefore, in \cref{fig:IRF_power_jitter_models} we fixed the Gaussian jitter $\sigma$ (red triangle) to the value \SI{250}{\ps}, extracted from low average count rates, since the power dependency is expected to appear minor effect there. Afterwards, we were looking for reliable fits by only fitting the $\tau_\mathrm{ex}$ parameter (orange triangles) concerning the right tail of the pulses for various average count rates. We find reliable fits to the data. The extracted $\tau_\mathrm{ex}$ parameter shows the same decay trend as the Lorentz fit (blue dots) for high count rates, where conversion deep in the junction is expected.~In contrast, for the low counting regime $\sigma_\mathrm{sys}$ coincides with the Lorentz fit, where conversion deep in the junction is unlikely. The broadening mechanism is thus conclusive from the data. The broadening mechanism is also conclusive from another perspective, since we use a Si-\ac{SPCM} with deep depletion, which uses the mechanism of enhanced deep photon conversion to increase the quantum efficiency in the NIR.\\
+Furthermore, we see that the Gaussian exponential fit in the low count regime yields a large error and a larger inaccuracy when the broadening parameters become similar. To avoid the inaccuracy and simplify the fit, we check if $\sigma_\mathrm{sys}$ from the Lorentz fit can be applied. For this we compare $\sigma_\mathrm{sys}$ with the $\sigma_\mathrm{sys}$ result from error propagation (black triangles), using the individual GaussMod$_2$ jitter components. The data indicate acceptable agreement. For low count rates, $\sigma_\mathrm{sys}$ from the Lorentz fit also reveals low variability and agreement with the \ac{HWHM} values from the raw data sets.\\
+To further increase the \ac{SNR} and reliability of our fit we extend the fit from the zero-peak to the whole pulsed histogram in the fitting routine. Tt is not applicable to fit every peak element-wise with the peak shape, since the cross-correlation terms for $m\neq0$ have to be considered.~For instance, the \ac{FWHM} of a Gauss and Lorentz shaped histogram depends on the actual pulse number $l$:
+\begin{equation}\label{eq:GaussLorentzPulsedFWHM}
+\mathrm{FWHM}=	\begin{cases}
+		\textrm{\textbf{Gauss: }}\dfrac{2l}{f}+2\tau_0-2\sigma\sqrt{2\ln(2)} & l\in[-m,m] \\
+		\textrm{\textbf{Lorentz: }}\dfrac{2l}{f}+2\tau_0-2\sigma & l\in[-m,m]\\
+	\end{cases}
+\end{equation}
+the number of pulses $m$ and the laser repetition rate $f$. The $\sigma$-values have to be extracted by this formulae. Direct convolution for more complex peak functions gets tedious, the more pulses in the histogram. Nevertheless, one can continue any pulse function by using a convolution property of the delta distribution. If we look at the continuous continuation of the delta distribution (shah function), the convolution of any function with the shah function is the continuous continuation of the function itself. We fit the histogram with \cref{eq:sha_continuation}, for a Lorentz shape and average the extracted jitter values from each pulse.
+\begin{subequations}\label{eq:sha_all}
+\setlength{\abovedisplayskip}{1pt}
+\begin{alignat}{2}
+	&\left.\sh\right._{\frac{1}{f}} (\tau)=\lim_{m\to\infty} \sum_{l=-m}^m\delta(\tau-\dfrac{l}{f})\label{eq:sha}\\
+	&\big(\left. \sh\right._{\frac{1}{f}}\circledast \mathrm{IRF}\big)(\tau)=\lim_{m\to\infty} \sum_{l=-m}^m \mathrm{IRF}(\tau-\dfrac{l}{f})\label{eq:sha_continuation}
+\end{alignat}
+\setlength{\belowdisplayskip}{1pt}
+\end{subequations}
+We summarize, a Lorentz fit leads to reliable results for $\sigma_\mathrm{sys}$, especially in the low counting regime. This also makes sense from the perspective that a Lorentz shape is the reverse Fourier-transform of two mirror-symmetric exponential decays (cf. \cref{sec:Impact}), which relates to convolution with exponential broadening mechanism here.
+
+\subsection{Fluorescence Lifetime Determination}\label{sec:lifetime}
+Fluorescence lifetimes are typically measured by \ac{TCSPC} with an \ac{HBT} setup \cite{miyauchiFemtosecondExcitationCorrelation2009}. In second-order coincidence histograms from a pulsed source, we find redundant information. As we have discussed for temporal modes (\cref{sec:g2_temp_modes}), the fluorescence lifetime is fingerprinted in the extracted values of the peak areas, if we follow virtually the temporal trend, but $\tau_c$ and thus the fluorescence lifetime $\tau_f$ is also imprinted in the individual histogram peak curvatures.
+\begin{figure}[htp]
+	\centering
+	\begin{subfigure}{0.49\linewidth}
+		\centering
+		\includegraphics[width=1\linewidth]{g2_lifetime}
+		\caption{}
+		\label{fig:g2_lifetime}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}{0.485\linewidth}
+		\centering
+		\includegraphics[width=1\linewidth]{g2_lifetime_fit}
+		\caption{}
+		\label{fig:g2_lifetime_fit}
+	\end{subfigure}
+	\caption{a) Coincidence histogram of an individual (6,4)-\ac{SWCNT}. The slope of the emission side of each pulse is fitted by an exponential decay to reveal $\tau_c$. Furthermore, from the (1/e)-value of the histogram, the intercept with the $\tau$-axis ($\tau_{1/e}$) is calculated, which is also related to $\tau_c$. b) Different fit models, including jitter, for revealing $\tau_c$ are illustrated.}
+\end{figure}
+\noindent In the followong discussion we call the right side of each pulse "emission" side and the left side "absorption" side, due to their physical origin. In a pulsed measurement the extraction of $\tau_c$ during a reconvolution-fit is hard due to the lack of data points in the correlation regime close to $m,\,\tau=0$. Contrary, we have to assume a value of $\tau_c $ for the fit to converge.\\
+Fortunately $\tau_c$ is imprinted in the curvature of the emission side \cite{kollner_how_1992,sunney_xie_single-molecule_2002} of each pulse. An exponential probability density function \cite{santori_triggered_2001,beveratos_room_2002} is most widely used to model the decay curve of the fluorescence lifetime. To get a correct and useful envelope for the re-convolution routine, we will take similar considerations into account as in the discussion of the \ac{IRF} in \cref{sec:powerjitter}. The procedure will also include a backup mechanism: As expressed in \cref{fig:g2_lifetime}, we fit the histograms with an envelope function (green), extract $\tau_c$ for each pulse and average the obtained $m$ values for better statistics. Second, we also obtain the criterion for the $1/e$ value of each peak from the envelope function. We calculate the $1/e$- amplitude value and the corresponding $\tau_\mathrm{1/e}$ value (intersection with the $\tau$-axis) from the raw histogram values. We extract $\tau_c$ from the $\tau_\mathrm{1/e}$-values as outlined in \cref{sisec:lifetime} with the criterion of the envelope function . This two-stage technique is useful to evaluate whether the envelope fit was successful by counter checking with the $1/e$-value and in case we find a large deviation, to perform an adjustment of the fit limits. In summary, we are able to benefit from the high statistical significance of the determination of $\tau_c$ from the envelope fit. Last, we apply a power correction on $\tau_c$ to reveal $\tau_f$ as outlined in \cref{sec:powercorr}.\\
+To evaluate which envelope function is most useful and easy to handle, we looked into several cases, where we illustrate the results in \cref{fig:g2_lifetime_fit}. The GaussMod$_1$ envelope is similar to the \ac{IRF} discussion and an accurate fit model for a Gaussian pulse shape, but also contains certain drawbacks.~The GaussMod$_1$ envelope is the The GaussMod$_2$ envelope from \cref{eq:GaussMod2} without the $z_{+}$-terms, since an exponentially decay is predominantly imprinted by convolution on the right side of the pulse ($\tau>0$), to image the probabilistic process of lifetime. Unfortunately, due to the erfc-function included, a closed analytical expression to extract the lifetime from the \ac{FWHM} is lacking. One has to fit the histogram, including jitter and so forth.
+ \begin{align}
+ 	&\textrm{\textbf{GaussExp. s.t.: }}&\sum_{l=-m}^m&\dfrac{1}{\tau_c}e^{-\dfrac{1}{\tau_c}\Big|\tau-\tau_0-\dfrac{l}{f}\Big|+\dfrac{\sigma^2}{2\tau_c^2}}\label{eq:taucslopeGauss}\\
+ 	&\textrm{\textbf{LorentzExp. s.t.: }}&\sum_{l=-m}^m&\dfrac{1}{\tau_c}e^{-\dfrac{1}{\tau_c}\Big|\tau-\tau_0-\dfrac{l}{f}\Big|}\cos\Big(\dfrac{\sigma}{\tau_c}\Big)\label{eq:taucslopeLorentz}
+ \end{align}
+The two remaining curves correspond to a single exponential decay for positive $\tau$-values, convolved with a Gaussian-(red) and Lorentz-shaped peak (blue). This method is simpler and offers an analytical solution. However, the result is only applicable for the $m=0$ peak. One can continue the result though, with the help of the Shah function and symmetrize the fit to cover the whole peak. The results in \cref{eq:taucslopeGauss,eq:taucslopeLorentz} are label with s.t. for "single-time", because the exponential function is initial´ly defined for positive $\tau$-values at the zero-peak.\\
+From all three function, with the same fit parameters, we estimate the same slope values $\tau_c$\\
+An important feature and why we use this functions is the \ac{FWHM} is identical for both envelope types and independent of the jitter and no deconvolution is necessary when we determine the amplitude values at $1/e$ and $\tau_\mathrm{1/e}$. This is due the height is also determined by the jitter and the jitter dependence is divided out by calculating the \ac{FWHM}.
+\begin{equation}\label{eq:lifetimeFWHM}
+	\textrm{\textbf{FWHM: }} \begin{cases}
+		\dfrac{2l}{f}+2\tau_0- 2\ln(2)\tau_c & l\in[-m,m] \\
+	\end{cases}
+\end{equation}
+Although simplified, $\tau_c$ from each peak is still no independent measure, since they are related via the $g^{(2)}$ envelope, e.g., the intrinsic properties of the light. Thus when calculating the mean value we have to take into consideration the covariance to get, i.e., an accurate error estimate $\Delta \tau_c$. For details on error calculation see Sect.~\cref{sec:g2_error_lifetime}.
+
+
+\subsection{Pulsed \texorpdfstring{$\boldsymbol{g^{(2)}}$}{g2}Measurements on SWCNTs} \label{sec:g2_exp_lifetimes}
+We performed measurements of the $g^{(2)}$ function on different (6,4)-\acp{SWCNT}. The 
+\begin{figure}[htp]
+	\centering
+	\includegraphics[width=0.8\linewidth]{g2_raw_tube_1}
+	\caption{Top: Average photon count rates on the start and stop detectors. Bottom: Raw coincidence-count histogram with $w$ = \SI{100}{\ps} (black) and a Lorentzian fit to each single peak (red). The calculated $g^{(2)}$ values for each peak are illustrated in blue. The inset presents a close-up of the peak around $\tau=0$.}
+	\label{fig:g2_tube_max_1}
+\end{figure}
+\noindent upper graph of \cref{fig:g2_tube_max_1} shows a stable total photon count rate on both detectors over the measurement time $T_T$ = \SI{70}{\s}, where $\dot{N}_\mathrm{start}$ = \SI{120}{\kHz} and $\dot{N}_\mathrm{stop}$ = \SI{80}{\kHz} are the traces of the upper graph. The photon count rates deviate \SI{30}{\percent} from a equal splitting ratio. This can be caused by imperfect alignment of the \ac{BS}, as well as slight defocusing of the sample. The bottom graph of \cref{fig:g2_tube_max_1} indicates the measured coincidence histogram of a (6,4)-\ac{SWCNT} object. 
+To determine the peak areas, we performed Lorentzian fits (red lines). The inset of \cref{fig:g2_tube_max_1} reveals, the peak areas have a slight deviation from a Lorentzian shape ($\tau \approx$ \SI{4}{\ns}), which can be due to afterpulsing or background contamination of the coincidence measurement. We normalized the $m$-th peak area according to \cref{eq:mlNormg2} to create the blue data points. These data points represent the $g^{(2)}$ values of the $m$-th pulse and correspond to the \ac{CW} case for $\tau=m/f$. At $\tau=0$ we observed antibunching with $g^{(2)}(0)$ = \num{0.88} for \cref{fig:g2_tube_max_1}.\\
+
+For \cref{fig:g2_tube_max_2} we observe a stable total photon count rate on both detectors over the measurement time $T_T$ = \SI{210}{\s}, where $\dot{N}_\mathrm{start}$ = \SI{25}{\kHz} and $\dot{N}_\mathrm{stop}$ = \SI{35}{\kHz} are the traces of the upper graph.
+\begin{figure}[htp]
+	\centering
+	\includegraphics[width=0.8\linewidth]{g2_raw_tube_2}
+	\caption{Different measurement on the same nanotube as in \cref{fig:g2_tube_max_1}, cf. for a detailed plot description.}
+	\label{fig:g2_tube_max_2}
+\end{figure}
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.8\linewidth]{g2_raw_tube_3}
+	\caption{Comparable measurement to \cref{fig:g2_tube_max_1} on another nanotube. For a details cf. \cref{fig:g2_tube_max_1}.}
+	\label{fig:g2_tube_max_3}
+\end{figure}
+\noindent At $T_T$ = \SI{210}{\s} the photon count rates drop to a low value, indicating a drift of the \ac{SWCNT} out of the focus. Data processing in the prelude of \cref{fig:g2_tube_max_2,fig:g2_tube_max_3} is analogous to \cref{fig:g2_tube_max_1}, where at $\tau=0$ we observed antibunching with $g^{(2)}(0)$= \num{0.89} and $g^{(2)}(0)$ = \num{0.95}, respectively. Furthermore, for \cref{fig:g2_tube_max_3}, we observe a bleaching trend of the photon count rate on both detectors over the measurement time $T_T$ = \SI{9000}{\s}, where $\dot{N}_\mathrm{start} = $\SI{20}{\kHz} and $\dot{N}_\mathrm{stop} = $\SI{20}{\kHz} are the traces of the upper graph. We expect only a few emitters in the excitation volume and a low $g^{(2)}(0)$ value should be obtainable. The extracted higher values are still convoluted with the detection jitter and suffer from background contamination. Additionally, a long measurement time $T_T$ can help to increase the significance of the histogram, i.e., the signal to noise ratio of the $g^{(2)}$ measurement. Anyhow, a bleaching signal trend, significantly lowering the total count rate, will also enhance the relative contribution of the background to the data during the same measurement time of a stable signal and lead to an increase of the $g^{(2)}(0)$ value. This can be one reason for the last $g^{(2)}(0)$ value to be higher, compared with the other two values.\\
+The next step of data processing is the background correction on the whole data set according to \cref{eq:g2_from_normalized_histogram} and the re-convolution of $g^{(2)}(0)$. The re-convolution requires that the system jitter $\sigma_\mathrm{sys}$ and the inverse coherence time $k_c$ are known. The system jitter is known from \cref{fig:IRF_sys}. To determine $k_c$, we fit the peaks of \cref{fig:g2_bgcorrected_max} as outlined in \cref{eq:taucslopeLorentz} exponentially \cite{beveratos_room_2002}, resulting in the green lines. 
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=1\linewidth]{g2_three_tubes}
+	\caption{Histograms (black), exponential lifetime fits of each peak (green), uncorrected $g^{(2)}$ (blue), and background-corrected $g^{(2)}$ (red) for \crefrange{fig:g2_tube_max_1}{fig:g2_tube_max_3}.}
+	\label{fig:g2_bgcorrected_max}
+\end{figure}
+\noindent The extracted $k_c$ values are $k_\mathrm{c,\,1}$ = \SI{5.7\pm1.1}{\per\ns}, $k_\mathrm{c,\,2}$ = \SI{3.0\pm0.3}{\per\ns}, and $k_\mathrm{c,\,3}$ = \SI{4.4\pm1.3}{\per\ns} for \crefrange{fig:g2_tube_max_1}{fig:g2_tube_max_3}, respectively. The background correction of the raw data results in the red data points of \cref{fig:g2_bgcorrected_max}, where we used $\rho_1-\rho_3$ = \numlist{0.98;0.91;0.89} for \crefrange{fig:g2_tube_max_1}{fig:g2_tube_max_3}. We receive the signal $S$ and background $B$ by averaging the \ac{SWCNT} spot and background intensity and in areas analog to \cref{fig:Background}. This correction decreases the $g^{(2)}$ values by approximately \SIrange{6}{8}{\percent}.\\
+Using re-convolution, we obtain through \cref{eq:ConvImp}: $g^{(2)}_{1}(0)$ = \num{0.63\pm0.05}, $g^{(2)}_{2}(0)$ = \num{0.73\pm0.05} and $g^{(2)}_{3}$ = \num{0.84\pm0.02} for \crefrange{fig:g2_tube_max_1}{fig:g2_tube_max_3}, respectively. The values convey significant antibunching, where we expect $g^{(2)}(0)=1-\frac{1}{n}$, where $n$ is the number of emitters in the focal volume. The values for the first and second measurement on the same tube differ. This is due to a decreased signal strength and a higher relative background in the second measurement. The third measurement is influenced by temporal bleaching during the measurement, increasing $g^{(2)}$ value, since for baseline normalization we still did not used weighted rates. From the $k_c$ values, we determine the lifetime $\tau_f$ of the \acp{SWCNT} via the power correction in \cref{eq:taufpump}. We get $\tau_{f,\,1}\textrm{\; to \;}\tau_{f,\,3}$ = \SIlist[list-units = brackets]{0.44;0.66;0.57}{\ns}. These values agree with literature values, which are in the range of several hundred picoseconds to about \SI{50}{\ns}. The short lifetimes indicate recombination at vacancy centers \cite{zaumseil_luminescent_2022}\\
+
+
+
+%Interestingly, whereas the values $\tau_f=\SIrange{5.71\pm0.38}{\ns}$ lie within the reported range of several hundred picoseconds to about \SI{100}{\ns} \cite{ miyauchi_radiative_2009, perebeinosRadiativeLifetimeExcitons2005, rao_anharmonic_2007, hagen_electronic_2004, wangTimeresolvedFluorescenceCarbon2004}, they are an order of magnitude larger than the lifetimes evaluated in \cref{sec:g2_exp_lifetimes}. 
+%fluorescence lifetimes defects 100ps -500 ps \cite{zaumseil_luminescent_2022} 
+
+%radiative lifetimes 3-10 ns at roomtemperature \cite{miyauchi_radiative_2009}
+%radiative lifetimes 100 ns\cite{ wangTimeresolvedFluorescenceCarbon2004}
+%raiative lifetime 10 ns\cite{hagen_electronic_2004}
+%raiative lifetime 20 ns\cite{jones_analysis_2005}
+%raiative lifetimes 1-10  ns\cite{miyauchi_radiative_2009}
+%radiative lifetimes 10 ns photon bottle neck \cite{rao_anharmonic_2007} they argue in the phonon sideband nonequilibirum phonon decy bottlenecks \cite{rao_anharmonic_2007} incerase lifetimes to about 10 ns, due to backscattering of electrons by nonequilibrium phonon emission and absorption
+
+%fluorescence lifetimes increase with tube length \cite{miyauchi_length-dependent_2010}
+%fluorescence lifetimes defects 100ps -500 ps \cite{zaumseil_luminescent_2022} 10 ns photon bottle neck \cite{rao_anharmonic_2007}
+%fluorescence lifetimes 10-100 ps\cite{miyauchi_radiative_2009}
+%fluorescnece lifetime 10 ps \cite{ wangTimeresolvedFluorescenceCarbon2004}
+%fluorescnece lifetime 120 ps \cite{jones_analysis_2005}
+%fluorescnece lifetime 10 -100 ps \cite{miyauchiFemtosecondExcitationCorrelation2009} by TCSPC \cite{miyauchiFemtosecondExcitationCorrelation2009}
+%
+%\cite{ wangTimeresolvedFluorescenceCarbon2004, miyauchi_radiative_200, miyauchiFemtosecondExcitationCorrelation2009, jones_analysis_2005,zaumseil_luminescent_2022} adn are typically measured by TCSPC with an \ac{HBT} setup \cite{miyauchiFemtosecondExcitationCorrelation2009}
+%However, the TCSPC measurement is inadequate for the large diameter SWNTs d   0.8 nm because of the limit of the sensitive range of Si-based single-photon counting avalanche photodiodes, and the sensitivity and time-resolution of near IR streak cameras are low. Although frequency upconversion34 and Kerr gate18,35 methods provide excellent time-resolution, these methods involve relatively complicated experimental setups. Hence, the development of alternatives has been eagerly anticipated to measure the ultrafast PL dynamics in SWNTs in the near IR range with good time resolution.\cite{miyauchiFemtosecondExcitationCorrelation2009}
+
+
+In the initial setup, the \ac{HBT}-interferometer was unbalanced in terms of optical beam path length. That is why, the path length difference $\Delta r$ between both detectors introduces coherence loss. From the lifetimes, we determine the coherence lengths $l_\mathrm{c1}-l_\mathrm{c3}$ = \SIlist[list-units = brackets]{0.13;0.20;0.17}{\m}. The path length difference $\Delta r$ was \SI{0.10}{\m}, which increases the measured $g^{(2)}(0)$ values, relative to $l_{c}$. Based on the temporal coherence loss introduced by this path length difference, we calculate according to \cref{sec:temp_coh_loss} $\nu_\mathrm{l_c}^\mathrm{Lorentz}$ = 0.46,~0.60 and 0.55. Consequently, the intrinsic $g^{(2)}(0)$ values decrease to $g^{(2)}_{1}(0)$ = \num{0.20\pm0.1}, $g^{(2)}_{2}(0)$ = \num{0.55\pm0.04} and $g^{(2)}_{3}$ = \num{0.71\pm0.03}, corresponding to a number of one to three emitters in the microscope focus.
+
