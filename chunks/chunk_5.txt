@@ -1,0 +1,61 @@
+Thus, the expression for $c_N(\tau)$ in the case of an ideal spectrum ($c_N(\tau)=g^{(2)}$) is as
+follows.
+
+\begin{equation}
+\label{eq:g2finite4}
+g^{(2)}=c_N(\tau)=N\dfrac{\sum_\mathrm{i=1}^\mathrm{N} I(t_i)I(t_i+\tau)}{\Big(\sum_\mathrm{i=1}^\mathrm{N} I(t_i)\Big)^2}.
+\end{equation}
+
+\Cref{eq:g2finite4} is also valid for the intensity $I(t_i)> 1$ of each time bin.As one expects
+$c_N(\tau) = 1$ for $|\tau|\gg 0$.A way to normalize $c(\tau)$ is to calculate the mean value in a
+range far beyond the correlation regime.\\
+A fictional time difference histogram with several bins is displayed in \cref{fig:tailnorm}.The
+histogram is normalized to the yellow baseline with an average count number per bin of $c(\tau)$ =
+\num{200}, which is determined for $|\tau|\approx$ \SI{1}{\s}.Since the coincidence region around
+$\tau=0$ is typically in the \si{ps} to \si{ns} range, the correlation signal is scaled and not
+altered by the baseline in the "tail" region.
+To compute the expected event number $\braket{I(t)}^2$ in the "tail" region, one can imagine a
+correlation with the total measurement time $T_t$ and the total numbers of events $N_\mathrm{start}$
+and $N_\mathrm{stop}$ in channel \num{0} or \num{1}.The maximum number of coincidences in the time
+regime is $N_\mathrm{start}N_\mathrm{stop}$, as every photon from channel \num{0} can be compared to
+a photon in channel \num{1}.In addition, large time differences near $T_t$ may not occur as
+frequently as small ones.While the maximum deviation from the Poisson case (in the number of events
+per bin) is around $\tau=0$, we see a linear decrease towards zero at $ \tau= \pm
+T_t$.\Cref{fig:Normtriangle} sketches the expected event numbers for a super-Poisson light
+source.The width of the boxes is typically in the sub-\si{\ns} range.Usually, the evaluation region
+is only a few nanoseconds, whereas the measurement times are in the range of minutes or even
+hours.Therefore, the effect of decreasing the number of events in the time-difference spectrum with
+larger time differences is extremely small, and the fluctuations of the correlation should be the
+fluctuation of the Poisson baseline, determined by M in the plot.
+This value M can be derived geometrically by \cref{eq:Normderivation}, deduced from
+\cref{fig:Normtriangle}.
+
+\begin{equation}
+\label{eq:Normderivation}
+N_\mathrm{start}N_\mathrm{stop}=\dfrac{1}{2}N_\mathrm{bins}|M| \underbracket{\Leftarrow}_\mathrm{super-Poisson}2\Delta_{0,\, T_t,\, M}\underbracket{\Rightarrow}_\mathrm{sub-Poisson}=\dfrac{1}{2}N_\mathrm{bins}|M|
+\end{equation}
+
+Note that for a sub-Poisson light source the value M is negative, which is why we use $|M|$ and the
+area of the triangle is $|M|N_\mathrm{bins}-N_\mathrm{start}N_\mathrm{stop}$, where
+$\Delta_\mathrm{0,T_t,\,|M|}$ is a triangle with corners at the origin, $|M|$ and $T_t$.Solved for
+$|M|$ with $N_\mathrm{bins} = 2T_t/\tau_\mathrm{bin}$, we get the following:
+
+\begin{equation}
+\label{eq:Normderivation2}
+|M|=\tau_\mathrm{bin}\dot{N}_\mathrm{start}\dot{N}_\mathrm{stop}T_t
+\end{equation}
+
+$\dot{N}_\mathrm{start,\, stop}= N_\mathrm{start,\, stop}/T_t$ are the (average) photo-electron
+count rates.Note the normalization $|M|$ in \cref{eq:Normderivation2} comes out to be independent of
+the light statistics.Consequently, the uncertainty of the Poisson baseline is
+
+\begin{equation}
+\label{eq:Normderivation3}
+|\Delta M|=\sqrt{\tau_\mathrm{bin}\dot{N}_\mathrm{start}\dot{N}_\mathrm{stop}T_t}\quad\Rightarrow\quad\sigma_\mathrm{g^{(2)}}=\dfrac{|\Delta M|}{|M|}=\dfrac{1}{\sqrt{\tau_\mathrm{bin}\dot{N}_\mathrm{start}\dot{N}_\mathrm{stop}T_t}}
+\end{equation}
+
+In the picture of $g^{(2)}$, we normalize the time difference spectrum by dividing each bin by the
+average number of coincidences, which is almost exactly $|M|$ in the evaluation region.We also note
+that the total count rate product, which is not necessarily divided equally between both detectors,
+underestimates $|M|$.The results are too large and unstable $g^{(2)}$ values, which we investigate
+from a quantum statistical perspective in \cref{sec:beamsplittercorr}.

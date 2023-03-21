@@ -1,0 +1,64 @@
+\cref{eq:Normderivation2,eq:Normderivation3}) is a good criterion to judge whether the baseline is
+stable during measurements.Moreover, different noise sources can lead to increased noise around zero
+of a $g^{2}$ measurement and limit the achievable signal contrast, such as the mobile communication
+frequencies $\SI{800}{\MHz}$ and $\SI{950}{\MHz}$, or a nonlinearity of the \ac{TDC} device
+\cite{zmija_design_2018}.Particularly we look into cross correlation measurements evaluated in the
+range of $\pm\SI{500}{\ns}$ around zero, since this is the range where we evaluate
+antibunching/bunching properties usually.To evaluate the baseline and connected noise we used a
+\ac{CW} \ac{TiSa} laser source with $\lambda_0\approx \SI{750}{\nm}$ in the \ac{HBT} setup and test
+different parameter combinations for the \ac{TDC}.Hence, we check whether the baseline is affected
+by these parameter combinations ($\dot{N}_\mathrm{start}$, $\dot{N}_\mathrm{stop}$,
+$\tau_\mathrm{bin}$ and overall measurement time $T_t$), according to the theory:
+
+\begin{equation}
+\label{eq:g2_noise_floor_M}
+|M|=\dot{N}_\mathrm{start}\cdot \dot{N}_\mathrm{stop}\cdot\tau_\mathrm{bin}\cdot T_t,\quad\mathrm{and}\quad \sigma_\mathrm{g^{(2)}}=\dfrac{1}{\sqrt{|M|}}
+\end{equation}
+
+The initial parameter combination is $\tau_\mathrm{bin}=\SI{1}{\ns}$,
+$\dot{N}_\mathrm{start}+\dot{N}_\mathrm{stop}\approx \SIrange{500}{550}{\kHz}$, and
+$T_t\approx\SI{30}{\s}$ in \cref{fig:g2_noise}b, where we varied one parameter each in
+\cref{fig:g2_noise}a, c and d, respectively.This is a conscious arrangement to test the baseline
+normalization to result in a perfect 1 everywhere in the $g^{(2)}$ spectrum, only influenced by
+statistical shot noise fluctuations.
+We display the time trace of the actual count rate of the start and stop detector (black and red
+triangles), as well as the coincidence-histogram weighted count rate (solid lines) in the upper
+panels of \cref{fig:g2_noise}.
+
+\begin{table}
+[h!]
+\vspace{-0.5cm}
+\centering
+\caption{Statistical parameters of the coincidence count baseline of $g^{(2)}$ measurements.The deviation in $|M|/\sigma_\mathrm{g^{(2)}}$ of the experiment, from the theory is also indicated.}
+\scalebox{0.9}{
+
+\begin{tabular}{ccccc}
+\toprule
+$|M|\pm\sigma_\mathrm{g^{(2)}}$&a)&b)&c)&d)\\\cmidrule[1pt]{1-5}
+Theory&$91.7\pm9.6$&$23064\pm152$&$18944\pm138$&$1786.4\pm42.3$\\\addlinespace[4pt]
+Experiment&$91.0\pm9.5$&$23218\pm154$&$18666\pm144$&$1799\pm43$\\\hline\hline\addlinespace[4pt]
+Deviation\,[\%] &$0.76/1.0$&-$0.7/-1.3$&$1.5/-4.3$&$-0.7/1.7$\\\addlinespace[4pt]\bottomrule
+\end{tabular}}
+
+\label{tab:g2_noise_compare}
+\end{table}
+
+In the lower panels the absolute number of coincidence events (black lines) are displayed on the
+right side of each panel and $g^{(2)}$ data (blue) as well as the average (red) is shown on the left
+side.As expected from \cref{eq:g2_noise_floor_M}, the fluctuations $\sigma_\mathrm{g^{(2)}}$ of the
+baseline decrease, if an initial parameters increases.We evaluate the means $|M|$ and standard
+deviations $\sigma_\mathrm{g^{(2)}}$ of the experimental coincidence histogram counts in the
+illustrated ranges of the panels and compare the results with the theoretical expectation, using the
+parameter combinations.The results are recorded in \cref{tab:g2_noise_compare}.\\
+We see the theoretical baselines lie within a $1-\sigma$ uncertainty of the experimental values and
+deviate by a maximum of \SI{2}{\percent} from the theory.Also the fluctuations of the baselines are
+similar and deviate by a maximum of 5\% from the theory.
+That means the $g^{2}$ values of the baseline are stable and fit quite well the theory for all
+observed parameter combinations and the fluctuations of the baseline are Poisson-limited.Thus, in
+the current \ac{HBT} setup we can achieve the theoretical possible signal contrast and further noise
+contamination in $g^{2}$ is neglected.
+
+
+\subsection{Random Phase Modulation}\label{sec:rpm}
+As we have pointed out, in an \ac{HBT} experiment, one experiences visibility reduction, e.g., due
+to spatial misalignment and temporal coherence loss.

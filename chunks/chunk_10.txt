@@ -1,0 +1,107 @@
+We have added the factor $k$ for a Lorentzian or Gaussian shape with $k$ = \num{1} or $k$ =
+\num{0.667}, respectively and transform \cref{eq:StoB2}.
+
+\begin{equation}
+\label{eq:StoB3}
+T_t= \Bigg(\dfrac{nc\Delta\lambda}{\hat{Q}_0 k\lambda^2_0}\Bigg)^2\dfrac{\tau_\mathrm{bin}}{\dot{N}_\mathrm{start}\dot{N}_\mathrm{stop}}
+\end{equation}
+
+In addition to the parameter influences discussed above, one sees that signals with a large
+wavelength bandwidth, also increase the measurement time, as well as measuring in the UV in contrast
+to the NIR region.Thus, narrowband spectral bandpass filtering is also a useful tool for reducing
+measurement time as well\footnote{While spectral filtering helps to filter out background signals,
+narrow-band filtering only works for an arbitrarily adjustable output power of the source.A reduced
+spectral bandwidth is almost 1:1 accompanied by a reduction of the count rate so that the effect of
+reduced measurement time becomes negligible.}.
+
+
+\paragraph{Real Electronics with Timing Jitter}
+Timing-uncertainty of the electronics, caused by the timing jitter of the single-photon detector,
+spreads the correlation signal over several bins.The signal strength $S$, is the peak area.The
+resulting peak can be assumed to be Gaussian.The signal strength S is calculated by determining the
+area under the Gauss peak.\Cref{fig:Gaussjitter} intimates a schematic correlation signal of such a
+jitter-broadened Gaussian function.
+
+\begin{equation}
+\label{eq:realjitter1}
+C_\mathrm{N,\, Gauss}(\tau) = 1+\hat{Q}_0\exp\Big(-\dfrac{|\tau-\tau_0|^2}{2\sigma^2_\mathrm{t}}\Big),\;\textrm{with}\;\;\hat{Q}_0>0
+\end{equation}
+
+The integral of the entire Gauss function (blue area in \cref{fig:Gaussjitter}) is given by
+\cref{eq:realjitter2} using the total temporal jitter of the experiment $\sigma_\mathrm{t}$.
+
+\begin{equation}
+\label{eq:realjitter2}
+S_\mathrm{Gauss} =\hat{Q}_0\sqrt{2}\pi\tau_\mathrm{c,\, exp}
+\end{equation}
+
+The problem which needs to be solved for calculating the significance $n=\frac{S}{B}$ is to evaluate
+the background $B$ of this peak.\\
+Therefore, imagine calculating the peak area by summarizing the bin values $s_i$ of
+$N_\mathrm{bins}$ in the peak regime and the uncertainty $\Delta S$ of the blue-marked area.
+
+\begin{equation}
+\label{eq:realjitter3}
+S=\tau_\mathrm{bin}\sum_{i=1}^{N_\mathrm{bins}}s_i\qquad \Delta S=\tau_\mathrm{bin}\sqrt{\sum_{i=1}^{N_\mathrm{bins}}\Delta s^2_i}
+\end{equation}
+
+We assume that all signal bins have the same uncertainty $\Delta s_i = s\forall i$, which is
+accessible in the outer "tail" regime via \cref{eq:Normderivation3}, where no correlation should
+exist and white noise is expected.Consequently, the entire background signal uncertainty simplifies
+to:
+
+\begin{equation}
+\label{eq:realjitter4}
+\Delta S=w\sqrt{N_\mathrm{bins}\Delta s^2}=\tau_\mathrm{bin}\Delta s\sqrt{N_\mathrm{bins}}=\tau_\mathrm{bin}\sigma_{g^{(2)}}\sqrt{N_\mathrm{bins}}.
+\end{equation}
+
+Of course, \cref{eq:realjitter4} requires start- and end-bins for the calculation to gain the
+parameter $N_\mathrm{bins}$, which are not given by the nature of the Gaussian function, as its
+values never decrease to zero.Therefore, by convention, the range of two standard deviations
+$\sigma_t$ left and right from the Gaussian median is set as limits.This total evaluation length is
+called $D$.
+
+\begin{equation}
+\label{eq:realjitter5}
+D=4\sigma_\mathrm{sys}
+\end{equation}
+
+Transferring this to the bin view
+
+\begin{equation}
+\label{eq:realjitter6}
+D= N_\mathrm{bins}\tau_\mathrm{bin}\Rightarrow N_\mathrm{bins} =\dfrac{4\sigma_\mathrm{sys}}{\tau_\mathrm{bin}}
+\end{equation}
+
+We derive the uncertainty on $S$ via \cref{eq:realjitter4}, which is the background.
+
+\begin{equation}
+\label{eq:realjitter7}
+B=\Delta S= \sigma_{g^{(2)}}\sqrt{4\sigma_\mathrm{sys} \tau_\mathrm{bin}}
+\end{equation}
+
+We determine the significance and the required measurement time.
+
+\begin{equation}
+\label{eq:realjitter8}
+n=\dfrac{S}{B}=\dfrac{|\hat{Q}_0|\tau'_c}{\sigma_{g^{(2)}}\sqrt{4\sigma_t \tau_\mathrm{bin}}}=\dfrac{|\hat{Q}_0|\tau'_c}{2}\sqrt{\dfrac{\dot{N}_\mathrm{start}\dot{N}_\mathrm{stop}T_t}{\sigma_\mathrm{sys}}}\quad\Rightarrow\quad T_t=\Bigg(\dfrac{2n}{\hat{Q}_0\tau'_c}\Bigg)^2\dfrac{\sigma_\mathrm{sys}}{\dot{N}_\mathrm{start}\dot{N}_\mathrm{stop}}
+\end{equation}
+
+Since Gaussian and Lorentzian-shaped correlation results are possible in \cref{eq:realjitter8}, we
+use $\tau'_c$:
+
+\begin{equation}
+\label{eq:realjitter9}
+\tau'_c=\begin{cases}
+\tau_c &\text{for \;}\tau_\mathrm{c,\, Lorentz}\\
+\sqrt{2}\pi\tau_c&\text{for \;}\tau_\mathrm{c,\, Gauss}
+\end{cases}
+
+\end{equation}
+
+In addition to the previous observations, the measurement time scales with $\sigma_\mathrm{sys}$.
+
+
+\subsection{Visibility Reducing Factors of the Intrinsic \texorpdfstring{$\boldsymbol{g^{(2)}}$ Value}{g2}}\label{sec:g2_visibility}
+When measuring the temporal correlation function of a light source, $g^{(2)}$ is influenced by
+several experimental factors.

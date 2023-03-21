@@ -1,0 +1,78 @@
+Via the Siegert relation we get
+
+\begin{equation}
+\label{eq:g2spatial1}
+g^{(2)}(\boldsymbol{r}_1, \boldsymbol{r}_2)=1+\hat{Q}_0\Big|\dfrac{2J_1(a\xi)}{a\xi}\Big|^2,
+\end{equation}
+
+with the first order Bessel function $J_1(x)$ and the Fourier frequency
+
+\begin{equation}
+\label{eq:g2spatial2}
+\xi=\dfrac{\pi}{\lambda z}|\boldsymbol{r}_1-\boldsymbol{r}_2|.
+\end{equation}
+
+Based on that, we define the coherence radius $|\boldsymbol{r}_1-\boldsymbol{r}_2|=\rho_c$, as the
+distance between the first root of $J_1$ and the central peak at
+$|\boldsymbol{r}_1-\boldsymbol{r}_2|=0$.We find the first root at $x =3.8317$, and hence
+
+\begin{equation}
+\label{eq:g2spatial3}
+a\dfrac{\pi}{\lambda z}\rho_c\stackrel{!}{=}3.8317 \rightleftarrows \rho_c\approx 1.22\dfrac{\lambda z}{a}.
+\end{equation}
+
+We yield the extension of the coherence cell in space $\rho_c$, where the cell and thus the length
+of maintained coherence properties extend over the distance z.This finding is important for the
+detector placement in correlation measurements.For instance if ${r}_1$ (distance of detector $D_1$)
+is fixed in the detection plane and the position of detector $D_2$ is varied along the green arrow
+in \cref{fig:cittert}, via \cref{eq:g2spatial1} we get the coherence loss due to an out of center
+sampling in the coherence cell.
+
+
+\subsubsection{Temporal Coherence}\label{sec:temporal_coherence}
+A useful tool to quantify temporal coherence is the (first-order) coherence time $\tau_c$ or the
+coherence length $l_c$.Within these parameters, the light is said to be coherent.Thus, the phase and
+amplitude of the light can be deduced at a certain position or time, with a high degree of certainty
+from a known position or time \cite{fox_quantum_2006}.In ideal interference experiments the used
+light is monochromatic, because interference patterns are built by summing up amplitudes of
+light.Only light of the same wavelength or at least of a very narrow interval shows phases with
+clear relations at different points.With increasing optical bandwidth, interference effects become
+less visible.Therefore, first order coherence is indirect proportional to the optical
+bandwidth.Thus, the first order coherence time is $\tau_c^{(1)}=1/{\Delta\nu}$, with $\Delta\nu$ the
+frequency bandwidth of light.The coherence time can be expressed by the wavelength bandwidth
+$\Delta\lambda$ via $c= \lambda\nu$ with the speed of light c:
+
+\begin{equation}
+\label{eq:coherence1}
+\Delta\nu=\dfrac{\partial\lambda}{\partial\nu}\Big|_{\lambda_0}\Delta\nu=-\dfrac{c}{\lambda^2_0}\Delta\lambda.
+\end{equation}
+
+Here $\lambda_0$ is the central wavelength and the negative sign can be omitted since $\Delta\nu$ or
+$\Delta\lambda$ have no direction.
+Using $\tau_c^{(1)}=1/{\Delta\nu}$, we obtain the coherence time in dependence of the wavelength
+bandwidth:
+
+\begin{equation}
+\label{eq:coherence2}
+\tau_c^{(1)}=\dfrac{\lambda^2_0}{c\Delta\lambda}
+\end{equation}
+
+The broader the optical bandwidth, the shorter the coherence time.The terms "coherence" and
+"correlation" are strongly related, and thus the coherence time can also be called the correlation
+time.\\
+For real light sources, there exists also a second order coherence time $\tau_c^{(2)}$, because of
+the lifetime of the molecule or an artificial process, leading to additional coherence properties
+(cf.\cref{sec:rpm}).
+For long-lived molecular signals the \textit{ns}-lifetime dominates the coherence time and in a
+correlation measurement we measure $\tau_c^{(2)}$.Though, for understanding mechanisms and
+influences on coherence, we restrict our discussion to linewidth-limited coherence $\tau_c^{(1)}$,
+whereas the same rules also apply for $\tau_c^{(2)}$ and we simply write $\tau_c$, where both
+$\tau_c^{(1)}$ and $\tau_c^{(2)}$ can apply.\\
+
+
+\subsection{Temporal Second-Order Correlation}
+To understand the expectations from a time tagging correlation experiment, we define the temporal
+$g^{(2)}$ function as a criterion for enhanced coherence\footnote{The coherence time $\tau_c$
+(cf.\cref{sec:coherence}) is a measure of the steepness of the $g^{(2)}$ function in the correlation
+regime and is related to the area and the width (\cref{sec:Timeestimation,sec:lineshapes}) of the
+peak.} in the classical intensity picture.

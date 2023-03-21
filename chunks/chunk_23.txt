@@ -1,0 +1,52 @@
+These losses cannot be separated from the intrinsic properties of the light.~However, for developing
+a trustworthy method to detect quantum light, it is necessary to know the ideal outcome of every
+experiment.Therefore, it is useful to have a light source where you can control the coherence
+properties deterministically and which is not affected by temporal coherence loss, to test the setup
+and the fitting routines.
+Natural thermal light sources like Mercury arc lamps are accessible to the experimenter, but have
+very short coherence times.~That is, they suffer from visibility reducing factors and are not
+controllable in terms of $\hat{Q}_0$ and $\tau_c$.~One possibility to realize a deterministic light
+source is using \ac{RPM}.A rotating \ac{GGD} is illuminated by a laser
+\cite{huang_measuring_2016}.~The granular surface of the disc provides a large number of scattering
+centers hit by the photons of the beam and many single independent waves with independent phases are
+generated, lowering the coherence \cite{asakura_spatial_1970}.~The superposition of these waves
+leads to a spatially varying intensity distribution (with mean $\bar{n}$ and standard deviation
+$\sigma_n$), called a speckle pattern.Each speckle represents a coherence cell, where photons of the
+same speckle are spatially coherent to each other, while photons from different speckles are
+uncorrelated.\\
+First, we look at the spatial coherence properties of a rotating \ac{GGD}.Using the Van
+Cittert--Zernike theorem, we determine the coherence radius $\rho_c\approx 1.22 \lambda_0 z/a$,
+analogue to \cref{sec:spatial_coherence}.The size of the speckles is determined by the size of the
+laser beam diameter $a$ on the disc, the center wavelength $\lambda_0$, and detection distance
+$z$.We observe bright and dark areas in the speckle pattern which can be modeled by a random walk
+\cite{goodman_fundamental_1976} for the electric field through the \ac{GGD} in
+\cref{fig:GGD_schematics}.The corresponding spatial intensity distribution is described by the
+Boltzmann statistic.~By rotating the disc, speckles from this intensity distribution (so-called
+thermal light) are called fully developed \cite{halpaap_experimental_2020} and we measure
+$g^{(2)}=2$.\\
+Nevertheless, the speckle pattern depends on angle-, polarization- and wavelength diversity of the
+laser \cite{goodman_fundamental_1976}.~These factors can reduce the measured $g^{(2)}(0)$.
+In \cref{fig:GGD_schematics} angular diversity occurs, if the incident angular distribution of the
+focused beam on the \ac{GGD} does not match the angular distribution towards the collimation lens,
+as it is the case for a partial collimated beam, entering the first lens.The reduction is related to
+the angular ratios.
+Polarization diversity occurs, since a polarized laser beam incident on a depolarizing surface will
+experience depolarization due to multiple scattering.The resulting speckle pattern is composed of
+two equally polarized, orthogonal polarization states, leading to a reduction of the visibility
+$\nu_\mathrm{pol}$.
+Wavelength diversity can be understood by the rough surface effect of the \ac{GGD}.The speckle
+pattern of different wavelengths inside the beam is uncorrelated, if the average relative
+phase-shift created by the surface is $\geq2\pi$ \cite{goodman_fundamental_1976}.~Using the average
+surface profile height variation $\sigma_z$, the required wavelength difference is
+
+\begin{equation}
+\label{eq:GGD_surface}
+\delta\lambda=\dfrac{\lambda_0^2}{2\sigma_z}.
+\end{equation}
+
+If the used \ac{CW} laser has a spectral width $\Delta \lambda$, the visibility reduction is
+$\propto\Delta\lambda/\delta\lambda$.When choosing the grit of the diffuser, one has to maintain
+$\delta\lambda\gg\Delta\lambda$ to fully thermalize the light source.Common \acs{GGD}s have grit
+sizes ranging from 120--1500\,grit resulting in $\sigma_z=$ \SIrange{133}{13}{\um}, respectively.For
+our TiSa \ac{CW} excitation with $\lambda_0=\SI{753.46}{\nm}$ and a 1500 grit, we get
+$\delta\lambda\approx \SI{22}{\nm}$.

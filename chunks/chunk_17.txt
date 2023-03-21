@@ -1,0 +1,55 @@
+Then we perform a summation over n to reveal the dependency on $ \bar{n}$ (\cref{fig:pltThermalmu}).
+
+\begin{equation}
+\label{eq:pcoincThermal1}
+P_\mathrm{thermal}^\mathrm{coinc}(\bar{n})=\dfrac{1}{\bar{n}}\sum_{n=0}^\infty n P_\mathrm{thermal}(n)P_\mathrm{coinc}(n)
+\end{equation}
+
+We are interested in the probability of coincidence counts stored in the histogram or lost,
+depending on the mean photon count rate $\bar{n}$.Thus, we additionally weight each term in
+\cref{eq:pcoincThermal1} by $P_\mathrm{coinc}(n)$ and divide the result by $\bar{n}$.
+
+\begin{equation}
+\label{eq:pcoincThermal2}
+P_\mathrm{thermal}^\mathrm{coinc}(\bar{n})= \dfrac{1}{(1+\bar{n})^2}-\dfrac{1-p_1}{(1+\bar{n} p_1)^2}-\dfrac{p_1}{[1 +\bar{n}(1-p_1)]^2}+1;\quad P_\mathrm{thermal}^\mathrm{loss}( \bar{n})=1-P_\mathrm{thermal}^\mathrm{coinc}(\bar{n})
+\end{equation}
+
+The thermal distribution is wider than the Poisson distribution, thus it takes higher steady-state
+count rates $\bar{n}$ to obtain the same $P_\mathrm{coinc}(\bar{n})$ as for the Poisson case, if one
+follows an iso-$p_1$ line.\\
+An important consequence of our findings is, one has to ensure for the first time step s,
+$\bar{n}=\dot{n}t$ is in the red area.This can be achieved either by increasing the count rate
+$\dot{n}$ or the sampling time per step $t$.Otherwise an error is introduced in the estimation of
+$g^{(2)}$ and one has to correct the photon histogram by multiplying each histogram count
+$c_\mathrm{mes}$ by $P^\mathrm{coinc}(\bar{n})^{-1}$.
+To give an example, we have a steady-state photon rate of \SI{20}{\kHz}, a acquisition timer per
+step of \SI{1}{\s} and a deadjusted \ac{BS} with $p_1$=\SI{1}{\percent}.We measure 2000 bins from
+\SI{-10}{\ns} to \SI{+10}{\ns} in steps of \SI{10}{\ps}.Thus, per bin, the count rate $\dot{n}$ for
+the coincidence event at $t+\tau$ is \SI{10}{\per \s}.In \cref{eq:pcoincThermal2} we find
+$P_\mathrm{thermal}^\mathrm{coinc}(\dot{n}t)\approx 0.1$.During the measurement the conditional
+probability of finding a second photon will not increase, no matter how long the measurement takes,
+since each time step introduces the same error in the estimation of $g^{(2)}$.Our results are
+confirmed by the findings of \textit{Luo et al.}.They elucidated, unbalanced linear propagation
+efficiencies will reduce the single-event Mandel Q-parameter \cite{huang_single_2007}.In this thesis
+for measuring $g^{(2)}$ at the ultra-diluted light level, we choose not more than 1000\,bins.In this
+case an acquisition time per time step of \SI{1}{\s} is enough for count rates
+$\bar{n}\geq$\SI{10}{\kHz}, to sample in the red area with $P^\mathrm{coinc}\gg$\SI{90}{\percent}.We
+found this for a deadjusted beamsplitter ratio down to $p_1=0.2$, to exclude the Poisson light
+source (cf.\cref{fig:pltPoissonmu}).
+
+
+\subsubsection{Temporal Modes}\label{sec:g2_temp_modes}
+The famous experiment of Hanbury-Brown and Twiss used the spatial second-order correlation function
+to determine the diameter of the star Sirius \cite{hanbury_brown_test_1956}.What made the experiment
+so
+challenging was the time resolution of the detection process.With the electronics used, the photon
+arrival time could only be determined to an accuracy of about \SI{10}{\ns}, while the
+coherence time was $\tau_c^{(1)}\approx\SI{0.1}{\ps}$.The uncertainty imprinted onto the arrival
+time of each photon is called the \textit{timing jitter} (individual instrumental and global system
+jitter).The jitter does not only influence the visibility of $g^{(2)}$, but it changes the
+functional form according to all included individual measuring \ac{IRF}s.\\
+We assume the arrival time of each photon is distributed according to a probability density $P(t)$,
+representing the uncertainty due to the timing jitter of an individual measuring instrument.
+Accordingly, the time difference $\tau$ between two photons, affected by n instruments, is
+distributed by $P_n(\tau)$, which can be calculated by the n-fold convolution of the probability
+density of $n$ instruments.

@@ -1,0 +1,45 @@
+To determine the peak areas, we performed Lorentzian fits (red lines).The inset of
+\cref{fig:g2_tube_max_1} reveals, the peak areas have a slight deviation from a Lorentzian shape
+($\tau \approx$ \SI{4}{\ns}), which can be due to afterpulsing or background contamination of the
+coincidence measurement.We normalized the $m$-th peak area according to \cref{eq:mlNormg2} to create
+the blue data points.These data points represent the $g^{(2)}$ values of the $m$-th pulse and
+correspond to the \ac{CW} case for $\tau=m/f$.At $\tau=0$ we observed antibunching with $g^{(2)}(0)$
+= \num{0.88} for \cref{fig:g2_tube_max_1}.\\
+For \cref{fig:g2_tube_max_2} we observe a stable total photon count rate on both detectors over the
+measurement time $T_T$ = \SI{210}{\s}, where $\dot{N}_\mathrm{start}$ = \SI{25}{\kHz} and
+$\dot{N}_\mathrm{stop}$ = \SI{35}{\kHz} are the traces of the upper graph.
+At $T_T$ = \SI{210}{\s} the photon count rates drop to a low value, indicating a drift of the
+\ac{SWCNT} out of the focus.Data processing in the prelude of
+\cref{fig:g2_tube_max_2,fig:g2_tube_max_3} is analogous to \cref{fig:g2_tube_max_1}, where at
+$\tau=0$ we observed antibunching with $g^{(2)}(0)$= \num{0.89} and $g^{(2)}(0)$ = \num{0.95},
+respectively.Furthermore, for \cref{fig:g2_tube_max_3}, we observe a bleaching trend of the photon
+count rate on both detectors over the measurement time $T_T$ = \SI{9000}{\s}, where
+$\dot{N}_\mathrm{start} = $\SI{20}{\kHz} and $\dot{N}_\mathrm{stop} = $\SI{20}{\kHz} are the traces
+of the upper graph.We expect only a few emitters in the excitation volume and a low $g^{(2)}(0)$
+value should be obtainable.The extracted higher values are still convoluted with the detection
+jitter and suffer from background contamination.Additionally, a long measurement time $T_T$ can help
+to increase the significance of the histogram, i.e., the signal to noise ratio of the $g^{(2)}$
+measurement.Anyhow, a bleaching signal trend, significantly lowering the total count rate, will also
+enhance the relative contribution of the background to the data during the same measurement time of
+a stable signal and lead to an increase of the $g^{(2)}(0)$ value.This can be one reason for the
+last $g^{(2)}(0)$ value to be higher, compared with the other two values.\\
+The next step of data processing is the background correction on the whole data set according to
+\cref{eq:g2_from_normalized_histogram} and the re-convolution of $g^{(2)}(0)$.The re-convolution
+requires that the system jitter $\sigma_\mathrm{sys}$ and the inverse coherence time $k_c$ are
+known.The system jitter is known from \cref{fig:IRF_sys}.To determine $k_c$, we fit the peaks of
+\cref{fig:g2_bgcorrected_max} as outlined in \cref{eq:taucslopeLorentz} exponentially
+\cite{beveratos_room_2002}, resulting in the green lines.
+The extracted $k_c$ values are $k_\mathrm{c,\,1}$ = \SI{5.7\pm1.1}{\per\ns}, $k_\mathrm{c,\,2}$ =
+\SI{3.0\pm0.3}{\per\ns}, and $k_\mathrm{c,\,3}$ = \SI{4.4\pm1.3}{\per\ns} for
+\crefrange{fig:g2_tube_max_1}{fig:g2_tube_max_3}, respectively.The background correction of the raw
+data results in the red data points of \cref{fig:g2_bgcorrected_max}, where we used $\rho_1-\rho_3$
+= \numlist{0.98;0.91;0.89} for \crefrange{fig:g2_tube_max_1}{fig:g2_tube_max_3}.We receive the
+signal $S$ and background $B$ by averaging the \ac{SWCNT} spot and background intensity and in areas
+analog to \cref{fig:Background}.This correction decreases the $g^{(2)}$ values by approximately
+\SIrange{6}{8}{\percent}.\\
+Using re-convolution, we obtain through \cref{eq:ConvImp}: $g^{(2)}_{1}(0)$ = \num{0.63\pm0.05},
+$g^{(2)}_{2}(0)$ = \num{0.73\pm0.05} and $g^{(2)}_{3}$ = \num{0.84\pm0.02} for
+\crefrange{fig:g2_tube_max_1}{fig:g2_tube_max_3}, respectively.The values convey significant
+antibunching, where we expect $g^{(2)}(0)=1-\frac{1}{n}$, where $n$ is the number of emitters in the
+focal volume.The values for the first and second measurement on the same tube differ.This is due to
+a decreased signal strength and a higher relative background in the second measurement.

@@ -1,0 +1,55 @@
+This two-stage technique is useful to evaluate whether the envelope fit was successful by counter
+checking with the $1/e$-value and in case we find a large deviation, to perform an adjustment of the
+fit limits.In summary, we are able to benefit from the high statistical significance of the
+determination of $\tau_c$ from the envelope fit.Last, we apply a power correction on $\tau_c$ to
+reveal $\tau_f$ as outlined in \cref{sec:powercorr}.\\
+To evaluate which envelope function is most useful and easy to handle, we looked into several cases,
+where we illustrate the results in \cref{fig:g2_lifetime_fit}.The GaussMod$_1$ envelope is similar
+to the \ac{IRF} discussion and an accurate fit model for a Gaussian pulse shape, but also contains
+certain drawbacks.~The GaussMod$_1$ envelope is the The GaussMod$_2$ envelope from
+\cref{eq:GaussMod2} without the $z_{+}$-terms, since an exponentially decay is predominantly
+imprinted by convolution on the right side of the pulse ($\tau>0$), to image the probabilistic
+process of lifetime.Unfortunately, due to the erfc-function included, a closed analytical expression
+to extract the lifetime from the \ac{FWHM} is lacking.One has to fit the histogram, including jitter
+and so forth.
+
+\begin{align}
+&\textrm{\textbf{GaussExp.s.t.: }}&\sum_{l=-m}^m&\dfrac{1}{\tau_c}e^{-\dfrac{1}{\tau_c}\Big|\tau-\tau_0-\dfrac{l}{f}\Big|+\dfrac{\sigma^2}{2\tau_c^2}}\label{eq:taucslopeGauss}\\
+&\textrm{\textbf{LorentzExp.s.t.: }}&\sum_{l=-m}^m&\dfrac{1}{\tau_c}e^{-\dfrac{1}{\tau_c}\Big|\tau-\tau_0-\dfrac{l}{f}\Big|}\cos\Big(\dfrac{\sigma}{\tau_c}\Big)\label{eq:taucslopeLorentz}
+\end{align}
+
+The two remaining curves correspond to a single exponential decay for positive $\tau$-values,
+convolved with a Gaussian-(red) and Lorentz-shaped peak (blue).This method is simpler and offers an
+analytical solution.However, the result is only applicable for the $m=0$ peak.One can continue the
+result though, with the help of the Shah function and symmetrize the fit to cover the whole peak.The
+results in \cref{eq:taucslopeGauss,eq:taucslopeLorentz} are label with s.t.for "single-time",
+because the exponential function is initial´ly defined for positive $\tau$-values at the
+zero-peak.\\
+From all three function, with the same fit parameters, we estimate the same slope values $\tau_c$\\
+An important feature and why we use this functions is the \ac{FWHM} is identical for both envelope
+types and independent of the jitter and no deconvolution is necessary when we determine the
+amplitude values at $1/e$ and $\tau_\mathrm{1/e}$.This is due the height is also determined by the
+jitter and the jitter dependence is divided out by calculating the \ac{FWHM}.
+
+\begin{equation}
+\label{eq:lifetimeFWHM}
+\textrm{\textbf{FWHM: }} \begin{cases}
+\dfrac{2l}{f}+2\tau_0- 2\ln(2)\tau_c & l\in[-m,m] \\
+\end{cases}
+
+\end{equation}
+
+Although simplified, $\tau_c$ from each peak is still no independent measure, since they are related
+via the $g^{(2)}$ envelope, e.g., the intrinsic properties of the light.Thus when calculating the
+mean value we have to take into consideration the covariance to get, i.e., an accurate error
+estimate $\Delta \tau_c$.For details on error calculation see Sect.~\cref{sec:g2_error_lifetime}.
+
+
+\subsection{Pulsed \texorpdfstring{$\boldsymbol{g^{(2)}}$}{g2}Measurements on SWCNTs} \label{sec:g2_exp_lifetimes}
+We performed measurements of the $g^{(2)}$ function on different (6,4)-\acp{SWCNT}.The
+upper graph of \cref{fig:g2_tube_max_1} shows a stable total photon count rate on both detectors
+over the measurement time $T_T$ = \SI{70}{\s}, where $\dot{N}_\mathrm{start}$ = \SI{120}{\kHz} and
+$\dot{N}_\mathrm{stop}$ = \SI{80}{\kHz} are the traces of the upper graph.The photon count rates
+deviate \SI{30}{\percent} from a equal splitting ratio.This can be caused by imperfect alignment of
+the \ac{BS}, as well as slight defocusing of the sample.The bottom graph of \cref{fig:g2_tube_max_1}
+indicates the measured coincidence histogram of a (6,4)-\ac{SWCNT} object.

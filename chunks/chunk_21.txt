@@ -1,0 +1,57 @@
+We extracted the lifetime from $k_\mathrm{c,\, exp}$, where the inter photon delay has an upper
+bound of $2\tau_f$ for spontaneous emission of a two-level molecule
+\cite{maser_few-photon_2017}.With laser pumping, the power term lowers the inter-photon delay by
+stimulated emission, which has to be corrected.
+
+
+\subsubsection{Summary of the Procedure}\label{sec:summarydeconv}
+\Cref{fig:g2_procedure} displays the procedure of the $g^{(2)}$- and lifetime mode.~We sample the
+measurement in a timed loop from $s=1$ to $t$ and a time step of \SI{1}{\s}, until the end is
+reached at $T_t$.During the measurement we read out a cumulative counter and coincidence
+histogram.For the histogram we distinguish between the pulsed and \ac{CW} case.\\
+For the pulsed case the raw histogram is cleaned up by moving the histogram along the time axis so
+that the $m=0$ peak is centered at $\tau_0$.Furthermore, a linear baseline offset is removed.We then
+split the histogram into sub-histograms for each pulse and calculate difference sub-histograms
+utilizing the sub-histograms from the previous step $s$ and integrate the sub-histograms for every
+pulse.We calculate the difference sub-histograms to be able to normalize correctly for temporal
+bleaching trends in the actual count rate.\\
+Moreover, from the cumulative counter we calculate the actual count rates of time step s and weight
+the actual count rates with the sum over all difference sub-histograms from a time step s.In such a
+way we generate a weighted rate for each time step s.~Next, we normalize the integrated difference
+sub-histograms for each pulse with the weighted rate, for each time step s to correctly normalize
+$g^{(2)}$ for arbitrary signal trends (cf.\cref{sec:g2_error_lifetime}).The resulting quantity has
+the dimension of $\delta g^{(2)}$ for every step s and thus we have to sum these values up for all
+steps s.\\
+After $T_t$ is reached, we perform a one-step reconvolution (cf.\cref{sec:decon}) fit, utilizing the
+jitter and visibility reducing factors.The actual jitter is interpolated from the power-dependent
+jitter measurements in \cref{sec:powerjitter} by using a third-order fit and the sum of the weighted
+count rates form start and stop detector.The visibility reducing factors were calculated beforehand,
+as outlined in \cref{sec:g2_visibility}.
+In the case of incident pulses without flat phase, e.g., featuring double pulses, a Lorentz-shaped
+histogram fit can provide a clean signal instead of using the cumulative histograms for the
+procedure.The correlation time is calculated from the pulse slopes using the lifetime procedure of
+\cref{sec:lifetime}.Thereafter we perform a power correction due to stimulated emission upon laser
+excitation \cite{beveratos_room_2002,treussart_photon_2001} to reveal $\tau_F$, which enters the
+one-step reconvolution fit.The result is the intrinsic $g^{(2)}$ curve.\\
+For \ac{CW} excitation, the difference histogram can be normalized directly, whereupon all other
+evaluation steps are the same as for the pulsed case, except for the correlation time, which can be
+obtained directly from the reconvolution fit, featuring more data points.\\
+For the error calculation of $g^{(2)}$ we apply a more advanced error propagation technique,
+considering covariance matrices.The reason is, the start and stop count rates are statistically
+correlated by the \ac{BS} and the coincidence counts depend on the count rates as well.For the
+corresponding error propagation rules see \cref{sec:g2_error_lifetime}.
+
+
+\section{Continuous Wave Measurements}
+We deploy the \ac{CW} methods for $g^{(2)}$ measurements to rate the noise contamination and
+accuracy of the evaluation routines and the digital setup.
+We check the Poisson baseline of the $g^{(2)}$ normalization and the fluctuations of the noise floor
+for consistency with the theory.Furthermore, we use a home-built \ac{RPM} module to test the
+coherence properties of the setup and the accuracy of the re-convolution routine.
+We reconstruct $g^{(2)}(0)$ and $\tau_c$ using the re-convolution routine for digitized data on
+\ac{SWCNT} and $WSe_2$ and compare the values with literature.
+
+
+\subsection{Characterization of the Noise Floor}
+Comparing the experimental baseline $|M|$ and its fluctuations $\sigma_\mathrm{g^{(2)}}$ with the
+theoretical expectation (cf.

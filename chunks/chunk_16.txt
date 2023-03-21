@@ -1,0 +1,74 @@
+The sum of these paths represents the loss probability of a coincidence measurement
+$P_\mathrm{loss}$, whereas the coincidence count probability of correctly detected events
+$P_\mathrm{coinc}$ is given by the sum of all other paths.The total probability of all paths
+$P_\mathrm{total}$ follows from stochastic considerations and can be represented by Pascal's
+triangle,
+
+\begin{equation}
+\label{eq:treediagram}
+P_\mathrm{total}=\sum_{k=0}^n \binom{n}{k}p_1^{n-k}p_2^k;\quad P_\mathrm{loss}=\begin{cases}0 & n=1\\p_1^n+p_2^n& n>1\end{cases};\quad P_\mathrm{coinc}=P_\mathrm{total}-P_\mathrm{loss}\textrm{, with }n\in\mathbb{N}
+\end{equation}
+
+where the numbers on the edge of the nth row are the binomial coefficients of the highest-order
+terms $p_1^n$ and $p_2^n$, whose sum is $P_\mathrm{loss}$.The terms of the kth column of the nth
+line, are the binomial coefficients for $p_1^{n-k}$ and $p_2^k$, where the sum can be written as
+$P_\mathrm{total}=(p_1+p_2)^n$.
+Since these probabilities are related to every histogram count obtained by the $g^{(2)}$ method, we
+calculate the relative probability of detecting a coincidence count event
+$P_\mathrm{rel}=(1+P_\mathrm{loss}/P_\mathrm{coinc})^{-1}$ in \cref{fig:pltn}, which measures the
+underestimation of $g^{(2)}$.It is obvious, depending on $p_1 (p_2=1-p_1)$ and the number of
+simultaneous photon events, the coincidence-histogram is more or less accurate.For $p_1=0.5$ we find
+the highest accuracy with $P_\mathrm{rel}>0.9$ for $n>5$ and a minimum with $P_\mathrm{rel}=0.5$ for
+$n=2$, while for $p_1\neq 0.5$, the accuracy drops to lower values.
+Unfortunately, the number of photon events that hit the \ac{BS} is not constant, so that the plot
+against n does not reflect a real light source.We have to consider the photon number statistics
+which indicate the distribution of the number of photon events in the light source.
+
+
+\paragraph{Poisson Light Statistics}
+An example is a Poisson light source that emits a steady-state photon stream with the mean photon
+number $\bar{n}$, observed in a time interval $t$.The probability distribution is given by
+\cref{eq:poissonsum}.
+
+\begin{equation}
+\label{eq:poissonsum}
+P_\mathrm{poiss}(\bar{n})=\dfrac{\bar{n}^n}{n!}e^{-\bar{n}};\qquad \bar{n}=\sum_{n=0}^\infty n P_\mathrm{poiss}(n)
+\end{equation}
+
+The Poisson distribution has to be multiplied by n to weight the actual count number with its
+probability.Then we perform a summation over n to reveal the dependency on $\bar{n}$.
+
+\begin{equation}
+\label{eq:pcoincPoisson1}
+P_\mathrm{poiss}^\mathrm{coinc}(\bar{n})=\dfrac{1}{\bar{n}}\sum_{n=0}^\infty n P_\mathrm{poiss}(n)P_\mathrm{coinc}(n)
+\end{equation}
+
+We are interested in the probability of coincidence counts stored in the histogram or lost,
+depending on the mean photon count rate $ {n}$.Thus, we additionally weight each term in
+\cref{eq:pcoincPoisson1} by $P_\mathrm{coinc}(n)$ and divide the result by $\bar{n}$.
+
+\begin{equation}
+\label{eq:pcoincPoisson2}
+P_\mathrm{poiss}^\mathrm{coinc}(\bar{n})= e^{-\bar{n} }+ e^{-\bar{n} p_1}\Big(p_1-1\Big)-p_1e^{\bar{n} (p_1-1)}+1;\qquad P_\mathrm{poiss}^\mathrm{loss}(\bar{n})=1-P_\mathrm{poiss}^\mathrm{loss}(\bar{n})
+\end{equation}
+
+The relative probability of detecting a coincidence count event in \cref{fig:pltPoissonmu} is by
+construction identical with $P_\mathrm{poiss}^\mathrm{coinc}(\bar{n})$.In a real measurement, we
+only measure the coincidence counts $c_\mathrm{poiss}^\mathrm{coinc}=\bar{n}
+P_\mathrm{poiss}^\mathrm{coinc}$, but the loss counts $c_\mathrm{poiss}^\mathrm{loss}=\bar{n}
+P_\mathrm{poiss}^\mathrm{loss}$ are missing.%%In order to correct the photon histogram for this we
+multiply each histogram count $c_\mathrm{mes}$ by $P_\mathrm{poiss}^\mathrm{coinc}(\bar{n})^{-1}$,
+or make sure the mean photon number is high and $p_1\approx 0.5$ to have a high coincidence
+probability $P_\mathrm{poiss}^\mathrm{coinc}$
+
+
+\paragraph{Thermal Light Statistics}
+The probability distribution for a thermal light source is given by \cref{eq:thermalsum}.
+
+\begin{equation}
+\label{eq:thermalsum}
+P_\mathrm{thermal}(\bar{n})=\dfrac{\bar{n}^n}{(1+\bar{n})^{n+1}};\qquad \bar{n}=\sum_{n=0}^\infty n P_\mathrm{thermal}(n)
+\end{equation}
+
+Analogue to the Poisson case, we multiply the thermal distribution by n, to weight the actual count
+number with its probability.

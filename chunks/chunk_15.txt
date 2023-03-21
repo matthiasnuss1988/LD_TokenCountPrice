@@ -1,0 +1,53 @@
+Therefore we ask "How does a \ac{BS} act on two particle incidents simultaneously and how does the
+interaction influence photon bunching measurements?".First we consider a balanced \ac{BS}
+($p_2=p_1$), where one photon is incident via route (0) (\cref{fig:g2_beamsplitter}).The photon has
+a 50\% chance of ending up in either port (1) or in port \textcolor{red}{(2)}.Quantum mechanically
+we write the operation of the \ac{BS} using states $\ket{0},\,\ket{1}$ and
+$\ket{\textcolor{red}{2}}$ as
+
+\begin{equation}
+\label{eq:bs}
+\ket{0}\rightarrow\dfrac{1}{\sqrt{2}}(\ket{1}+i\ket{\textcolor{red}{2}})
+\end{equation}
+
+For simplicity we assumed, the \ac{BS} as completely symmetric.This symmetry implies that a wave
+experiences a phase shift of $\pi/2$ upon reflection relative to transmission
+\cite{weihs_photon_2001}, as signified by the phase factor $i$ in \cref{eq:bs}.If we envisage a
+continuous stream of photons equidistant in time and incident from beam port (0), then the detectors
+positioned in outgoing beams (1) and \textcolor{red}{(2)} will each register a random sequence of
+photons, as each single-photon has the same probability to be detected either in (1) or in
+\textcolor{red}{(2)}.This is a direct consequence of the probabilistic interpretation of the quantum
+state in \cref{eq:bs}.In other words the introduction of a \ac{BS} introduces new noise in the
+outgoing beams, degrading the statistics.\\
+For two incident photons, as depicted in \cref{fig:g2_beamsplitter}, the operation of the \ac{BS}
+reads:
+
+\begin{align}
+\ket{0}_1 \ket{0}_{\textcolor{red}{2}}&\quad\rightarrow\quad\dfrac{1}{2}(\ket{1}_1+i\ket{\textcolor{red}{2}}_1)(\ket{1}_{\textcolor{red}{2}}+i\ket{\textcolor{red}{2}}_{\textcolor{red}{2}})\\
+&\quad\rightarrow\quad\dfrac{1}{2}(\ket{1}_1\ket{1}_{\textcolor{red}{2}}+i\ket{1}_1\ket{\textcolor{red}{2}}_{\textcolor{red}{2}}+i\ket{\textcolor{red}{2}}_1\ket{1}_{\textcolor{red}{2}}-\ket{\textcolor{red}{2}}_1\ket{\textcolor{red}{2}}_{\textcolor{red}{2}}),
+\end{align}
+
+with the index addressing the initial photon.Each of the two photons behaves independently just as
+classical particles would do, but end up with different probabilities in the states $\ket{1}$ and
+$\ket{\textcolor{red}{2}}$.Although, in a coincidence-based $g^{(2)}$ experiment, it is essential to
+detect all coincidence events at $\tau=0$, to allow the most accurate $g^{(2)}(0)$ evaluation and
+classification of the light source.We will intimate that besides the adding of new noise, a \ac{BS}
+introduces an error in the determination of $g^{(2)}(0)$, which is severe, even if $p_1\neq p_2$ and
+must be considered.\\
+Let us have a look at n-bunching photons passing through a \ac{BS}.In \cref{fig:tree_dagram} we see
+a tree diagram, where each of the $n\leq4$ bunching photon passes through a \ac{BS} to a start (1)
+and a stop detector \textcolor{red}{(2)}, with each photon having probability $p_1$ or $p_2$ to
+reach ether detector.In the case of one photon $(n=1)$, the photon goes ether to the start detector
+with $p_1$ or to the stop detector with $p_2$.The more photons bundle, the greater the number of
+possible branches of the tree diagram, which scales with $2^n$.Here, $\mathrm{P_i}$ denotes
+the product path probability of a branch.We can see from the diagram that for a detection scheme
+where a start event must be followed by an event at the stop detector to allow coincidence counting,
+the event counts at which the first photon arrives at the stop detector are lost (dashed lines),
+already introducing an error.In our detection system, the order of start and stop detector is not
+fixed, but where the photon arrives first is taken into account.However, bunching/antibunching is
+only detected correctly if the \ac{BS} always directs at least one photon to the stop detector when
+several photons are bunched.This is because the counter cannot distinguish whether one or more
+photons arrive at the same time and only delivers one coincidence count.
+A \ac{BS} does not fulfill this criterion for $n>1$, as you can see from the paths marked in red,
+where all the bundled photons are directed to only one detector and consequently no coincidence
+event is detected.

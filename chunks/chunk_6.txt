@@ -1,0 +1,63 @@
+Comparing the experimental baseline fluctuations with $\sigma_\mathrm{g^{(2)}}$ is a good criterion
+to judge whether the baseline is stable during measurement.
+
+
+\subsubsection{Normalization for a CW Light Source}
+To calculate $g^{(2)}$ for a \ac{CW} light source, the measured histogram data $c(\tau)$ is first
+normalized to the Poisson baseline \cite{beveratos_room_2002,swabian_instruments_time_2021}:
+
+\begin{equation}
+\label{eq:cwNormg2}
+C^\mathrm{CW}_N(\tau)=\dfrac{1}{\tau_\mathrm{bin}\dot{N}_\mathrm{start}\dot{N}_\mathrm{stop}T_t}c(\tau)
+\end{equation}
+
+After normalization, a photon source with Poisson photon statistics, i.e.a laser,
+$C^\mathrm{CW}_N(\tau)$ has a constant value of one, regardless of the time difference.Thermal light
+sources with super-Poisson statistics exhibit values that are larger than one.For times other than
+zero, the function also approaches one.\Cref{fig:g2cwpulsed}a points out such a normalization for a
+\ac{NV} center in a nanocrystal.The zero-time value of the uncorrected normalized correlation
+function given by cref{eq:cwNormg2} is $C^{CW}_N(0)$ = \num{0.17}.The fit is performed with the
+model derived in \cref{sec:decon}.\newline
+Anyway, the coincidence-based method also has some drawbacks.When a second photon arrives shortly
+after the first one, the second photon cannot be detected and a second detector is needed, due to
+the dead time $\tau_D$ after each detected photon.It takes about \SIlist{57;97}{\ns} (in this
+thesis) until the signal can reach the threshold again.Furthermore, photon bunching effects on
+\si{ps}-scales are impossible to detect with only one detector in photon counting mode.The method
+that suits better to the specific situation depends on many factors and should be considered well.
+
+
+\subsubsection{Normalization for a Pulsed Light Source}
+If light originates from a pulsed photon source (\cref{fig:g2cwpulsed}b and not from a continuously
+emitting photon source (\cref{fig:g2cwpulsed}a, we need a different approach for evaluating
+$g^{(2)}$.The time-difference histogram of a pulsed light source has prominent peaks for each pulse
+in the observed time span, where the peak at $\tau=0$ vanishes for a single-photon source.Here, the
+coincidences between peaks do not reach zero, because of the overlapping of adjacent peaks.
+Contrary to a continuous light source, only histogram values for certain discrete time differences,
+i.e., integer multiples of the distance between pulses are reasonable.To obtain the normalized
+histogram value $C^\mathrm{ml}_N(m)$ for each pulse $m$, we divide the area of any given pulse by
+the Poisson limit, which would be obtained for that pulsed source.\cite{beveratos_room_2002}:
+
+\begin{equation}
+\label{eq:mlNormg2}
+C^\mathrm{ml}_N(m)=\dfrac{f}{\dot{N}_\mathrm{start}\dot{N}_\mathrm{stop}T_t}c(m),\qquad \textrm{with}\qquad c(m)=\sum_{-\epsilon}^{\epsilon}c(\tau)\textrm{ \cite{santori_triggered_2001}}
+\end{equation}
+
+We sum up the histogram $c(\tau)$ in a range $2\epsilon$ around each pulse center.We choose
+$\epsilon$ to obtain an accurate area result in a range of three standard deviations $(3\sigma)$ of
+the pulse.Thereafter, the normalization is similar to the \ac{CW} case, but since all data in the
+bin of a pulse are collated into one value, the normalization is independent of $\tau_\mathrm{bin}$,
+but utilizes the pulse frequency $f$.
+
+
+\subsection{Different Lineshapes}\label{sec:lineshapes}
+Time resolution is the key to measure a signal within a reasonable time frame.A quantitative view on
+this issue is taken in \cref{sec:Timeestimation}.
+Fortunately, most signals, e.g., from single molecules are well resolvable, due to
+lifetime-broadening in the \si{\ps}- to \si{\ns}-range.Let us first consider $g^{(2)}$ for different
+spectral line shapes.
+
+
+\subsubsection{Rectangular Filter}
+As an example imagine an optical filter only passing frequencies in a range
+$[\omega_0-\frac{\Delta\omega}{2},\,\omega_0+\frac{\Delta\omega}{2}]$ around the central frequency
+$\omega_0$ of the signal with a bandwidth $\Delta\omega$.

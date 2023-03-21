@@ -1,0 +1,80 @@
+We assume two detectors recording the intensity in the far field within the same spatial
+mode.A thermal light field leads to large intensity fluctuations on time scales $t\gg\tau_c$, while
+for $t\ll\tau_c$ the intensity remains approximately constant.Assuming a constant average intensity
+$\braket{I(t)}=\braket{I}$, we can write
+the intensity registered at each detector as \cite{fox_quantum_2006}
+
+\begin{equation}
+\label{eq:Ifluc}
+I_1(t)=I_2(t)=I(t)=\braket{I}+\Delta I(t),
+\end{equation}
+
+with $\Delta I(t)$ denoting time-dependent intensity fluctuations.
+
+
+\subsubsection{Classical Description}
+Introducing a time delay $\tau$ between the two detectors, the second order temporal intensity
+correlation function reads:
+
+\begin{subequations}\label{eq:g2classical}
+%\setlength{\abovedisplayskip}{1pt}
+
+\begin{alignat}
+{3}
+g^{(2)}(\tau)=&\dfrac{\braket{I(t)I(t+\tau)}}{\braket{I(t)}^2}= \dfrac{\bigl \langle\big(\braket{I}+\Delta I(t)\big)\big(\braket{I}+\Delta I(t+\tau)\big)\bigr \rangle}{\bigl \langle\braket{I}+\Delta I(t)\bigr \rangle^2}\\
+=&\dfrac{\bigl \langle \braket{I}^2+\Delta I(t)\braket{I}+\braket{I}\Delta I(t+\tau)+\Delta I(t)\Delta I(t+\tau)\bigr \rangle}{\braket{I}^2}\\
+&\quad\Rightarrow\quad 1+ \dfrac{\braket{\Delta I(t)\Delta I(t+\tau)}}{\braket{I(t)}^2}=1+\underbracket{\hat{Q}(\tau)}_{\in\;[0,\;1]}
+\end{alignat}
+
+\setlength{\belowdisplayskip}{1pt}
+\end{subequations}
+
+We used, $\braket{\Delta I(t)}$ = \num{0}, since the fluctuations are random.~$\braket{\Delta
+I(t)\Delta I(t+\tau)}$ = \num{0} on time scales larger than the coherence time ($t\gg\tau_c$).Then,
+the fluctuations are no longer correlated in time.In this case \cref{eq:g2classical} equals one.For
+smaller time delays ($t\ll\tau_c$) $\braket{\Delta I(t)\Delta I(t+\tau)}\neq 0$, the fluctuations
+remain correlated \cite{fox_quantum_2006}, expressed by the time-dependent normalized single-pulse
+Mandel Q-parameter $\hat{Q}(\tau)$, which is explained in \cref{sec:NormalizedMandelQ}.One finding
+is that a source whose intensity fluctuations tend to zero is coherent in the second order.An
+example is laser light in the classical description.In contrast, a thermal source proclaims higher
+correlations (bunching) for small values of $\tau$, which is associated with an increased
+probability of secondary photon detecting.Whereas for larger $\tau$ $g^{(2)}$ approaches 1.
+
+
+\subsubsection{Quantum Mechanical Description}
+In experimental quantum optics at the ultra-diluted light level, single-photon counting modules are
+frequently deployed.To accommodate for that, we apply the representation of the second-order
+correlation function in the particle view.This representation includes the complete definition range
+for $g^{(2)}$.In addition to coherent and bunched light, $g^{(2)}$ provides a criterion for reduced
+coherence as it occurs in non-classical anti-bunched light.
+
+\begin{subequations}\label{eq:g2quantum}
+%\setlength{\abovedisplayskip}{1pt}
+
+\begin{alignat}
+{2}
+g^{(2)}(\tau)=&\dfrac{\braket{\hat{a}^\dagger(t)\hat{a}^\dagger(t+\tau)\hat{a}(t)\hat{a}^\dagger(t)}}{\braket{\hat{a}^\dagger(t)\hat{a}(t)}^2}=\dfrac{\braket{n(t)n(t+\tau)}}{\braket{n(t)}^2}\underbracket{=}_\mathrm{\text{\cite{fox_quantum_2006}}}\dfrac{\braket{n^2(\tau)}-\braket{n(\tau)}}{\braket{n(\tau)}^2}\\
+\underbracket{=}_\mathrm{\cref{eq:g2def2}}&\dfrac{\sigma_n^2(\tau)-\overline{n}(\tau)+\overline{n}(\tau)^2}{\overline{n}(\tau)^2}=1+\dfrac{\sigma_n^2(\tau)-\overline{n}(\tau)}{\overline{n}(\tau)^2}=1+\underbracket{\hat{Q}(\tau)}_{\in\;[-1,\;1]}
+\end{alignat}
+
+\setlength{\belowdisplayskip}{1pt}
+\end{subequations}
+
+Here, $\hat{a}(t)$ describes the annihilation operator in the mode corresponding to time $t$ in the
+particle view and the variance is $\sigma_n^2$.
+
+\begin{equation}
+\label{eq:g2def2}
+\braket{n^2}=\sigma_n^2-\overline{n}^2
+\end{equation}
+
+The classical description in \cref{eq:g2classical} and the quantum mechanical description in
+\cref{eq:g2quantum} are equivalent under certain conditions since the field is given by the
+expectation value of the photon number operator,
+
+\begin{equation}
+\label{eq:g2def3}
+\braket{I}\propto\braket{n}=\braket{\hat{a}^\dagger\hat{a}}=\overline{n},
+\end{equation}
+
+which is equivalent to the mean number of photons in the mode.

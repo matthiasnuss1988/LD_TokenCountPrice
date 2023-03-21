@@ -1,0 +1,67 @@
+These conditions are coherent ($g^{(2)}$ = \num{0}) and bunched light sources
+($g^{(2)}>$\num{1}).The intensity fluctuations in \cref{eq:g2classical} are always positive and
+anti-bunched states with $g^{(2)}<1$ cannot be reached.
+Any state for which $g^{(2)}(0) < 1$ is said to be nonclassical according to the antibunching
+criterion.As an example, a Fock state $\ket{n}$ has $g^{(2)}(0) =1-1/n$, whereas for a thermal
+state, $g^{(2)}(0)=2$.\\
+Analogous to $I(t)\propto\braket{\hat{a}^\dagger(t)\hat{a}(t)}$, which gives the probability to
+detect a photon at the time
+$t$, $g^{(2)}$ can be interpreted as a conditional probability:
+
+\begin{equation}
+\label{eq:g2def4}
+g^{(2)}(\tau)=\dfrac{P(t|t+\tau)}{P(t)}
+\end{equation}
+
+$P(t)$ is the probability of detecting a photon at time $t$ and $P(t|t+\tau)$ the conditional
+probability of detecting a second photon at time $t + \tau$, if the first photon was detected.
+
+
+\paragraph{Remark on $\hat{Q}(\tau)$} We emphasize our finding: The difference between the classical description and the quantum mechanical description of $g^{(2)}$, is a limited definition range of the normalized Mandel Q-parameter (compare the last parts of \cref{eq:g2classical,eq:g2quantum}.Furthermore, motivated by the similarity of the last part in \cref{eq:g2quantum,eq:g2def6}, it will be shown via the Wiener--Khinchin theorem and the Siegert relation (\cref{sec:siegert}), for light sources with Lorentzian and Gaussian-shaped spectral density functions, $\hat{Q}(\tau)$ can be factorized:\\ $\hat{Q}(\tau)=\hat{Q}_0 f(\tau)$, where $f(\tau)=\exp(-\alpha|\tau-\tau_0|)$ is an exponential scaling function \cite{ann_observation_2019}.
+
+
+\section{Data Analysis and Derivations}
+The goal is to deduce an analysis method that creates a graph from the time-tagging experiment that
+can be interpreted as the intrinsic function $g^{(2)}$ of the light source.
+
+
+\subsection{Time Difference Spectra: Finite Sampling}
+Although there is no natural quantization of $t$ in $g^{(2)}$, it is in the measurement due to time
+binning.This yields an adaptation of "nature" to the experiment.A second problem is the
+interpretation of \textit{intensity}.Again, in a natural system, there is no limit and no
+quantization of intensity.It is a continuous curve evaluated in time.However, the only thing one can
+obtain from the measurement is whether
+there is a photon time stamp or not.There is also no information about the number of photons.
+
+\begin{itemize}
+\item The former continuous time $t$ is quantized by the minimum binwidth $\tau_\mathrm{bin}$ = \SI{1}{\ps} form the \textit{Swabian Instruments Time Tagger Ultra}.This also holds for the time difference $\tau$.
+\item The intensity $I(t)$ at a time $t$ consists of only two states: $I(t) = 1$ if there is a photon, $I(t) = 0$ if there is none.
+\end{itemize}
+
+What do these perceptions mean to the numerator of \cref{eq:g2classical}?Now, averaging over the
+product $I(t)I(t + \tau)$ is not integrating, but summarizing this expression over all possible time
+tags:
+
+\begin{equation}
+\label{eq:g2finite1}
+\int_{t}I(t)I(t+\tau)\partial t\quad\Rightarrow\quad\sum_t I(t)I(t+\tau)
+\end{equation}
+
+The sum argument is the product of two intensities, which can only be \num{0} or \num{1}.The sum
+over all time bins t at a given time difference $\tau$ returns the absolute number of coincidences.
+
+
+\subsection{Normalization of \texorpdfstring{$\boldsymbol{g^{(2)}}$}{g2 Function}}
+A spectrum exhibiting the number of coincidences for each time difference $\tau$ is already very
+close to the intrinsic $g^{(2)}(\tau)$ function.It must be normalized, which is done by the
+denominator in \cref{eq:g2classical}.Nevertheless in a real measurement, due to background
+contribution and convolution with the \ac{IRF} of the setup, there is still a difference between
+this spectrum $c_N(\tau)$ and $g^{(2)}$.
+That is why, in general, a distinction is made between $c_N(\tau)$ and $g^{(2)}$.
+
+\begin{equation}
+\label{eq:g2finite2}
+\braket{I(t)I(t+\tau)}=\dfrac{1}{\mathrm{N}}\sum_\mathrm{i=1}^\mathrm{N}I(t_i)I(t_i+\tau)\qquad \textrm{and}\qquad \braket{I(t)}^2=\Big(\dfrac{1}{N}\sum_\mathrm{i=1}^\mathrm{N} I(t_i)\Big)^2
+\end{equation}
+
+where $N$ is the total number of bins ($T_t/\tau_\mathrm{bin}$).

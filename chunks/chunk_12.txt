@@ -1,0 +1,72 @@
+This equation is equivalent to \cref{eq:g2bgcomp}, derived from photon statistics, using the
+Mandel-Q parameter.This is easy to understand by a closer look at the property of the convolution of
+two random variables $S$ and $B$ (\cref{sec:Remarkbg}).
+
+
+\subsubsection{Polarization Modes}
+Assuming propagation in z-direction, the polarization state of each photon of an arbitrary light
+field can be expanded in the base of two orthogonal polarization modes.
+
+\begin{equation}
+\label{eq:polmodes1}
+\ket{\psi}=c_x\ket{\psi_x}+c_y\ket{\psi_y}
+\end{equation}
+
+with the two orthogonal polarization modes $\ket{\psi_x}$ and$\ket{\psi_y}$
+($\braket{\psi_x|\psi_y}=0$ and $c_x,\, c_y\in \mathbb{C}$).Only if two coincidental photons are
+indistinguishable with respect to polarization, the photon pair can be correlated.We use the
+probability for a photon to be polarized in x- or y-direction
+
+\begin{align}
+\label{eq:polmodes2}
+|\braket{\psi_x|\psi}|^2&=|c_x|=p_x\\
+|\braket{\psi_y|\psi}|^2&=|c_y|=p_y\nonumber,
+\end{align}
+
+with $p_x+p_y=1$.
+Accordingly to the argumentation for background light, the visibility of the (anti-) bunching peak
+can be calculated by dividing the probability of detecting two photons of the same mode by the
+entire event space.
+
+\begin{equation}
+\label{eq:polmodes3}
+\nu_\mathrm{pol}=\dfrac{p_x^2+p_y^2}{\big(p_x+p_y\big)^2}=1-2p_xp_y
+\end{equation}
+
+The degree of polarization $\Theta_p$ of a light field is expressed by the fraction of the intensity
+fully polarized ($I_x,\,-I_y)$ to the total intensity and can be extracted from the offset and
+amplitude in a polarization measurement, using polarizers.
+
+\begin{equation}
+\label{eq:polmodes4}
+\Theta_p=\dfrac{I_x-I_y}{I_x+I_y}=|p_x-p_y|\quad\rightarrow\quad\Theta_p^2=p_x^2+p_y^2-2p_xp_y\underbracket{=}_{p_x+p_y=1}1-4p_xp_y
+\end{equation}
+
+Completely unpolarized light exhibits $\Theta_p=0$, whereas we get $\Theta_p=1$ for fully
+unidirectional polarized light.
+To link $\Theta_p$ to the visibility $\nu_\mathrm{pol}$, we use the squared degree of polarization
+$\Theta_P^2$.
+
+\begin{equation}
+\label{eq:polmodes5}
+\nu_\mathrm{pol}=1-2p_xp_y\underbracket{=}_{\mathrm{\cref{eq:polmodes4}}}1+\dfrac{\Theta_P^2-1}{2}
+\end{equation}
+
+Fully polarized light delivers $\nu_\mathrm{pol}=1$, accounting for all photons yield the same
+polarization and are therefore correlated.In contrast fully unpolarized and circularly polarized
+light results in $\nu_\mathrm{pol}=0.5$, halving the visibility.\\
+Note, for background intensity matching the signal intensity the visibility was reduced to 1/4 .In
+case of equally strong polarization modes, the visibility is only reduced to 1/2, since every mode
+is correlated within itself, while this is not the case for the background radiation.
+
+
+\subsubsection{Coherence Losses} When measuring coincidence-based temporal second-order correlation, we sample the light statistics at specific points in time, within the coherence time.Therefore we have to measure at the center of the spatial and temporal coherence cell.This criterion is a matter of detector placement, to prevent coherence losses, as we will communicate.
+
+
+\paragraph{Spatial Coherence Losses} Classical light with finite extension produces a speckle pattern in the far field that is static for short times compared to $\tau_c$.The dependence of the speckle size on the source extension is thereby determined by the van Cittert--Zernike theorem and the speckle defines the spatial coherence cell.\\
+In \cref{sec:spatial_coherence} we revealed, spatial correlations can only be found between two
+detectors separated within the coherence radius $\rho_c\approx 1.22 \lambda z/a$.In fact, only
+photons emerging from the same coherence cell can be correlated, accounting for both, spatial and
+temporal correlation.We pointed out, when measuring $g^{(2)}$, the incoming photons are ideally
+detected at the same point in space, so there is no detector separation in terms of
+$|\boldsymbol{r}_1-\boldsymbol{r}_2|$(cf.\cref{fig:cittert}) like for spatial measurements.

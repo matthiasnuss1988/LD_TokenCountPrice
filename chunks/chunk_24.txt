@@ -1,0 +1,52 @@
+Thus, even if we take an upper limit for the spectral with of the laser $\Delta \lambda
+=\SI{1}{\nm}$ (cf.\cref{fig:GGD_krot_tauc_fit}), we expect a maximum of \SI{4}{\percent} visibility
+reduction due to wavelength diversity.Wavelength diversity is also a reason why for a pulsed
+\textit{fs}-laser, we are unable to thermalize the light, since then
+$\Delta\lambda=\lambda_0^2/c\tau_p$, with $c$ the speed of light and $ \tau_p\approx \SI{13}{\fs}$
+the pulse width.\\
+The temporal properties of the rotating \Ac{GGD} are more delicate.In the stationary case, the
+speckle pattern in \cref{fig:GGD_schematics} does not change with time and the coherence properties
+are determined by the laser ($g^{(2)}\approx 1$).\
+Still, rotating the \ac{GGD}, the position of the illuminated spot on the glass is changed.
+The intensity fluctuations, with $\bar{n}$ and $ \sigma_n$ at the detectors will change.Following,
+the imprinted temporal correlation in a speckle decrease until the disc completed a rotation cycle,
+thereafter only redundant information is generated.Thus the correlation time is inversely
+proportional to the rotation rate of the disc ($\tau_c \propto 1/k_\mathrm{rot}$) and can be
+adjusted.\\
+Utilizing this technique, we generate a \ac{PTLS} by transmission of the single frequency
+\SI{749.5}{\nm} TiSa laser through the rotating \ac{GGD}.This method is suitable to simulate a light
+source with low intensity and a very long coherence time
+\cite{martienssen_coherence_1964,estes_scattering_1971} in the range of \SI{1}{\us}--\SI{1}{\ms}.The
+laser power was adjusted by a neutral density filter, then focused on the rotating disk using a
+plano-convex lens.to keep the frequency stable, we used a feedback loop where a hall sensor measured
+the actual number of revolutions and an algorithm adjusted the current of the motor
+appropriately.Reducing the stray room light was important for measuring a long coherence time.~The
+product of the average rate and coherence time has to be small($\dot{N}\tau_c\ll1$), to avoid dead
+time effects lowering $g^{(2)}$.That is, the longer coherence time requires a lower photon rate.On
+the other hand, the detected photon counts of the light source must exceed the background photon
+counts, which amount about \SI{5}{\percent} of the detected photon rate of \SI{300}{\kHz} in our
+case.\\
+We varied the coherence time of the \ac{PTLS} with $k_\mathrm{rot}$ to compare the deduced coherence
+time with the theoretical predication in \cref{fig:GGD_curves}.The barely visible coincidence
+histogram (black) manifests a stable scaling factor of $\approx 1.6$ to the second-order
+correlation.Further on, $g^{(2)}(0)>1$ for all $k_\mathrm{rot}$ indicates stable thermalization of
+the light field.We trace the \ac{FWHM} for $k_\mathrm{rot}$=\SI{300}{\Hz} to
+$k_\mathrm{rot}$=\SI{50}{\Hz} (black dotted line), observing an increase of the FWHM with
+$k_\mathrm{rot}$.For $k_\mathrm{rot}$=\SI{0}{\Hz}, we observe no thermalization, but a straight
+line, as expected for the Poisson result of a coherent laser source.
+The coherence times $\tau_c^{(2)}$ of the \ac{PTLS} can be derived from a one-step reconvolution fit
+using \cref{eq:totalvis3}.
+The random phase modulation not only converts the light source to be pseudo-thermal, but also
+broadens the linewidth, where both, a Gaussian and a Lorentzian Lineshape, can apply.As illustrated
+in \cref{fig:GGD_curves} (red lines), the Lorentzian exponential decay curve is more suitable than
+the Gaussian line shape.It is due the backscattering random phase modulation is similar to the
+mechanism of collision broadening, which broadens the spectrum to a Lorentzian shape.\\
+For monochromatic light with negligible linewidth $\Delta\lambda\approx 0$, the coherence time of
+the \ac{PTLS} is proportional to the inverse of the rotating frequency \cite{estes_scattering_1971}
+
+\begin{equation}
+\label{eq:GGD_krotsimple}
+\dfrac{1}{\tau_c^{(2)}}=m\cdot k_\mathrm{rot}=\dfrac{4\sqrt{\pi}r}{d}k_\mathrm{rot};\qquad\tau_c^{(2)} k_\mathrm{rot}=\dfrac{1}{m}=\textrm{const},
+\end{equation}
+
+with r as the radius from the disc center to the spot with spot diameter $d$.

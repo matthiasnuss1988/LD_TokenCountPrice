@@ -1,0 +1,73 @@
+Therefore, it is essential to calculate the expected number of counts in each time-difference bin,
+the uncertainty, and the effect on the normalized $g^{(2)}$ function.
+The effect of a correlation signal on the measured histogram $c_N(\tau)$ is calculated using the
+correlation time and the line width of the signal, as derived for Lorentzian and Gaussian light in
+\cref{sec:Impact,sec:Doppler}.Even with high-end electronics ($\tau_\mathrm{bin}$ =\SI{1}{\ps}), the
+time steps are orders of magnitude higher than typical sub-picosecond correlation times.Therefore,
+it is demanding to sample the shape of $g^{(2)}$ in the case of monochromatic light (compare with
+\cref{eq:coherence2}).
+%
+Light sources with long excited state lifetimes $\tau_\mathrm{ex}$, as in the case of single
+molecules, experience an extension of the coherence effects of the two-photon correlation into the
+\si{ns}-range and convey a significantly broadened $g^{(2)}$ curve.Thus, single-molecular light is
+well resolvable in conventional $g^{(2)}$ measurements.\\
+We calculate the signal strength $S$ (contrast) from the area under the curve of the $g^{(2)}$
+function relative to the Poisson baseline (\cref{fig:Signalstrength}).
+
+\begin{equation}
+\label{eq:SignalstrengthLorentz}
+S_\mathrm{Lorentz}=\int_{-\infty}^\infty [g^{(2)}(\tau)-1]\partial\tau = \int_{-\infty}^\infty \hat{Q}_0\exp\Big(-2\dfrac{|\tau-\tau_0|}{\tau_c}\Big)\partial\tau =\hat{Q}_0\tau_c
+\end{equation}
+
+When Gaussian light is observed, the same result can be found by defining the correlation time
+appropriately.In \cref{sec:Doppler}, the shape of the $g^{(2)}$ function of chaotic light was
+derived with a Gaussian-shaped profile.
+
+\begin{equation}
+\label{eq:SignalstrengthGauss}
+S_\mathrm{Gauss} =\int_{-\infty}^\infty \hat{Q}_0\exp\Big(-\dfrac{|\tau-\tau_0|^2}{2\pi \tau^2_c}\Big)\partial\tau =\hat{Q}_0\sqrt{2}\pi\tau_c=\hat{Q}_0\tau_\mathrm{c,\, Gauss}
+\end{equation}
+
+Integrating $g^{(2)}$ is an elegant way to estimate the coherence and excited state lifetime.
+
+
+\paragraph{Ideal Electronics: No Timing Jitter}\label{sec:Nojitter}
+We consider a perfect system with an electronic time resolution of $\tau_e$ = \num{0}, but with
+$\tau_\mathrm{bin}$ = \SI{1}{\ps}.The entire Lorentzian correlation signal with height $h$ is stored
+in the bin at $\tau=\tau_0$.By choosing the smallest bin width $\tau_\mathrm{bin}$, we obtain the
+expected height of the first bin relative to one.
+
+\begin{equation}
+\label{eq:Sheight}
+S=\hat{Q}_0\tau_c=\tau_\mathrm{bin}h\quad\Rightarrow\quad h=\dfrac{\hat{Q}_0\tau_c}{\tau_\mathrm{bin}}
+\end{equation}
+
+A quantitative statement of the measured signal is the significance $n$, as the relationship between
+the signal bin and the baseline fluctuation.
+
+\begin{equation}
+\label{eq:StoB1}
+n=\dfrac{S}{B}
+\end{equation}
+
+In theory, one expects the a Poisson background.According to \cref{eq:Normderivation3}, the
+significance and required measurement time $T_t$ are derived.
+
+\begin{equation}
+\label{eq:StoB2}
+n=\dfrac{h}{\sigma_g^{(2)}}=|\hat{Q}_0|\tau_c\sqrt{\dfrac{\dot{N}_\mathrm{start}\dot{N}_\mathrm{stop}T_t}{\tau_\mathrm{bin}}}\quad\Rightarrow\quad T_t=\Bigg(\dfrac{n}{\hat{Q}_0\tau_c}\Bigg)^2\dfrac{\tau_\mathrm{bin}}{\dot{N}_\mathrm{start}\dot{N}_\mathrm{stop}}
+\end{equation}
+
+\Cref{eq:StoB2} has an important consequence: The significance, total count rate product, the
+normalized Mandel $\hat{Q}$-Parameter, as well as $\tau_c$, enter the equation
+quadratically.Doubling the significance or reducing the count rate to half requires a four-time
+longer measurement.It is therefore desirable to adjust the measurement setup in a way that the rates
+become maximal and split equally between both detectors to minimize the measurement time.Moreover, a
+signal with a highly sub- or super-Poisson character ($|\hat{Q}_0|\approx$ \num{1}) can be resolved
+faster than the Poisson case ($|\hat{Q}_0|$ = \num{0}).Long-lived signals, when $\tau_c$ becomes
+$\tau_\mathrm{ex}$, also shorten the measurement time.
+
+
+\paragraph{Linewidth-Limited Coherence}
+If the coherence time $\tau_c$ is limited by the spectral shape of the signal, lets recall $\tau_c=k
+\frac{\lambda^2_0}{c\Delta\lambda}$ from \cref{eq:coherence2}.
